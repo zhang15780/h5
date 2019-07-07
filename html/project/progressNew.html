@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">进度（%）：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" onblur="CheckNumber(this)" class="form-control" id="Percent">
+                                    <input type="text" class="form-control" id="Percent">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,19 +84,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">进度款项：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" onblur="CheckNumber(this)" id="PPay">
+                                    <input type="text" class="form-control" id="PPay">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">农民工支付款项：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" onblur="CheckNumber(this)" id="LPay">
+                                    <input type="text" class="form-control" id="LPay">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">总产值：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" onblur="CheckNumber(this)" id="Total">
+                                    <input type="text" class="form-control" id="Total">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -526,7 +526,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -538,7 +537,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -638,14 +636,6 @@
             Progress:$('input[name="Progress"]:last').prop('checked'),
             ImgGroupID:JSON.stringify(ImgGroupID)
         };
-
-        //判断长度是否大于20
-        var check_result = CheckLength(data)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
-
         if(monthId){
             data.ID=monthId;
             Ajax('/project/progress/update','post',data,function (ret) {

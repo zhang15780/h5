@@ -18,10 +18,6 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
-    <link href="../../js/chosen/chosen.css" rel="stylesheet">
-    <script src="../../js/chosen/chosen.jquery.min.js"></script>
-
-
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -84,13 +80,13 @@
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">手工合计(天)：</label>
                                 <div class="col-xs-8">
-                                    <input type="text" placeholder="" id="manual" onblur="CheckNumber(this)" class="form-control">
+                                    <input type="text" placeholder="" id="manual" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">计酬（日薪）：</label>
                                 <div class="col-xs-8" >
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="unit" class="form-control">
+                                    <input type="text" placeholder="" id="unit" class="form-control">
                                 </div>
                             </div>
 
@@ -101,7 +97,7 @@
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">加班工资：</label>
                                 <div class="col-xs-8">
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="overtime" class="form-control">
+                                    <input type="text" placeholder="" id="overtime" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -111,13 +107,13 @@
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">奖励金额：</label>
                                 <div class="col-xs-8"  >
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="reward" class="form-control">
+                                    <input type="text" placeholder="" id="reward" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 control-label">扣款金额：</label>
                                 <div class="col-xs-8"  >
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="deduction" class="form-control">
+                                    <input type="text" placeholder="" id="deduction" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -183,11 +179,7 @@
 
         function initOrg(){
             Ajax('/project/allproject','get',{id:0},function (ret) {
-                // SelectBox('ProjectID',ret.list,'ID','Name');
-
-                SelectBox2($('#ProjectID'),ret.list,'ID','Name');
-                $('#ProjectID').chosen();
-
+                SelectBox('ProjectID',ret.list,'ID','Name');
                 setlabor(ret.list[0].ID);
                 function setlabor(projectid) {
                     Ajax('/labor/one/project','get',{projectid:projectid},function (rets) {
@@ -301,8 +293,6 @@
                 deduction:parseFloat($('#deduction').val()),
                 total:parseFloat($('#total').html()),
             };
-
-
             Ajax('/attend/salary/create','post',data,function (ret) {
                 Alert(ret.msg);
                 var time=$('#Month').val();

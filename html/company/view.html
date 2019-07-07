@@ -237,7 +237,8 @@
             for(var i=0;i<company.other_file_list.length;i++){
                 var other_file=company.other_file_list[i];
                 $('#otherfile_disp').append(
-                    '<span id="ot'+other_file.id+'"><a  href="'+localHost+other_file.filepath+'" style="margin-right: 10px" download="'+other_file.filename+'">'+other_file.filename+'</a>'
+                    '<span id="ot'+other_file.id+'"><a  href="'+localHost+other_file.filepath+'" style="margin-right: 10px" download="'+other_file.filename+'">'+other_file.filename+'</a>'+
+                    '<a onclick="deleteOhter('+other_file.id+')" style="margin-right: 20px;text-decoration: line-through;color: red">删除</a><span>'
             );
             }
             $('#other_disp').html(company.BadRecordUrl);

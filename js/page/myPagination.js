@@ -210,7 +210,7 @@ Pagess.prototype = {
         li2.innerHTML = '每页&nbsp<select id="pageSize" class="form-control" style="display: inline-block;width: 50px; padding: 0;">' +
                 '<option value="10">10</option>'+
                 '<option value="20">20</option>'+
-                '<option value="25">50</option>'+
+                '<option value="25">25</option>'+
                 '<option value="100">100</option>'+
             '</select>&nbsp条';
         li2.className = 'totalPage';

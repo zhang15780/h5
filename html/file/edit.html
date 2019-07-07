@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="text-danger">*</span>注册资本（元）：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="Capital" onblur="CheckNumber(this)"  placeholder="请输入注册资本（元） " class="form-control">
+                                        <input type="text" id="Capital"   placeholder="请输入注册资本（元） " class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="text-danger">*</span>保函金额（元）：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="Amount" onblur="CheckNumber(this)" class="form-control">
+                                        <input type="text" id="Amount"  class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -106,13 +106,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="text-danger">*</span> 总费率：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="Totalrate" onblur="CheckNumber(this)"  placeholder="总费率" class="form-control">
+                                        <input type="text" id="Totalrate"  placeholder="总费率" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="text-danger">*</span> 总收费金额（元）：</label>
                                     <div class="col-sm-8">
-                                        <input type="text" id="Total" onblur="CheckNumber(this)"  placeholder="总收费金额" class="form-control">
+                                        <input type="text" id="Total"  placeholder="总收费金额" class="form-control">
                                     </div>
                                 </div>
 
@@ -122,19 +122,19 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span> 实际收费金额（元）：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="RealAC" onblur="CheckNumber(this)" placeholder="实际收费金额" class="form-control">
+                                    <input type="text" id="RealAC"  placeholder="实际收费金额" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span> 保证金比例：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="Marginratio" onblur="CheckNumber(this)" placeholder="保证金比例（%）" class="form-control">
+                                    <input type="text" id="Marginratio"  placeholder="保证金比例（%）" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span> 保证金金额（元）：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="Margin" onblur="CheckNumber(this)" placeholder="保证金金额" class="form-control">
+                                    <input type="text" id="Margin"  placeholder="保证金金额" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -440,7 +440,7 @@
                     <div class="form-group">\
                     <label class="col-sm-3 control-label">反担保人身份证号：</label>\
                     <div class="col-sm-8">\
-                    <div class="m-b"><input type="text" onblur="CheckCard(this)" name="IDCard" placeholder="反担保人身份证号" value="' + data.IDCard + '" class="form-control"></div><div>\
+                    <div class="m-b"><input type="text"  name="IDCard" placeholder="反担保人身份证号" value="' + data.IDCard + '" class="form-control"></div><div>\
                     <span id="IDimg_' + i + '_disp"><img src="' + localHost + data.IDimg + '" style="max-height: 100px"  alt=""/></span>\
                     <div class="btn-group"><label  class="btn btn-danger"><input type="file" accept="*"  id="IDimg_' + i + '" class="hide" onchange="getFormDataOne(this)">上传图片</label></div>\
                     </div></div></div></div>\
@@ -456,19 +456,19 @@
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">反担保人电话：</label>\
-                    <div class="col-sm-8"><input type="text" name="Phone" onblur="CheckPhone(this)" value="' + data.Phone + '" placeholder="反担保人电话" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Phone" value="' + data.Phone + '" placeholder="反担保人电话" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">房产面积（平米）：</label>\
-                    <div class="col-sm-8"><input type="text" name="Area" onblur="CheckNumber(this)" value="' + data.Area + '" placeholder="房产面积" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Area" value="' + data.Area + '" placeholder="房产面积" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">产权比例：</label>\
-                    <div class="col-sm-8"><input type="text" name="Proportion" onblur="CheckNumber(this)"  value="' + data.Proportion + '" placeholder="产权比例" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Proportion" value="' + data.Proportion + '" placeholder="产权比例" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">房产价值：</label>\
-                    <div class="col-sm-8"><input type="text" name="Pvalue" onblur="CheckNumber(this)"  value="' + data.Pvalue + '" placeholder="房产价值" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Pvalue" value="' + data.Pvalue + '" placeholder="房产价值" class="form-control">\
                     </div></div></div>\
                     </div>'
                 }
@@ -556,7 +556,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -568,7 +567,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -660,7 +658,7 @@
                     <div class="form-group">\
                     <label class="col-sm-3 control-label">反担保人身份证号：</label>\
                     <div class="col-sm-8">\
-                    <div class="m-b"><input type="text" onblur="CheckCard(this)" name="IDCard" placeholder="反担保人身份证号"  class="form-control"></div><div>\
+                    <div class="m-b"><input type="text"  name="IDCard" placeholder="反担保人身份证号"  class="form-control"></div><div>\
                     <span id="IDimg_' + num + '_disp"></span>\
                     <div class="btn-group"><label  class="btn btn-danger"><input type="file" accept="*"  id="IDimg_'+num+'" class="hide" onchange="getFormDataOne(this)">上传图片</label></div>\
                     </div></div></div></div>\
@@ -676,19 +674,19 @@
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">反担保人电话：</label>\
-                    <div class="col-sm-8"><input type="text" name="Phone" onblur="CheckPhone(this)"  placeholder="反担保人电话" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Phone"  placeholder="反担保人电话" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">房产面积（平米）：</label>\
-                    <div class="col-sm-8"><input type="text" name="Area"  onblur="CheckNumber(this)"  placeholder="房产面积" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Area"  placeholder="房产面积" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">产权比例：</label>\
-                    <div class="col-sm-8"><input type="text" name="Proportion"  onblur="CheckNumber(this)"  placeholder="产权比例" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Proportion"  placeholder="产权比例" class="form-control">\
                     </div></div></div>\
                     <div class="col-sm-6"><div class="form-group">\
                     <label class="col-sm-3 control-label">房产价值：</label>\
-                    <div class="col-sm-8"><input type="text" name="Pvalue"  onblur="CheckNumber(this)"  placeholder="房产价值" class="form-control">\
+                    <div class="col-sm-8"><input type="text" name="Pvalue"  placeholder="房产价值" class="form-control">\
                     </div></div></div>\
                     </div>';
             $('#CGuarantee').append(str);
@@ -756,13 +754,6 @@
                 formData.append('IDimg_'+j,'');
                 formData.append('Pimg_'+j,'');
             }
-        }
-
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
         }
 
 

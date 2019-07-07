@@ -109,7 +109,7 @@
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span>中标价格：</label>
                                 <div class="col-sm-8">
                                     <div class="m-b">
-                                        <input type="text" placeholder="" id="Price" onblur="CheckNumber(this)" class="form-control">
+                                        <input type="text" placeholder="" id="Price" class="form-control">
                                     </div>
                                     <div class="input-group m-b">
                                         <div class="input-group-btn">
@@ -157,7 +157,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">担保金额：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="GAmount" class="form-control">
+                                    <input type="text" placeholder="" id="GAmount" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -196,7 +196,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目农民工工资占比：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="WagePercent" class="form-control">
+                                    <input type="text" placeholder="" id="WagePercent" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -379,7 +379,7 @@
         if(name.val()&&post.val()&&phone.val()){
             var str='<input type="text" placeholder="名称"  style="width: 30%;display: inline-block;margin-top: 10px" name="name" class="form-control">&nbsp;'+
                 '<input type="text" placeholder="职位" style="width: 30%;display: inline-block;margin-top: 10px" name="post" class="form-control">&nbsp;'+
-                '<input type="text" placeholder="电话" onblur="CheckPhone(this)" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
+                '<input type="text" placeholder="电话" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
             addPhone.before(str)
         }else{
             Alert('请先填写完联系方式！！')
@@ -434,7 +434,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -446,7 +445,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -575,13 +573,6 @@
         formData.append('Issue',0);
         formData.append('PrinPical',JSON.stringify(getPhone()));
         formData.append('group_list',JSON.stringify(group_list('Lgroup')));
-
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
 
         Ajax('/project/create','post',formData,function (ret) {
             Alert('上传成功！！');

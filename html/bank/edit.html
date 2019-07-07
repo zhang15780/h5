@@ -20,10 +20,6 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
-
-    <link href="../../js/chosen/chosen.css" rel="stylesheet">
-    <script src="../../js/chosen/chosen.jquery.min.js"></script>
-
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -65,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label"><span class="text-danger">*</span>实际发放金额：</label>
                         <div class="col-xs-8">
-                            <input type="text" placeholder="" onblur="CheckNumber(this)" id="RPay" class="form-control">
+                            <input type="text" placeholder="" id="RPay" class="form-control">
                         </div>
                     </div>
                 </form>
@@ -105,11 +101,7 @@
         }
         function initOrg() {
             Ajax('/project/allproject','get',{id:0},function (ret) {
-                // SelectBox('ProjectID',ret.list,'ID','Name');
-
-                SelectBox2($('#ProjectID'),ret.list,'ID','Name');
-                $('#ProjectID').chosen();
-
+                SelectBox('ProjectID',ret.list,'ID','Name');
                 if(ProjectID){
                     $('#ProjectID').val(ProjectID).prop('disabled','disabled');
                 }
@@ -123,13 +115,6 @@
                 Status:$('#Status').val(),
                 RPay:$('#RPay').val(),
             };
-
-            //判断长度是否大于20
-            var check_result = CheckLength(formData)
-            if (check_result[0]) {
-                Alert(check_result[1])
-                return;
-            }
 
             Ajax('/bank/create','post',formData,function (ret) {
                 parent.$('#table').bootstrapTable('refresh');

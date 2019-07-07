@@ -50,9 +50,6 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
-    <link href="../../js/chosen/chosen.css" rel="stylesheet">
-    <script src="../../js/chosen/chosen.jquery.min.js"></script>
-
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -86,7 +83,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>所属项目：</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control Company" id="ProjectID"></select>
+                                            <select class="form-control" id="ProjectID"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +255,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>身份证号：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="IDCard" onblur="CheckCard(this)" class="form-control">
+                                            <input type="text" id="IDCard" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +312,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>手机号码：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" placeholder="" onblur="CheckPhone(this)" id="Phone" class="form-control">
+                                            <input type="text" placeholder="" id="Phone" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +321,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>紧急联系人号码：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" placeholder="" onblur="CheckPhone(this)" id="EmerCon" class="form-control">
+                                            <input type="text" placeholder="" id="EmerCon" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -633,9 +630,6 @@
 <script>
     var Name='';
     var UserID=0;
-    var TempProjectID=0;
-    var TempCompanyID=0;
-    var PID=-1;
     $(function () {
         UserID = parseInt(window.location.href.getQueryString("id"))||0;
         Name = window.location.href.getQueryString("Name");
@@ -643,7 +637,7 @@
             $('.ibox-title h5').html(Name);
             $('.ibox-tools a').attr('href','edit.html?id='+UserID+'&Name='+Name)
         }
-        // initOrg();
+        initOrg();
         SelcetArea();
         changGroup();
 
@@ -697,8 +691,7 @@
         });
 
         //初始化加载值
-        setTimeout(init(), 500)
-        // initOrg();
+       init();
     });
 
 
@@ -706,9 +699,6 @@
         Ajax('/labor/info','get',{ID:UserID}, function (ret) {
             var list=ret.labor;
             $('#ProjectID').val(list.ProjectID);
-            TempProjectID=list.ProjectID
-            TempCompanyID=list.CompanyID
-            // $('#ProjectID').trigger('chosen:updated')
             list.IsPM==1? $('#IsPM').prop('checked',true): $('#IsPM').prop('checked',true);
             if(list.IsLeader==1){
                 $('#IsLeader').prop('checked',true);
@@ -726,7 +716,6 @@
 
 
             $('#province').val(list.PID);
-            PID = list.PID;
             $('#city').append('<option value="'+list.CID+'">'+list.CName+'</option>');
             $('#district').append('<option value="'+list.DID+'">'+list.DName+'</option>');
             $('#Hardhatnum').val(list.Hardhatnum);
@@ -761,8 +750,6 @@
             $('#group').html( SetGroup(list.pic_group.info));
 
             initgroup();
-            initOrg();
-            $('#ProjectID').trigger('chosen:updated')
         });
     };
 
@@ -807,10 +794,8 @@
 
     //添加项目信息
     function initOrg(){
-        SyncAjax('/project/allproject','get',{id:UserID},function (ret) {
-            // SelectBox('ProjectID',ret.list,'ID','Name');
-            SelectBox2($('.Company'),ret.list,'ID','Name');
-            $('.Company').chosen();
+        Ajax('/project/allproject','get',{id:UserID},function (ret) {
+            SelectBox('ProjectID',ret.list,'ID','Name');
             var infoData=ret.list;
             function showCompanyGroup(val){
                 for(var i=0;i<infoData.length;i++){
@@ -822,30 +807,20 @@
                     }
                 }
             }
-            if(TempProjectID!=0){
-                $('#ProjectID').val(TempProjectID);
-                $('#ProjectID').trigger('chosen:updated')
-                showCompanyGroup(TempProjectID)
-                $('#CompanyId').val(TempCompanyID)
-                // SelectBox('CompanyId',infoData[0].companyinfo,'ID','Name');
+            if(ProjectID&&ProjectID>0) {
+                $('#ProjectID').val(ProjectID);
+                $('#ProjectID').attr('disabled','disabled');
+                showCompanyGroup(ProjectID)
+            }else{
+                SelectBox('CompanyId',infoData[0].companyinfo,'ID','Name');
+                SelectBox('ClassID',infoData[0].labor_group_info,'ClassID','ClassName');
+                SelectBox('SuperiorsID',infoData[0].labor_group_info,'SuperiorsID','SuperiorsName');
             }
-
-            // if(ProjectID&&ProjectID>0) {
-            //     $('#ProjectID').val(ProjectID);
-            //     $('#ProjectID').attr('disabled','disabled');
-            //     showCompanyGroup(ProjectID)
-            // }else{
-            //     SelectBox('CompanyId',infoData[0].companyinfo,'ID','Name');
-            //     SelectBox('ClassID',infoData[0].labor_group_info,'ClassID','ClassName');
-            //     SelectBox('SuperiorsID',infoData[0].labor_group_info,'SuperiorsID','SuperiorsName');
-            // }
             $('#ProjectID').change(function () {
                 var val=$(this).val();
                 showCompanyGroup(val)
             })
-        },function () {
-
-        }, false, false);
+        });
     }
 
     //分组信息
@@ -896,7 +871,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -908,7 +882,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -1042,12 +1015,6 @@
 
         formData.append('group_list',JSON.stringify(group_list('Lgroup','group')));
 
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
 
         Ajax('/labor/update','post',formData,function (ret) {
             Alert('上传成功！！');

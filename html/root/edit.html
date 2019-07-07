@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label"><span class="text-danger">*</span>密码：</label>
                         <div class="col-xs-8">
-                            <input type="text" placeholder="" id="Password" class="form-control">
+                            <input type="password" placeholder="" id="Password" class="form-control">
                         </div>
                     </div>
                   <!--  <div class="form-group">
@@ -91,7 +91,6 @@
                 var list=ret.user_list[0];
                 $('#UserName').val(list.UserName);
                 $('#province').val(list.PID);
-                $('#Password').val(list.Password)
                 $('#city').append('<option value="'+list.CID+'">'+list.CName+'</option>');
                 $('#district').append('<option value="'+list.DID+'">'+list.DName+'</option>');
                 $('#remark').val(list.Description);
@@ -124,14 +123,6 @@
                     Alert('创建用户成功！！');
                 },function () {},true)
             }
-
-            //判断长度是否大于20
-            var check_result = CheckLength(formData)
-            if (check_result[0]) {
-                Alert(check_result[1])
-                return;
-            }
-
             Ajax('/user/regist','post',formData,function (ret) {
                 parent.$('#table').bootstrapTable('refresh');
                 var mylay = parent.layer.getFrameIndex(window.name);

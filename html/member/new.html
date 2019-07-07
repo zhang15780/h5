@@ -50,9 +50,6 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
-    <link href="../../js/chosen/chosen.css" rel="stylesheet">
-    <script src="../../js/chosen/chosen.jquery.min.js"></script>
-
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -86,7 +83,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>所属项目：</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control Company" id="ProjectID"></select>
+                                            <select class="form-control" id="ProjectID"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -259,7 +256,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>身份证号：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="IDCard" onblur="CheckCard(this)" class="form-control">
+                                            <input type="text" id="IDCard" minlength="15" maxlength="18" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -316,7 +313,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>手机号码：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" placeholder="" onblur="CheckPhone(this)" id="Phone" class="form-control">
+                                            <input type="text" placeholder="" id="Phone" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +322,7 @@
                                         <label class="col-sm-4 control-label"><span
                                                 class="text-danger">*</span>紧急联系人号码：</label>
                                         <div class="col-sm-8">
-                                            <input type="text" placeholder="" onblur="CheckPhone(this)" id="EmerCon" class="form-control">
+                                            <input type="text" placeholder="" id="EmerCon" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -643,6 +640,7 @@
         SelcetArea();
         changGroup();
 
+
         $('#Birthday').datetimepicker({
             language:  'zh-CN',
             format: 'yyyy-mm-dd',
@@ -690,6 +688,7 @@
         });
     });
 
+
     function paishe() {
         var url='./paishe.html?userID='+userID;
         Open('拍摄头像',['500px','500px'],url);
@@ -727,9 +726,7 @@
     //添加项目信息
     function initOrg(){
         Ajax('/project/allproject','get','',function (ret) {
-            // SelectBox('ProjectID',ret.list,'ID','Name');
-            SelectBox2($('.Company'),ret.list,'ID','Name');
-            $('.Company').chosen();
+            SelectBox('ProjectID',ret.list,'ID','Name');
             var infoData=ret.list;
             function showCompanyGroup(val){
                 for(var i=0;i<infoData.length;i++){
@@ -805,7 +802,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -817,7 +813,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -945,12 +940,6 @@
         formData.append('Remark',$('#Remark').val());
         formData.append('group_list',JSON.stringify(group_list('Lgroup','group')));
 
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
 
         Ajax('/labor/regist','post',formData,function (ret) {
             Alert('上传成功！！');

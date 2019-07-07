@@ -108,7 +108,7 @@
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span>中标价格：</label>
                                 <div class="col-sm-8">
                                     <div class="m-b">
-                                        <input type="text" placeholder="" onblur="CheckNumber(this)" id="Price" class="form-control">
+                                        <input type="text" placeholder="" id="Price" class="form-control">
                                     </div>
                                     <div class="input-group m-b">
                                         <div class="input-group-btn">
@@ -156,7 +156,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">担保金额：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="GAmount" class="form-control">
+                                    <input type="text" placeholder="" id="GAmount" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -166,7 +166,7 @@
                                            name="name" class="form-control">
                                     <input type="text" placeholder="职位" style="width: 30%;display: inline-block"
                                            name="post" class="form-control">
-                                    <input type="text" placeholder="电话" style="width: 30%;display: inline-block" onblur="CheckPhone(this)"
+                                    <input type="text" placeholder="电话" style="width: 30%;display: inline-block"
                                            name="phone" class="form-control">
                                     <button type="button" class="btn btn-danger" id="addPhone"
                                             onclick="addPhones(this.id)" style="margin-top: -3px;"><i
@@ -196,7 +196,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目农民工工资占比：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" id="WagePercent" onblur="CheckNumber(this)" class="form-control">
+                                    <input type="text" placeholder="" id="WagePercent" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -278,8 +278,6 @@
 <script>
     var ProjectID=0;
     var Name='';
-    var TempBuild=0;
-    var TempCons=0;
     $(function() {
         ProjectID = parseInt(window.location.href.getQueryString("id"));
         Name = window.location.href.getQueryString("Name");
@@ -288,9 +286,9 @@
         }
 
         SelcetArea();
-        // setTimeout(function () {
-        //     initCompany();
-        // },1000);
+        setTimeout(function () {
+            initCompany();
+        },1000);
 
         initgroup2();
         $('#StartTime').datetimepicker({
@@ -320,7 +318,7 @@
             minView: 2,//最低视图 小时视图
             maxView: 4, //最高视图 十年视图
         });
-        setTimeout(init(), 500);
+        init()
     });
 
     //添加图片分组性息
@@ -353,21 +351,9 @@
     function initCompany() {
         Ajax('/company/allcompany','get','',function (ret) {
             var list=ret.list;
-            SelectBox2($('#Build'),list,'ID','Name');
-            SelectBox2($('#Cons'),list,'ID','Name');
-            $('#Build').chosen();
-            $('#Cons').chosen();
-
-            if (TempBuild!=0 || TempCons!=0){
-                $('#Build').val(TempBuild)
-                $('#Cons').val(TempCons)
-                $('#Build').trigger('chosen:updated')
-                $('#Cons').trigger('chosen:updated')
-            }
+            SelectBox2($('.Company'),list,'ID','Name');
+            $('.Company').chosen();
         });
-
-
-
         $('.Company').change(function () {
             val=$(this).val();
             idName=$(this).attr('id');
@@ -398,7 +384,7 @@
                 str+=
                     '<input type="text" placeholder="名称" value="'+data[i].name+'" style="width: 30%;display: inline-block;margin-top: 10px" name="name" class="form-control">&nbsp;'+
                     '<input type="text" placeholder="职位" value="'+data[i].post+'" style="width: 30%;display: inline-block;margin-top: 10px" name="post" class="form-control">&nbsp;'+
-                    '<input type="text" placeholder="电话" onblur="CheckPhone(this)" value="'+data[i].phone+'" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
+                    '<input type="text" placeholder="电话" value="'+data[i].phone+'" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
             }
             $('#'+id).html(str+'<button type="button" class="btn btn-danger" id="addPhone" onclick="addPhones(this.id)"  style="margin-top: -3px;"><i   class="fa fa-plus-circle"></i></button>');
         }
@@ -422,8 +408,6 @@
 
             $('#Build').val(list.Build);
             $('#Cons').val(list.Cons);
-            TempBuild=list.Build;
-            TempCons=list.Cons;
             setCompanyUser('Cons',list.ConsManager);
             setCompanyUser('Build',list.OwnerManager);
 
@@ -436,7 +420,6 @@
 
             addPhones2('Phone',list.PrinPical);        //项目委托人
             $('#group_list').val();
-            initCompany();
         });
     }
 
@@ -450,7 +433,7 @@
         if(name.val()&&post.val()&&phone.val()){
             var str='<input type="text" placeholder="名称"  style="width: 30%;display: inline-block;margin-top: 10px" name="name" class="form-control">&nbsp;'+
                 '<input type="text" placeholder="职位" style="width: 30%;display: inline-block;margin-top: 10px" name="post" class="form-control">&nbsp;'+
-                '<input type="text" placeholder="电话" onblur="CheckPhone(this)" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
+                '<input type="text" placeholder="电话" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
             addPhone.before(str)
         }else{
             Alert('请先填写完联系方式！！')
@@ -505,7 +488,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -517,7 +499,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -644,13 +625,6 @@
         formData.append('Issue',0);
         formData.append('PrinPical',JSON.stringify(getPhone()));
         formData.append('group_list',JSON.stringify(group_list('Lgroup')));
-
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
 
         Ajax('/project/update','post',formData,function (ret) {
             Alert('上传成功！！');

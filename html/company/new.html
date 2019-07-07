@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>办公地址：</label>
+                                <label class="col-sm-3 control-label">办公地址：</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="请输入地址" id="Address" class="form-control">
                                 </div>
@@ -102,7 +102,7 @@
                                 <div class="col-sm-8" id="Phone">
                                         <input type="text" placeholder="名称"  style="width: 30%;display: inline-block" name="name" class="form-control">
                                         <input type="text" placeholder="职位" style="width: 30%;display: inline-block" name="post" class="form-control">
-                                        <input type="text" placeholder="电话" maxlength="11" style="width: 30%;display: inline-block" onblur="CheckPhone(this)" name="phone" class="form-control">
+                                        <input type="text" placeholder="电话" maxlength="11" style="width: 30%;display: inline-block" name="phone" class="form-control">
                                         <button type="button" class="btn btn-danger" id="addPhone" onclick="addPhones(this.id)"  style="margin-top: -3px;"><i class="fa fa-plus-circle"></i></button>
 
                                 </div>
@@ -199,7 +199,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>企业状态：</label>
+                                <label class="col-sm-3 control-label">企业状态：</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" name="" id="HasBadRecord">
                                         <option value="1">正常</option>
@@ -214,7 +214,7 @@
                                     <span id="otherfile_disp"></span>
                                     <div class="btn-group">
                                         <label  for="otherfile" class="btn btn-danger">
-                                            <input type="file" accept="*" name="otherfile[]" id="otherfile" multiple="multiple" class="hide" onchange="upload_other_files(this)"> 其他文件
+                                            <input type="file" accept="*" name="otherfile[]" id="otherfile" multiple="multiple" class="hide" onchange="getFormDataOne(this)"> 其他文件
                                         </label>
                                     </div>
                                 </div>
@@ -239,7 +239,6 @@
 </div>
 <script>
     var CompanyId=0;
-    var other_files_list = [];
     $(function () {
         SelcetArea();
         initgroup2();
@@ -255,7 +254,7 @@
         if(name.val()&&post.val()&&phone.val()){
             var str='<input type="text" placeholder="名称"  style="width: 30%;display: inline-block;margin-top: 10px" name="name" class="form-control">&nbsp;'+
                 '<input type="text" placeholder="职位" style="width: 30%;display: inline-block;margin-top: 10px" name="post" class="form-control">&nbsp;'+
-                '<input type="text" placeholder="电话" style="width: 30%;display: inline-block;margin-top: 10px" onblur="CheckPhone(this)" name="phone" class="form-control">&nbsp;';
+                '<input type="text" placeholder="电话" style="width: 30%;display: inline-block;margin-top: 10px" name="phone" class="form-control">&nbsp;';
             addPhone.before(str)
         }else{
             Alert('请先填写完联系方式！！')
@@ -334,7 +333,6 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -346,7 +344,6 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -432,34 +429,16 @@
         return arr
     }
 
-    function upload_other_files(_this) {
-        var temp_file_list = _this.files
-
-        for(var x=0; x<temp_file_list.length; x++){
-            other_files_list.push(temp_file_list[x])
-        }
-        var span = $(_this).parents('.btn-group').prev('span');
-        span.text('')
-        for (var i = 0; i < other_files_list.length; i++) {
-            span.append('<a href="" target="_blank" style="margin-right: 20px">' + other_files_list[i].name + '</a>');
-        }
-
-    }
-
     function save() {
         if(!($('#district').val()&&$('#city').val()&&$('#province').val())){
-            Alert('必须选择地区')
-            return;
+            Alert('必须选择地区');
+            return
         }
-
 
         //不良记录，并判断是否有不良
         var formData = new FormData();
         var License=document.getElementById('License').files[0];
-        // formData=uploadMore('otherfile',formData);
-        for (var i = 0; i < other_files_list.length; i++) {
-            formData.append('otherfile', other_files_list[i]);
-        }
+        formData=uploadMore('otherfile',formData);
 
         formData.append('License',License);
         formData.append('Name',$('#Name').val());
@@ -473,13 +452,6 @@
         formData.append('Description',$('#Description').val());
         formData.append('Phone',JSON.stringify(getPhone()));
         formData.append('group_list',JSON.stringify(group_list('Lgroup','group')));
-
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
 
         Ajax('/company/regist','post',formData,function (ret) {
             Alert('上传成功！！');
