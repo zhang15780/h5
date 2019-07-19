@@ -9,6 +9,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="120.78.163.106">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/html" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="47.106.140.239">
         <serverdata>
           <mappings>

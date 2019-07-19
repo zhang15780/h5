@@ -42,31 +42,40 @@
                 </div>
                 <div class="search" id="search">
                     <div class="input-group" style="display:inline-block">
+                        <select class="form-control" style="width: 150px" id="projectname">
+                            <option value="0">项目名称 </option>
+                            <option value="1">花名册 </option>
+                        </select>
+                        <input type="text" class="form-control" id="projectid" style="width: 400px">
                         <select class="form-control" style="width: 150px" id="fuzzy">
                             <option value="">中国农业银行</option>
                             <option value="">中国建设银行</option>
                             <option value="">中国工商银行</option>
                             <option value="">中国银行</option>
                         </select>
-                     <!--   <span class="input-group-btn">
-                            <button type="button" class="btn btn-danger" onclick="init()">搜索</button>
-                        </span>-->
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger"  onclick="search()">搜索</button>
+                        </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <table id="table" class="table table-bordered">
                             <tr>
+                                <th>项目名称</th>
+                                <th>花名册</th>
                                 <th>银行名</th>
                                 <th>账户</th>
                                 <th>每月余额</th>
                                 <th>开卡数</th>
-                                <th>当月账务收到金额</th>
-                                <th>总支出余额</th>
+                                <th>当月账户收到金额</th>
+                                <th>总支出金额</th>
                                 <th>监理报告（凭证）</th>
                                 <th>上月申请金额</th>
                             </tr>
                             <tr>
+                                <td>龙湖项目</td>
+                                <td>花名册一</td>
                                 <td>中国农业银行</td>
                                 <td>51123112312231231</th>
                                 <td>55131232.00</th>
@@ -77,6 +86,8 @@
                                 <td>1231232114.00</td>
                             </tr>
                             <tr>
+                                <td>仁和春天项目</td>
+                                <td>花名册二</td>
                                 <td>中国建设银行</td>
                                 <td>1242112321512311231</th>
                                 <td>454211232.00</th>
@@ -87,6 +98,8 @@
                                 <td>961231235.00</td>
                             </tr>
                             <tr>
+                                <td>西湖房产</td>
+                                <td>花名册三</td>
                                 <td>中国工商银行</td>
                                 <td>554522457113112123</th>
                                 <td>2231231.00</th>

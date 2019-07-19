@@ -21,6 +21,14 @@
       <webServer id="b893d11a-4a4a-459f-87aa-fcb4689c1535" name="localhost" url="http://localhost:63342">
         <fileTransfer port="0" mountedRoot="C:\Users\zhang\Documents\WeChat Files\zhang15780\FileStorage\File\2019-06\工地" accessType="MOUNT" />
       </webServer>
+      <webServer id="4deafbd7-5ead-4134-9171-bfbb2e1983b2" name="120.78.163.106" url="http://120.78.163.106">
+        <fileTransfer host="120.78.163.106" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

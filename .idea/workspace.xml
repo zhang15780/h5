@@ -2,37 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e602c9f-e43c-4812-adae-e680abc969fa" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/commn.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/commn.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/attendance/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/attendance/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/backletter/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/backletter/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/backletter/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/backletter/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/bank/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/bank/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/company/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/company/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/company/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/company/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/company/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/company/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/company/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/company/team.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/company/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/company/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/file/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/file/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/file/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/file/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/help/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/help/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/member/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/member/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/member/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/member/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/project/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/project/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/project/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/project/progressNew.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/progressNew.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/bank/queryBank.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/bank/queryBank.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/project/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/root/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/root/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/root/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/root/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/salary/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/salary/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/page/myPagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/page/myPagination.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,52 +21,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/file/edit.html">
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11152">
-              <caret line="656" column="31" selection-start-line="656" selection-start-column="31" selection-end-line="656" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/file/view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4335">
-              <caret line="255" column="9" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/company/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="476" lean-forward="true" selection-start-line="476" selection-end-line="476" />
+            <state relative-caret-position="149">
+              <caret line="384" column="13" lean-forward="true" selection-start-line="384" selection-start-column="13" selection-end-line="384" selection-end-column="13" />
               <folding>
-                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-                <element signature="e#136#142#1" expanded="true" />
-                <element signature="n#style#0;n#input#1;n#!!top" expanded="true" />
-                <element signature="e#278#284#1" expanded="true" />
-                <element signature="n#style#0;n#input#2;n#!!top" expanded="true" />
-                <element signature="e#447#453#1" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-                <element signature="e#128#134#1" expanded="true" />
-                <element signature="n#style#0;n#input#1;n#!!top" expanded="true" />
-                <element signature="e#261#267#1" expanded="true" />
-                <element signature="n#style#0;n#input#2;n#!!top" expanded="true" />
-                <element signature="e#421#427#1" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,8 +40,8 @@
       <file leaf-file-name="view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/project/view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="740" column="13" lean-forward="true" selection-start-line="740" selection-start-column="13" selection-end-line="740" selection-end-column="13" />
+            <state relative-caret-position="166">
+              <caret line="719" lean-forward="true" selection-start-line="719" selection-end-line="719" />
               <folding>
                 <element signature="e#5#11#0" expanded="true" />
                 <element signature="e#11#17#0" expanded="true" />
@@ -114,36 +54,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/common.js">
+      <file leaf-file-name="queryBank.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/html/bank/queryBank.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="388" column="32" lean-forward="true" selection-start-line="388" selection-start-column="32" selection-end-line="388" selection-end-column="32" />
+            <state relative-caret-position="153">
+              <caret line="99" column="32" lean-forward="true" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/company/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="58" selection-end-column="31" />
               <folding>
-                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="e#0#6#0" expanded="true" />
+                <element signature="e#6#12#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/project/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8687">
-              <caret line="511" column="17" lean-forward="true" selection-start-line="511" selection-start-column="17" selection-end-line="511" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="progressNew.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/project/progressNew.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2634">
-              <caret line="472" column="47" lean-forward="true" selection-start-line="472" selection-start-column="47" selection-end-line="472" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -249,8 +178,9 @@
         <option value="$PROJECT_DIR$/html/file/view.html" />
         <option value="$PROJECT_DIR$/html/file/edit.html" />
         <option value="$PROJECT_DIR$/html/company/edit.html" />
-        <option value="$PROJECT_DIR$/html/project/view.html" />
         <option value="$PROJECT_DIR$/js/common.js" />
+        <option value="$PROJECT_DIR$/html/project/view.html" />
+        <option value="$PROJECT_DIR$/html/bank/queryBank.html" />
       </list>
     </option>
   </component>
@@ -286,29 +216,6 @@
               <item name="工地" type="b2602c69:ProjectViewProjectNode" />
               <item name="工地" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="工地" type="b2602c69:ProjectViewProjectNode" />
-              <item name="工地" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="工地" type="b2602c69:ProjectViewProjectNode" />
-              <item name="工地" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="工地" type="b2602c69:ProjectViewProjectNode" />
-              <item name="工地" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="工地" type="b2602c69:ProjectViewProjectNode" />
-              <item name="工地" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -424,12 +331,20 @@
       <workItem from="1562474013828" duration="6866000" />
       <workItem from="1563279133046" duration="376000" />
       <workItem from="1563361170340" duration="4249000" />
-      <workItem from="1563535219444" duration="2361000" />
+      <workItem from="1563535219444" duration="4161000" />
     </task>
+    <task id="LOCAL-00001" summary="2019-7-19修改前版本">
+      <created>1563540247699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1563540247699</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430580000" />
+    <option name="totallyTimeSpent" value="432380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -439,6 +354,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" order="8" visible="true" weight="0.32816538" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -451,7 +367,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="File Transfer" order="8" visible="true" weight="0.32903227" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
     </layout>
     <layout-to-restore>
@@ -479,6 +394,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2019-7-19修改前版本" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019-7-19修改前版本" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -492,7 +411,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/html/可读正反面测试网页.htm" />
     <entry file="file://$PROJECT_DIR$/../OCX2/OCX/测试网页.htm" />
     <entry file="file://$PROJECT_DIR$/../捷宇SDK(16)/1.控件/OCX/HtmlDemo3.html" />
     <entry file="file://$PROJECT_DIR$/html/file/TEST.html" />
@@ -668,13 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/company/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="50" column="57" lean-forward="true" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/company/view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -784,10 +695,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="384" column="13" lean-forward="true" selection-start-line="384" selection-start-column="13" selection-end-line="384" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/project/view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="740" column="13" lean-forward="true" selection-start-line="740" selection-start-column="13" selection-end-line="740" selection-end-column="13" />
+        <state relative-caret-position="166">
+          <caret line="719" lean-forward="true" selection-start-line="719" selection-end-line="719" />
           <folding>
             <element signature="e#5#11#0" expanded="true" />
             <element signature="e#11#17#0" expanded="true" />
@@ -799,17 +724,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/common.js">
+    <entry file="file://$PROJECT_DIR$/html/company/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="388" column="32" lean-forward="true" selection-start-line="388" selection-start-column="32" selection-end-line="388" selection-end-column="32" />
+        <state relative-caret-position="324">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="58" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="e#0#6#0" expanded="true" />
+            <element signature="e#6#12#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/bank/queryBank.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="99" column="32" lean-forward="true" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
         </state>
       </provider>
     </entry>

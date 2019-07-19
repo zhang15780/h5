@@ -391,7 +391,7 @@ function CheckLength(formdata) {
     var alert_list = [];
     $('input[type="text"]').each(function(){
         var $this=$(this);
-        if ($this.val().length > 20) {
+        if ($this.val().length > 30) {
             var temp_str = $this.parents('.form-group').children('.control-label').text();
             alert_list.push(temp_str.substring(1, temp_str.length - 1))
         }
@@ -402,7 +402,7 @@ function CheckLength(formdata) {
             if (i < alert_list.length - 1) {
                 alert_str += val + ','
             } else {
-                alert_str += val + ' 长度不能超过20个字符'
+                alert_str += val + ' 长度不能超过30个字符'
             }
         });
         return [true, alert_str]
