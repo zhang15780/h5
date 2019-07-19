@@ -100,7 +100,7 @@ function SyncAjax(url, type, data, cb, cbErr, formData, async) {
                 data.msg && Alert(data.msg);
                 cbErr && cbErr()
             }
-        },
+        }
     };
     if (formData) {
         obj.contentType = false;
@@ -140,7 +140,7 @@ function showTable(node, url, method, pyKey, columns, cb) {
 }
 
 function responseHandler(ret) {
-    console.log(ret);
+   // console.log(ret);
     if (typeof ret === 'string') ret = JSON.parse(ret);
     if (ret.code == 0) {
         if (ret.total) {
@@ -165,21 +165,27 @@ function SelcetArea() {
     });
     $('#province').change(function () {
         var provinceId = $('#province').val();
-        if (provinceId) {
+        if (provinceId!='0') {
+            $('#city').empty();
+            $('#district').empty();
             Ajax('/area/city/' + provinceId, 'get', null, function (ret) {
-                SelectBox('city', ret.city_list, 'ID', 'Name')
+                SelectBox('city',ret.city_list, 'ID', 'Name');
             });
         } else {
+            $('#city').empty();
+            $('#district').empty();
             Alert('请选择先选择省份')
         }
     });
     $('#city').change(function () {
         var cityId = $(this).val();
-        if (cityId) {
+        if (cityId!='0') {
+            $('#district').empty();
             Ajax('/area/district/' + cityId, 'get', null, function (ret) {
-                SelectBox('district', ret.distict_list, 'ID', 'Name')
+                SelectBox('district',ret.distict_list,'ID','Name');
             });
         } else {
+            $('#district').empty();
             Alert('请选择先选择市')
         }
     })
@@ -249,7 +255,7 @@ function SetGroup(arr) {
     var html = '';
     if (arr.length > 0) {
         for (var i = 0; i < arr.length; i++) {
-            html += '<li><a href="javascript:void(0)" attrId=' + arr[i].ID + '>' + arr[i].Name + '</a></li>'
+            html += '<li><a href="javascript:void(0)" attrId=' + arr[i].ID +'  Purl=' + arr[i].Purl + '>' + arr[i].Name + '</a></li>'
         }
     }
     return html;
@@ -261,10 +267,10 @@ function SetShowGroup(arr) {
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].Purl && arr[i].Purl.length > 0) {
                 html += '<li><input type="checkbox" style="position: absolute;top: 4px;left: 5px;"/>' +
-                    '<a href="javascript:void(0)" Purl=' + arr[i].Purl + ' attrId=' + arr[i].ID + ' >' + arr[i].Name + '</a></li>'
+                    '<a href="javascript:void(0)" Purl=' + arr[i].Purl + ' attrId='+ arr[i].ID + ' >' + arr[i].Name + '</a></li>'
             } else {
                 html += '<li><input type="checkbox" style="position: absolute;top: 4px;left: 5px;"/>' +
-                    '<a href="javascript:void(0)" attrId=' + arr[i].ID + ' >' + arr[i].Name + '</a></li>'
+                    '<a href="javascript:void(0)" attrId=' + arr[i].ID + '  Purl='+ arr[i].Purl +' >' + arr[i].Name + '</a></li>'
             }
         }
     }
@@ -285,18 +291,19 @@ function getFormData(node) {
 function getFormDataOne(node) {
     var fileObj = node.files;
     var span = $(node).parents('.btn-group').prev('span');
-    span.text('')
+
     for (var i = 0; i < fileObj.length; i++) {
-        span.append('<a href="" target="_blank" style="margin-right: 20px">' + fileObj[i].name + '</a>');
+        span.html(fileObj[i].name);
     }
 }
 
 
 //获取上传图片
-function uploadMore(node, formData) {
+function uploadMore(node,formData) {
     var fileObj = document.getElementById(node).files;
+   // console.log(fileObj);
     for (var i = 0; i < fileObj.length; i++) {
-        formData.append(node, fileObj[i]);
+        formData.append(node+'[]', fileObj[i]);
     }
     return formData
 }
@@ -383,21 +390,21 @@ function setRoot() {
 function CheckLength(formdata) {
     var alert_list = [];
     $('input[type="text"]').each(function(){
-        var $this=$(this)
+        var $this=$(this);
         if ($this.val().length > 20) {
-            var temp_str = $this.parents('.form-group').children('.control-label').text()
+            var temp_str = $this.parents('.form-group').children('.control-label').text();
             alert_list.push(temp_str.substring(1, temp_str.length - 1))
         }
-    })
+    });
     if (alert_list.length > 1) {
-        var alert_str = ''
+        var alert_str = '';
         $.each(alert_list, function (i, val) {
             if (i < alert_list.length - 1) {
                 alert_str += val + ','
             } else {
                 alert_str += val + ' 长度不能超过20个字符'
             }
-        })
+        });
         return [true, alert_str]
     }
     return [false, '']
@@ -471,3 +478,166 @@ function CheckNumber(_this) {
 }
 
 
+function changeAddTabs(url,name) {
+    var windowTop=window.top;
+    var tabId='tabs-'+name;
+    var frameId='frames-'+name;
+    var arr=[];
+    windowTop.$('#content-main iframe').each(function (i,ele) {
+        var $this = $(this);
+        var id=$this.attr('id');
+        arr.push(id);
+    });
+
+    if(arr.indexOf(frameId)<0){
+        windowTop.$('#content-main').append('<div class="frameBoxs"></div>');
+        windowTop.$('#tabBox').append('<a id="tabs-'+name+'" href="'+url+'" title="'+name+'">'+name+'<i class="fa fa-times-circle tabs-close"></i></a>');
+        windowTop.$('.frameBoxs:last-child').show().siblings().hide();
+        windowTop.$('#'+tabId).addClass('active').siblings().removeClass('active');
+        windowTop.createFrame(url,frameId);
+    }else{
+        windowTop.$('#'+frameId).parent('.frameBoxs').show().siblings().hide();
+        windowTop.$('#'+tabId).addClass('active').siblings().removeClass('active');
+    }
+    windowTop.tabsChange();
+    windowTop.removeTab();
+}
+
+//查看图片
+function showImg(src,arr,index) {
+    var items;
+    if(arr&&arr.length>0){
+        if(typeof arr=='string'){
+            arr=JSON.parse(arr)
+        }
+         items =arr
+    }else{
+         items = [
+            {
+                src: src,
+            },
+        ];
+    }
+    var options = {
+        index: index||0 // 此选项表示您将从第一张图片开始
+    };
+    var viewer = new PhotoViewer(items, options);
+}
+
+//查看view页面的分组图片
+function showGroup($this) {
+    var groups=$this.parents('ul');
+    var index=$this.parent('li').index();
+    var aLink=groups.find('a');
+    var groupArr=[];
+    for(var i=0; i<aLink.length;i++){
+        var src=aLink.eq(i).attr('purl');
+        groupArr.push({
+            src:localHost+src,
+        })
+    }
+    showImg('',groupArr,index)
+}
+
+//查看编辑新建页面的分组图片
+function openImg(_this) {
+    var oParents=$(_this).parents('.input-group');
+    var GtypeImgId=oParents.find('#GtypeImgId');
+    var $this=null;
+    if(GtypeImgId.val().length>0){
+        $this=$('[attrid="'+GtypeImgId.val()+'"]');
+    }else {
+        $this=oParents.find('a').eq(0)
+    }
+    if($this&&$this.length>0){
+        showGroup($this)
+    }else{
+        Alert('请选择分组，或者上传图片！！')
+    }
+}
+
+//是否为空或空字符串
+
+function isNull(obj) {
+    if(typeof(obj) == "number") return false;
+    if(typeof(obj) == "undefined" || obj == null || !obj || ( typeof(obj) == "string" && obj.trim() == "" )) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function isImgType(fileType) {
+    if(isNull(fileType)) {
+        return false;
+    }
+    var lowerType = fileType.toLowerCase();
+    if("jpg"==lowerType || "jpeg"==lowerType || "bmp" == lowerType
+        || "gif" == lowerType || "png" == lowerType) {
+        return true;
+    }
+    return false;
+}
+
+//打印设置
+function showPrint() {
+    $('.wrapper').printArea({
+        model:'popup'
+    });
+
+    /*$('#dropdown-menu input').on('click',function () {
+      var _this=$(this);
+      var type=_this.prop('checked');
+      var link=this.next();
+      var id=link.attr('attrid');
+      var imgsrc=link.attr('purl');
+        if(type){
+           //选中打印
+            if(id){
+                //获取分组
+            }
+        }else{
+           //不打印
+        }
+
+
+    })*/
+}
+
+//企业上传多张图片
+function showMoreImg(data,id,remove) {
+    for(var j=0;j<data.length;j++){
+        var list=data[j];
+        var fileType=list.filepath.split('.')[1];
+        var str='';
+        if(isImgType(fileType)){
+            str='<a href="javascript:void(0)" id="img'+list.id+'" onclick=showImg("'+localHost+list.filepath+'") style="margin-right: 20px">'+list.filename+'</a>';
+        }else{
+            str='<a href="'+localHost+list.filepath+'" id="img'+list.id+'"  style="margin-right: 20px" download="'+list.filename+'">'+list.filename+'</a>';
+        }
+        if(remove){
+            str+='<a onclick=deleteMoreImg(this,'+list.id+') style="margin-right: 20px;text-decoration: line-through;color: red">删除</a>';
+        }
+        $('#'+id).append(str);
+    }
+}
+
+//删除企业多张图片
+function deleteMoreImg(_that,id) {
+    var _this=$(_that);
+    Ajax('/company/remove/otherfile','delete',{id:id},function (ret) {
+        Alert('删除成功');
+        _this.remove();
+        $('#img'+id).remove();
+    })
+
+}
+
+//上传企业多张图片
+function uploadMoreImg(_this) {
+    var id=$(_this).attr('id');
+    var disp=$('#'+id+'_disp');
+    var temp_file_list = _this.files;
+    for (var i = 0; i < temp_file_list.length; i++) {
+        disp.append(temp_file_list[i].name+'&nbsp;');
+    }
+}

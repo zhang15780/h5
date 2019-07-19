@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑项目</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/plugins/time/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../js/chosen/chosen.css" rel="stylesheet">
+    <script src="../../js/chosen/chosen.jquery.min.js"></script>
+    <link href="../../js/yselect/ySelect.css" rel="stylesheet">
+    <script src="../../js/yselect/ySelect.js"></script>
+  <!--  <style>
+        .fs-wrap{    position: relative;
+            display: inline-block;
+            width: 100%;
+            /* margin: 3px; */
+            font-size: 13px;
+            line-height: 20px;}
+        .fs-label-wrap,.fs-dropdown{
+            left: -3px;
+        }
+    </style>-->
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <link href="../../js/tree/css/metroStyle/metroStyle.css" rel="stylesheet">
+    <script src="../../js/tree/jquery.ztree.core.min.js"></script>
+    <script src="../../js/tree/jquery.ztree.excheck.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>组织结构图</h5>
+                </div>
+                <form class="form-horizontal">
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-sm-12">
+                            <ul id="regionZTree" class="ztree"></ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var setting = {
+        check: {
+            enable: true,
+            chkboxType: { "Y": "", "N": "" },
+            chkStyle: 'radio',
+            radioType: "all"
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+     /*   callback: {
+            onCheck: zTreeOnCheck,
+            onClick: zTreeOnClick
+        }*/
+    };
+
+    var zNodes =[
+        {id:1, pId:0, name:"总经理", open:true},
+        {id:101, pId:1, name:"班组1"},
+        {id:102, pId:1, name:"班组2"},
+        {id:103, pId:1, name:"班组3"},
+        {id:2, pId:0, name:"班组1", open:false},
+        {id:201, pId:2, name:"张试试"},
+        {id:206, pId:2, name:"张试试"},
+        {id:211, pId:2, name:"张试试"},
+        {id:205, pId:2, name:"张试试"},
+        {id:3, pId:0, name:"班组2", open:false},
+        {id:301, pId:3, name:"张试试"},
+        {id:302, pId:3, name:"张试试"},
+        {id:304, pId:3, name:"张试试"},
+        {id:305, pId:3, name:"张试试"},
+        {id:307, pId:3, name:"张试试"},
+        {id:308, pId:3, name:"张试试"},
+        {id:4, pId:0, name:"班组2", open:false},
+        {id:401, pId:4, name:"张试试"},
+        {id:402, pId:4, name:"张试试"},
+        {id:403, pId:4, name:"张试试"},
+    ];
+    $(document).ready(function(){
+        $.fn.zTree.init($("#regionZTree"), setting, zNodes);
+    });
+
+</script>
+</body>
+</html>

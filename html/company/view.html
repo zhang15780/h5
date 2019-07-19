@@ -7,30 +7,46 @@
     <title>新建-编辑企业</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css"  rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0"  rel="stylesheet">
     <link href="../../css/animate.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css"  rel="stylesheet">
     <link href="../../css/commn.css" rel="stylesheet">
-    <style>
+    <style >
         .form-group div{
             line-height: 30px;
         }
         .dropdown-menu li{
             position: relative;
         }
+
+    </style>
+    <style media="print">
+        @media print {
+            .col-sm-6 {
+                width: 50%!important;
+            }
+        }
     </style>
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
-    <link href="../../js/btpTable/bootstrap-table.css" rel="stylesheet">
+    <link media="print,screen" href="../../js/btpTable/bootstrap-table.css" rel="stylesheet">
     <script src="../../js/btpTable/bootstrap-table.js"></script>
     <script src="../../js/btpTable/bootstrap-table-zh-CN.js "></script>
+
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+    <script src="../../js/print/jquery.PrintArea.js"></script>
+
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
+
     <script src="../../js/common.js"></script>
+
 </head>
 
 <body class="gray-bg">
+
 <div class="wrapper wrapper-content animated fadeInUp">
     <div class="row">
         <div class="col-sm-12">
@@ -38,8 +54,8 @@
                 <div class="ibox-title">
                     <h5></h5>
                     <div class="ibox-tools">
-                        <a href="projects.html" class="btn btn-info btn-xs">编辑</a>
-                        <a href="projects.html" class="btn btn-info btn-xs">打印</a>
+                        <a href="javascript:void(0)" class="btn btn-info btn-xs">编辑</a>
+                        <a href="javascript:void(0)" class="btn btn-info btn-xs">打印</a>
                     </div>
                 </div>
                 <form class="form-horizontal">
@@ -64,7 +80,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">企业资质：</label>
                                 <div class="col-sm-8">
-                                    <img id="License" src="" style="width: 200px;height: auto" alt="">
+                                    <span id="License_disp"></span>
+                                   <!-- <img id="License" src="" onclick="showImg(this.src)" style="width: 200px;height: auto" alt="">-->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -74,6 +91,7 @@
 
                         </div>
                         <div class="col-sm-6">
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">办公地址：</label>
                                 <div class="col-sm-8" id="Address"></div>
@@ -82,7 +100,7 @@
                                 <label class="col-sm-3 control-label">联系方式：</label>
                                 <div class="col-sm-8" id="Phone"></div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group hidden-print">
                                 <label class="col-sm-3 control-label">公司执照：</label>
                                 <div class="col-sm-2">
                                     <div class="dropdown">
@@ -103,7 +121,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group hidden-print">
                                 <label class="col-sm-3 control-label">公司照片：</label>
                                 <div class="col-sm-2">
                                     <div class="dropdown">
@@ -146,6 +165,10 @@
                                 <label class="col-sm-3 control-label">备注：</label>
                                 <div class="col-sm-8" id="Description"></div>
                             </div>
+                           <!-- <div class="form-group visible-print-block" id="printss">
+                                <label class="col-sm-3 control-label">备注：</label>
+                                <div class="col-sm-8" id="Description"></div>
+                            </div>-->
                         </div>
                     </div>
                 </form>
@@ -179,6 +202,7 @@
         </div>
     </div>
 </div>
+
 <script>
     var CompanyId=0;
     var Name='';
@@ -187,7 +211,10 @@
         Name=window.location.href.getQueryString("Name");
         if(Name){
             $('.ibox-title h5').html(Name);
-            $('.ibox-tools a').attr('href','edit.html?CompanyId='+CompanyId+'&Name='+Name)
+            $('.ibox-tools a').eq(0).attr('href','edit.html?CompanyId='+CompanyId+'&Name='+Name);
+            $('.ibox-tools a').eq(1).click(function () {
+                showPrint()
+            })
         }
         init();
         initgroup2();
@@ -215,8 +242,8 @@
                     $('#'+parid+'_child').html(SetShowGroup(ret.pic_list));
                 });
             }else{
-                var Purl=$(this).attr('Purl');
-                Open('','',localHost+Purl)
+                var $this=$(this);
+                showGroup($this)
             }
         });
     }
@@ -228,27 +255,23 @@
             $('#Name').html(company.Name);
             $('#Legal').html(company.Legal);
             $('#Type').html(showType(company.Type));
-            $('#License').attr('src',localHost+company.License);
+            $('#License').attr({
+                'src':localHost+company.License,
+            });
             $('#areaId').html(company.ProvinceID+company.CityID+company.DistrictID);
             $('#Address').html(company.Address);
             $('#Phone').html(showContact(company.Phone));
             $('#HasBadRecord').html(showHasBadRecord(company.HasBadRecord));
             $('#BadRecordUrl').html(company.BadRecordUrl);
-            for(var i=0;i<company.other_file_list.length;i++){
-                var other_file=company.other_file_list[i];
-                $('#otherfile_disp').append(
-                    '<span id="ot'+other_file.id+'"><a  href="'+localHost+other_file.filepath+'" style="margin-right: 10px" download="'+other_file.filename+'">'+other_file.filename+'</a>'
-            );
-            }
+            showMoreImg(company.other_file_list,'otherfile_disp',false);
+            showMoreImg(company.license_list,'License_disp',false);
+
             $('#other_disp').html(company.BadRecordUrl);
             $('#Description').html(company.Description);
-        })
+        });
+
     }
-    function deleteOhter(id) {
-        Ajax('/company/remove/otherfile','delete',{id:id},function (ret) {
-            $('#ot'+id).remove();
-        })
-    }
+
     function showType(data) {
         switch (data){
             case 0:return '施工企业';break;
@@ -275,8 +298,6 @@
         }
         return Phone;
     }
-
-
     function fuzzyVal() {
         var obj = {};
         var fuzzyVal = $('#fuzzy').val();
@@ -308,6 +329,7 @@
             Alert('后台出现错误');
         }
     };
+
     function init2() {
         var columns = [
             {
@@ -336,11 +358,7 @@
         showTable('#table', '/company/query/project', 'get', 'ID', columns);
     }
 
-    function editUser(id,name) {
-        var id=id||0;
-        var name=name||'新建用户';
-        Open(name,['650px', '450px'],'edit.html?id='+id+'&Name='+name);
-    }
 </script>
 </body>
+
 </html>

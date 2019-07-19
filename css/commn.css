@@ -85,3 +85,12 @@ ul,li{
  [menubtn]{
      display: none;
  }
+
+@media print{
+    a:after{
+        content:""!important;
+    }
+    a:before{
+        content:""!important;
+    }
+}

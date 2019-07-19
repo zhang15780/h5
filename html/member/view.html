@@ -49,6 +49,9 @@
             width: 200px;
             height: auto;
         }
+        #Lgroup_child li,#group_child li{
+            position: relative;
+        }
     </style>
 
     <script src="../../js/jquery.min.js"></script>
@@ -57,6 +60,9 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+    <script src="../../js/print/jquery.PrintArea.js"></script>
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -72,6 +78,7 @@
                     <h5>劳工注册</h5>
                     <div class="ibox-tools">
                         <a href="" class="btn btn-info btn-xs" id="edit">编辑</a>
+                        <a onclick="showPrint()" class="btn btn-info btn-xs" id="print">打印</a>
                     </div>
                 </div>
                 <form>
@@ -311,7 +318,7 @@
                                     <div class="row">
                                         <label class="col-sm-4 control-label">身份证正面：</label>
                                         <div class="col-sm-8" >
-                                            <img src="" id="IDP" alt="">
+                                            <img src="" id="IDP" onclick=showImg(this.src) alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -319,7 +326,7 @@
                                     <div class="row">
                                         <label class="col-sm-4 control-label">身份证背面：</label>
                                         <div class="col-sm-8">
-                                            <img src="" id="IDB" alt="">
+                                            <img src="" id="IDB" onclick=showImg(this.src) alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +336,7 @@
                                     <div class="row">
                                         <label class="col-sm-4 control-label">近身照片：</label>
                                         <div class="col-sm-8">
-                                            <img src="" id="CloseupPhoto" alt="">
+                                            <img src="" id="CloseupPhoto" onclick=showImg(this.src) alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -337,12 +344,12 @@
                                     <div class="row">
                                         <label class="col-sm-4 control-label">是否培训:</label>
                                         <div class="col-sm-8">
-                                            <img src="" id="Train" alt="">
+                                            <img src="" id="Train"  onclick=showImg(this.src) alt="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row viewBox" style="padding-bottom: 15px">
+                            <div class="row viewBox hidden-print" style="padding-bottom: 15px">
                                 <div class="col-sm-6  viewRow">
                                     <div class="row">
                                         <label class="col-sm-4 control-label">不良信息：</label>
@@ -502,7 +509,7 @@
             $('#Hardhatnum').html(list.Hardhatnum);
             $('#EntryDate').html(list.EntryDate);
             $('#DepartureDate').html(list.DepartureDate);
-            $('#Avatar').append('<img src="'+localHost+list.Avatar+'" alt="拍照头像" style="margin-bottom: 10px"   class="img-responsive">');
+            $('#Avatar').append('<img src="'+localHost+list.Avatar+'" onclick=showImg(this.src) alt="拍照头像" style="margin-bottom: 10px"   class="img-responsive">');
             $('#Name').html(list.Name);
             $('#Sex').html(showSex(list.Sex));
             $('#Birthday').html(list.Birthday);
@@ -534,11 +541,10 @@
                         $('#'+parid+'_child').html(SetShowGroup(ret.pic_list));
                     });
                 }else{
-                    var Purl=$(this).attr('Purl');
-                    Open('','',localHost+Purl)
+                    var $this=$(this);
+                    showGroup($this)
                 }
             });
-
         });
     };
 </script>

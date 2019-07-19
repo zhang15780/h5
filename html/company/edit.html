@@ -16,7 +16,8 @@
 
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
-
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
 
@@ -70,7 +71,7 @@
                                     <span id="License_disp"></span>
                                     <div class="btn-group">
                                         <label  for="License" class="btn btn-danger">
-                                            <input type="file" accept="*" name="file" id="License"  class="hide" onchange="getFormDataOne(this)"> 上传图片
+                                            <input type="file" accept="*" name="License[]" id="License" multiple="multiple"  class="hide" onchange="uploadMoreImg(this)"> 上传图片
                                         </label>
                                     </div>
                                 </div>
@@ -194,7 +195,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>是否有不良记录：</label>
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>企业状态：</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" name="" id="HasBadRecord">
                                         <option value="1">正常</option>
@@ -209,7 +210,7 @@
                                     <span id="otherfile_disp"></span>
                                     <div class="btn-group">
                                         <label  for="otherfile" class="btn btn-danger">
-                                            <input type="file" accept="*" name="otherfile[]" id="otherfile" multiple="multiple" class="hide" onchange="upload_other_files(this)"> 其他文件
+                                            <input type="file" accept="*" name="otherfile[]" id="otherfile" multiple="multiple" class="hide" onchange="uploadMoreImg(this)"> 其他文件
                                         </label>
                                     </div>
                                 </div>
@@ -235,8 +236,7 @@
 <script>
     var CompanyId=0;
     var Name=0;
-    var other_file_list = [];
-    var other_files_list=[];
+
     $(function () {
         CompanyId=window.location.href.getQueryString("CompanyId");
         Name=window.location.href.getQueryString("Name");
@@ -253,12 +253,12 @@
     function init(){
         Ajax('/company/info','get',{ID:CompanyId},function (ret) {
             var company=ret.company_info;
-            var LicenseArr=company.License.split('/');
+            //var LicenseArr=company.License.split('/');
 
             $('#Name').val(company.Name);
             $('#Legal').val(company.Legal);
             $('#Type').val(company.Type);
-            $('#License_disp').html('<a href="javascript:void(0)" style="margin-right: 20px">'+LicenseArr[LicenseArr.length-1]+'</a>');
+            //$('#License_disp').html('<a href="javascript:void(0)" style="margin-right: 20px">'+LicenseArr[LicenseArr.length-1]+'</a>');
 
             $('#province').val(company.province);
             $('#city').append('<option value="'+company.city+'">'+company.CityID+'</option>');
@@ -266,49 +266,13 @@
 
             $('#Address').val(company.Address);
             $('#Phone').html(addPhones2('Phone',company.Phone));
-            other_file_list = company.other_file_list
-            for(var i=0;i<company.other_file_list.length;i++){
-                var other_file=company.other_file_list[i];
-                $('#otherfile_disp').append('<a href="javascript:void(0)" style="margin-right: 20px">'+other_file.filename+'</a>'+
-                '<a onclick="deleteOhter('+other_file.id+','+i+')" style="margin-right: 20px;text-decoration: line-through;color: red">删除</a><span>');
-            }
+
+            showMoreImg(company.other_file_list,'otherfile_disp',true);
+            showMoreImg(company.license_list,'License_disp',true);
+
             $('#HasBadRecord').val(company.HasBadRecord);
             $('#Description').val(company.Description);
         })
-    }
-
-    function upload_other_files(_this) {
-        var temp_file_list = _this.files
-
-        for(var x=0; x<temp_file_list.length; x++){
-            other_files_list.push(temp_file_list[x])
-        }
-        var span = $(_this).parents('.btn-group').prev('span');
-        span.text('')
-        for(var i=0;i<other_file_list.length;i++){
-            var other_file=other_file_list[i];
-            $('#otherfile_disp').append('<a href="javascript:void(0)" style="margin-right: 20px">'+other_file.filename+'</a>'+
-                '<a onclick="deleteOhter('+other_file.id+','+i+')" style="margin-right: 20px;text-decoration: line-through;color: red">删除</a><span>');
-        }
-        for (var i = 0; i < other_files_list.length; i++) {
-            span.append('<a href="" target="_blank" style="margin-right: 20px">' + other_files_list[i].name + '</a>');
-        }
-
-    }
-
-    function deleteOhter(id,index) {
-
-        Ajax('/company/remove/otherfile','delete',{id:id},function (ret) {
-            other_file_list.splice(index, 1)
-            // $('#ot'+id).remove();
-            $('#otherfile_disp').empty();
-            for(var i=0;i<other_file_list.length;i++){
-                var other_file=other_file_list[i];
-                $('#otherfile_disp').append('<a href="javascript:void(0)" style="margin-right: 20px">'+other_file.filename+'</a>'+
-                    '<a onclick="deleteOhter('+other_file.id+','+i+')" style="margin-right: 20px;text-decoration: line-through;color: red">删除</a><span>');
-            }
-        })
-
     }
 
     //添加职位
@@ -365,6 +329,8 @@
         });
     }
 
+
+
     //分组信息
     function addgroup(_this,Gtype) {
         var oParents=$(_this).parents('.input-group');
@@ -407,14 +373,13 @@
         })
     }
     function detgroup(_this) {
-
         Confirm("确定删除分组？",
             function () {
                 var oParents=$(_this).parents('.input-group');
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
+                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -426,8 +391,9 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
+                    ulnode.empty();
                     Alert('删除分组成功！！');
+
                     window.top.close(LayerConfirm)
                 })
             },function () {})
@@ -450,22 +416,16 @@
         formData.append('GID',GtypeId.val());
         formData.append('CID',CompanyId);
 
-
         Ajax('/company/uploadgrouppic','post',formData,function (ret) {
             Alert('上传图片成功！！');
             for(var i=0;i<ret.data.length;i++){
-                dropdown.append('<li><a attrId='+ret.data[i].id+'>'+ret.data[i].name+'</a></li>');
+                dropdown.append('<li><a attrId='+ret.data[i].id+' Purl='+ret.data[i].Purl+'>'+ret.data[i].name+'</a></li>');
             }
             initgroup();
         },function(){},true)
     }
-    function openImg(_this) {
-        var oParents=$(_this).parents('.input-group');
-        var GtypeImgId=oParents.find('#GtypeImgId');
-        Ajax('/company/pic/getone','get',{ID:GtypeImgId.val()},function (ret) {
-            Open('','',localHost+ret.url)
-        })
-    }
+
+
     function delImg(_this){
         Confirm("确定删除图片？",function(){
             var oParents=$(_this).parents('.input-group');
@@ -506,13 +466,10 @@
 
         //不良记录，并判断是否有不良
         var formData = new FormData();
-        var License=document.getElementById('License').files[0];
-        formData.append('License',License);
+        formData=uploadMore('License',formData);
+        formData=uploadMore('otherfile',formData);
 
-        // formData=uploadMore('otherfile',formData);
-        for (var i = 0; i < other_files_list.length; i++) {
-            formData.append('otherfile', other_files_list[i]);
-        }
+
         formData.append('ID',CompanyId);
         formData.append('Name',$('#Name').val());
         formData.append('Legal',$('#Legal').val());
@@ -536,7 +493,7 @@
         Ajax('/company/update','post',formData,function (ret) {
             if(ret){
                 Alert('更新成功！！');
-                window.location.href='list.html'
+                window.location.href='view.html?CompanyId='+CompanyId+'&Name='+Name;
             }
         },function () {
 

@@ -73,6 +73,9 @@
     </style>
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+    <script src="../../js/print/jquery.PrintArea.js"></script>
 
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
@@ -88,9 +91,9 @@
                     <h5>成都大三大四科技有限公司施工项目</h5>
                     <div class="ibox-tools">
                         <a href="" class="btn btn-info btn-xs" id="addmemer">添加劳工</a>
-                        <!--<a href="javascript:void(0)" class="btn btn-info btn-xs" id="editprogress">项目进度</a>-->
+                        <a href="orgtree.html" class="btn btn-info btn-xs" id="orgtree">组织结构图</a>
                         <a href="" class="btn btn-info btn-xs" id="edit">编辑</a>
-                        <a href="" class="btn btn-info btn-xs">打印</a>
+                        <a onclick="showPrint()" class="btn btn-info btn-xs">打印</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -237,7 +240,7 @@
                             </div>
 
                         </div>
-                        <div class="row viewBox">
+                        <div class="row viewBox hidden-print">
                             <div class="col-sm-6 col-md-4 viewRow">
                                 <div class="row">
                                     <label class="col-sm-4 control-label">项目图片：</label>
@@ -521,8 +524,10 @@
                     $('#'+parid+'_child').html(SetShowGroup(ret.pic_list));
                 });
             }else{
-                var Purl=$(this).attr('Purl');
-                Open('','',localHost+Purl)
+             /*   var Purl=$(this).attr('Purl');
+                Open('','',localHost+Purl)*/
+             var $this=$(this);
+             showGroup($this)
             }
         });
     }
@@ -739,7 +744,7 @@
         function returnUrl(data) {
             var str='';
             for(var j=0;j<data.length;j++){
-                str+='<img style="margin: 20px  20px 0 0"  src="'+localHost+data[j].Purl+'">'
+                str+='<img  onclick=showImg("'+localHost+data[j].Purl+'")  style="margin: 20px  20px 0 0"  src="'+localHost+data[j].Purl+'">'
             }
             return str;
         }

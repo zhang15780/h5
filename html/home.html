@@ -259,10 +259,9 @@
             for(var i=0;i<company.length;i++){
                 companyCont+='<tr>'+
                     '<td class="project-title" width="75%">' +
-                        '<a  class="overf" href="company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'">'+company[i].name+'</a></td>'+
+                        '<a  class="overf" onclick=changeAddTabs("../html/company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'","企业详情") href="javascript:void(0)">'+company[i].name+'</a></td>'+
                     '<td class="project-actions" width="15%">'+
-                        '<a title="编辑" href="company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'"' +
-                            'class="btn btn-white btn-sm">编辑</a>'+/*<i class="fa fa-pencil">*/
+                        '<a title="编辑" onclick=changeAddTabs("../html/company/edit.html?CompanyId='+company[i].id+'&Name='+company[i].name+'","企业编辑") href="javascript:void(0)" class="btn btn-white btn-sm">编辑</a>'+/*<i class="fa fa-pencil">*/
                     '</td>'+
                     '</tr>'
             }
@@ -272,10 +271,9 @@
             for(var l=0;l<labor.length;l++){
                 laborCont+='<tr>'+
                     '<td class="project-title" width="75%">' +
-                    '<a   class="overf" href="member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'">'+labor[l].name+'</a></td>'+
+                    '<a   class="overf" onclick=changeAddTabs("../html/member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'","劳工详情") href="javascript:void(0)">'+labor[l].name+'</a></td>'+
                     '<td class="project-actions" width="15%">'+
-                    '<a title="编辑" href="member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'"' +
-                    'class="btn btn-white btn-sm">编辑</a>'+
+                    '<a title="编辑" onclick=changeAddTabs("../html/member/edit.html?id='+labor[l].id+'&Name='+labor[l].name+'","劳工编辑") href="javascript:void(0)" class="btn btn-white btn-sm">编辑</a>'+
                     '</td>'+
                     '</tr>'
             }
@@ -285,10 +283,9 @@
             for(var p=0;p<project.length;p++){
                 projectCont+='<tr>'+
                     '<td class="project-title" width="75%">' +
-                    '<a  class="overf" href="project/view.html?id='+project[p].id+'&Name='+project[p].name+'">'+project[p].name+'</a></td>'+
+                    '<a  class="overf" onclick=changeAddTabs("../html/project/view.html?id='+project[p].id+'&Name='+project[p].name+'","项目详情") href="javascript:void(0)">'+project[p].name+'</a></td>'+
                     '<td class="project-actions" width="15%">'+
-                    '<a title="编辑" href="project/view.html?id='+project[p].id+'&Name='+project[p].name+'"' +
-                    'class="btn btn-white btn-sm">编辑</a>'+
+                    '<a title="编辑" onclick=changeAddTabs("../html/project/edit.html?id='+project[p].id+'&Name='+project[p].name+'","项目编辑") href="javascript:void(0)" class="btn btn-white btn-sm">编辑</a>'+
                     '</td>'+
                     '</tr>'
             }

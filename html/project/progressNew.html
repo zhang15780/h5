@@ -26,6 +26,9 @@
     <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
     <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
 
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -311,7 +314,6 @@
             $('#UploadTime').val(pYear+'-'+pMonth);
 
         }
-
         $('input[name="time"]').datetimepicker({
             language:  'zh-CN',
             format: 'yyyy-mm-dd',
@@ -321,10 +323,7 @@
             minView: 2,//最低视图 小时视图
             maxView: 4, //最高视图 十年视图
         });
-
          init();
-
-
     });
     function  init() {
         if(!monthId){
@@ -341,7 +340,7 @@
            $('#Total').val(list.Total);
            $('#Remark').val(list.Remark);
 
-            (function addPerson2(data) {
+            (function(data) {
                 if(data){
                     for(var i=0;i<data.length;i++){
                         if(data[i].name){
@@ -352,7 +351,6 @@
                                 '<td><input type="text" name="wage" class="form-control" value="'+data[i].wage+'"></td></tr>';
                             $('#Person').prepend(str);
                         }
-
                     }
                 }
 
@@ -428,12 +426,17 @@
         $('#LgroupTit').html(parentName);
 
         if(type&&label=='有'){
+            $('#GtypeName').prop('readonly',false);
+            $('#GtypeImgName').prop('readonly',false);
             Ajax('/project/group/list','get',{ID:ProjectID},function (ret) {
                 var  groupNameVal=name+'_list';
                 var  Lgroup= $('#Lgroup');
                 Lgroup.attr('groupNameVal',groupNameVal);
                 Lgroup.html(SetGroup(ret.group[groupNameVal]));
             })
+        }else{
+            $('#GtypeName').prop('readonly',true);
+            $('#GtypeImgName').prop('readonly',true)
         }
         initgroup();
     });
@@ -526,7 +529,7 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
+                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -538,7 +541,7 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
+                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -572,13 +575,7 @@
             initgroup();
         },function(){},true)
     }
-    function openImg(_this) {
-        var oParents=$(_this).parents('.input-group');
-        var GtypeImgId=oParents.find('#GtypeImgId');
-        Ajax('/company/pic/getone','get',{ID:GtypeImgId.val()},function (ret) {
-            Open('','',localHost+ret.url)
-        })
-    }
+
     function delImg(_this){
         Confirm("确定删除图片？",function(){
             var oParents=$(_this).parents('.input-group');
@@ -619,12 +616,11 @@
             UploadTime:$('#UploadTime').val(),
             Remark:$('#Remark').val(),
             Rtype:$('#Rtype').val(),
-            Percent:parseInt($('#Percent').val()),
+            Percent:$('#Percent').val(),
             Content:$('#Content').val(),
             PPay:$('#PPay').val(),
             LPay:$('#LPay').val(),
             Total:$('#Total').val(),
-            Person:JSON.stringify(getPerson()),
             Contract:$('input[name="Contract"]:last').prop('checked'),
             RealName:$('input[name="RealName"]:last').prop('checked'),
             Attend:$('input[name="Attend"]:last').prop('checked'),
@@ -639,13 +635,14 @@
             ImgGroupID:JSON.stringify(ImgGroupID)
         };
 
+
         //判断长度是否大于20
-        var check_result = CheckLength(data)
+        var check_result = CheckLength(data);
         if (check_result[0]) {
-            Alert(check_result[1])
+            Alert(check_result[1]);
             return;
         }
-
+        data.Person=JSON.stringify(getPerson());
         if(monthId){
             data.ID=monthId;
             Ajax('/project/progress/update','post',data,function (ret) {
@@ -658,7 +655,6 @@
                 window.location.href='view.html?id='+ProjectID+'&Name='+Name;
             })
         }
-
     }
 </script>
 </body>

@@ -31,12 +31,12 @@
                 <div class="ibox-title">
                     <h5>查看项目</h5>
                     <div class="ibox-tools">
-                        <a href="new.html" class="btn btn-info btn-xs">导入模板</a>
+                        <label id="importfile"  for="otherfile" class="btn btn-info btn-xs">
+                            <input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入项目
+                        </label>
                         <a href="new.html" class="btn btn-info btn-xs">新建项目</a>
                     </div>
                 </div>
-
-
                 <div class="search" id="search">
                     <div class="input-group" style="display:inline-block">
                         <select class="form-control" style="width: 150px" id="fuzzy">
@@ -64,7 +64,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="cont-list">
@@ -142,10 +141,10 @@
                     '<div class="col-sm-4">' +
                     '<div><span class="cont-list-tit">建设方:</span>' +
                         '<a href="../company/view.html?CompanyId='+list.Build+'&Name='+list.BuildName+'">'+list.BuildName+'</a></div>' +
-                    '<div><span class="cont-list-tit">施工负责人:</span>'+list.OwnerManager+'</div>' +
-                    '<div><span class="cont-list-tit">建设方:</span>' +
+                    '<div><span class="cont-list-tit">业主负责人:</span>'+list.OwnerManager+'</div>' +
+                    '<div><span class="cont-list-tit">施工方:</span>' +
                     '<a href="../company/view.html?CompanyId='+list.Cons+'&Name='+list.ConsName+'">'+list.ConsName+'</a></div>' +
-                    '<div><span class="cont-list-tit">业主负责人:</span>'+list.ConsManager+'</div>' +
+                    '<div><span class="cont-list-tit">施工负责人:</span>'+list.ConsManager+'</div>' +
                     '<div><span class="cont-list-tit">项目不良信息:</span><span class="'+(list.Status==3?'text-danger':'')+'">'
                     +showStatus(list.Status)+'</span></div>' +
                /*     '<div><span class="cont-list-tit">项目进度:</span><a href="progressNew.html?id='+list.ID+'&Name='+list.Name+'">添加</a></div>' ++*/
@@ -169,6 +168,21 @@
         })
     }
 
+    function upload_files(_this) {
+        var file = _this.files;
+        if (file.length>0){
+            var formData = new FormData();
+            formData.append('file', file[0]);
+            formData.append('/template/import','Project');
+            Ajax('/attend/import', 'post', formData, function (res) {
+                Alert('导入成功！');
+                $('#importfile').empty();
+                $('#importfile').append('<input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入项目')
+                init();
+            },function () {
+            }, true)
+        }
+    }
     function showType(data) {
         switch (data) {
             case 0:return '政府投资'; break;

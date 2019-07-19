@@ -47,6 +47,7 @@
         };
         Ajax('/user/login','post',data,function (ret) {
             setCookie('Permission',JSON.stringify(ret.Permission));
+            setCookie('LoginName',$('#LoginName').val());
             window.location.href='./index.html'
         },function () {
             $('#LoginName').val();

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑项目</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/plugins/time/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <style>
+        .col-sm-8{
+            line-height: 28px;
+        }
+        .ibox-content .viewBox:last-child {
+            border-bottom: none;
+        }
+
+        .viewBox {
+            border-bottom: 1px dashed #cccccc;
+            margin: 10px 0 0 0;
+        }
+
+        .viewBox .viewRow {
+            line-height: 30px;
+        }
+        .viewBox .viewRow.col-sm-12{
+            line-height: normal;
+        }
+        .viewBox .viewRow label {
+            text-align: right;
+        }
+
+        .viewBox .viewRow .col-sm-8 {
+            padding: 0;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>新建保函</h5>
+                </div>
+                <form class="form-horizontal">
+                    <div class="row" style="margin-top: 15px;margin-left: 0;margin-right: 0">
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">项目名称：</label>
+                                    <div class="col-sm-8" id="ProjectID">
+                                     
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">企业名称：</label>
+                                    <div class="col-sm-8" id="CompanyID">
+                                        <input type="text" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">担保公司：</label>
+                                    <div class="col-sm-8" id="GuaCompany">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">注册资本（万元）：</label>
+                                    <div class="col-sm-8"  id="Capital">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">企业性质：</label>
+                                    <div class="col-sm-8" id="Nature">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函编号：</label>
+                                    <div class="col-sm-8" id="Name">
+                                    </div>
+                                </div>
+                           <!--     <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函编号：</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id=""  class="form-control">
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函金额（元）：</label>
+                                    <div class="col-sm-8" id="Amount">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函种类：</label>
+                                    <div class="col-sm-8" id="Kind">
+
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">开始执行日期：</label>
+                                <div class="col-sm-8" id="SignTime">
+
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函期限：</label>
+                                    <div class="col-sm-8" id="Deadline">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">保函到期日：</label>
+                                    <div class="col-sm-8" id="Expiretime">
+
+                                    </div>
+                                </div>
+
+
+                        </div>
+                        <div class="col-sm-6"  >
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">实际收费金额（元）：</label>
+                                <div class="col-sm-8" id="RealAC">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 保证金比例：</label>
+                                <div class="col-sm-8" id="Marginratio">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 保证金金额（元）：</label>
+                                <div class="col-sm-8" id="Margin">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 保函受益人名称：</label>
+                                <div class="col-sm-8" id="Bene">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">担保类型：</label>
+                                <div class="col-sm-8"  id="Category">
+                                   <!-- <select name="" class="form-control">
+                                        <option value="0">投标</option>
+                                        <option value="1">履约</option>
+                                        <option value="2">预付款</option>
+                                        <option value="3">农民工工资支付</option>
+                                        <option value="4">业主支付</option>
+                                        <option value="5">质量</option>
+                                        <option value="6">资本金</option>
+                                        <option value="7">房屋质量</option>
+                                        <option value="8">其他</option>
+                                    </select>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">实际竣工时间：</label>
+                                <div class="col-sm-8"id="Duration" style="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">工程所在地：</label>
+                                <div class="col-sm-8" id="Area">
+                                <!--    <select class="form-control " id="province"  style="width: 30%;display: inline-block"></select>
+                                    <select class="form-control" id="city" style="width: 30%;display: inline-block"></select>
+                                    <select class="form-control" id="district"  style="width: 30%;display: inline-block"> </select>-->
+                                </div>
+                            </div>
+                          <!--  <div class="form-group">
+                                <label class="col-sm-3 control-label">上传保函：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b" id="Lgroup">
+
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">总费率（%）：</label>
+                                <div class="col-sm-8" id="Totalrate">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">总收费金额（元）：</label>
+                                <div class="col-sm-8" id="Total">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">备注：</label>
+                                <div class="col-sm-8" id="Description">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row viewBox" style="border-bottom: none;margin-bottom: 0;margin-top: 0">
+                            <div class="col-sm-6 col-md-4 viewRow">
+                                <div class="row">
+                                    <label class="col-sm-4 control-label" style="line-height: 50px;background: #23B7E5;">保函图片：</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="progerssImg">
+
+                        </div>
+                        <div style="margin-top: 20px" class="col-sm-12" id="CGuarantee">
+                            <h3 class="text-center" >
+                                反担保
+                            </h3>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ProjectID=0;
+    var FileID=0;
+    var Name='';
+    $(function() {
+        FileID = parseInt(window.location.href.getQueryString("id"))||0;
+        Name = window.location.href.getQueryString("Name");
+        if(Name){
+            $('.ibox-title h5').html(Name+'详情');
+        }
+        if(FileID>0) {
+            init();
+            initgroup2();
+        }
+    });
+
+
+    //添加项目信息
+    function init() {
+        Ajax('/guarantee/query', 'get', {ID: FileID}, function (ret) {
+            var list = ret.result[0];
+            $('#ProjectID').html(list.ProjectID);
+            $('#CompanyID').html(list.CompanyID);
+            $('#GuaCompany').html(list.GuaCompany);
+            $('#Capital').html(list.Capital);
+            $('#Nature').html(list.Nature);
+            $('#Name').html(list.Name);
+            $('#Amount').html(list.Amount);
+            $('#Kind').html(list.Kind);
+            $('#Deadline').html(list.Deadline);
+            $('#SignTime').html(list.SignTime);
+            $('#Category').html(CategoryType(list.Category));
+
+            $('#Expiretime').html(list.Expiretime);
+            $('#Totalrate').html(list.Totalrate);
+            $('#Total').html(list.Total);
+            $('#RealAC').html(list.RealAC);
+            $('#Marginratio').html(list.Marginratio);
+            $('#Margin').html(list.Margin);
+            $('#Bene').html(list.Bene);
+            $('#Duration').html(list.Duration);
+            $('#Area').html(list.Pname+list.Cname+list.Dname);
+         /*   $('#city').append('<option value="'+list.CID+'">'+list.Cname+'</option>');
+            $('#district').append('<option value="'+list.DID+'">'+list.Dname+'</option>');*/
+            $('#Description').html(list.Description);
+            var str='';
+
+            if(list.CGuarantee.length){
+                for(var i=0;i<list.CGuarantee.length;i++){
+                    var data=list.CGuarantee[i];
+                    str+='<div class="row" id="' + data.ID + '"  style="border-top:1px solid #ccc;margin-top: 30px">\
+                    <div class="col-sm-12" style="text-align:center">\
+                    <div class="form-group" style="margin-top: 20px">\
+                    <h3>第' + (i + 1) + '反担保措施</h3>\
+                    </div></div>\
+                    <div class="col-sm-6">\
+                    <div class="form-group">\
+                    <label class="col-sm-3 control-label">房产证地址：</label>\
+                    <div class="col-sm-8">\
+                    <div class="m-b">'+data.Paddress+'+</div><div>\
+                    <span id="Pimg_'+i+'_disp"><img src="'+localHost+data.Pimg+'" onclick="showImg(this.src)" style="max-height: 100px"  alt=""/></span>\
+                    </div></div></div></div>\
+                    <div class="col-sm-6">\
+                    <div class="form-group">\
+                    <label class="col-sm-3 control-label">反担保人身份证号：</label>\
+                    <div class="col-sm-8">\
+                    <div class="m-b">' + data.IDCard + '</div><div>\
+                    <span id="IDimg_' + i + '_disp"><img src="' + localHost + data.IDimg + '" onclick="showImg(this.src)"  style="max-height: 100px"  alt=""/></span>\
+                    </div></div></div></div>\
+                    <div class="col-sm-6">\
+                    <div class="form-group">\
+                    <label class="col-sm-3 control-label">反担保人姓名：</label>\
+                    <div class="col-sm-8">' + data.Name +'\
+                    </div></div></div>\
+                    <div class="col-sm-6"><div class="form-group">\
+                    <label class="col-sm-3 control-label">反担保人住址：</label>\
+                    <div class="col-sm-8">' + data.Address + '\
+                    </div></div></div>\
+                    <div class="col-sm-6"><div class="form-group">\
+                    <label class="col-sm-3 control-label">反担保人电话：</label>\
+                    <div class="col-sm-8">' + data.Phone + '\
+                    </div></div></div>\
+                    <div class="col-sm-6"><div class="form-group">\
+                    <label class="col-sm-3 control-label">房产面积（平米）：</label>\
+                    <div class="col-sm-8">' + data.Area + '\
+                    </div></div></div>\
+                    <div class="col-sm-6"><div class="form-group">\
+                    <label class="col-sm-3 control-label">产权比例：</label>\
+                    <div class="col-sm-8">' + data.Proportion + '\
+                    </div></div></div>\
+                    <div class="col-sm-6"><div class="form-group">\
+                    <label class="col-sm-3 control-label">房产价值：</label>\
+                    <div class="col-sm-8">' + data.Pvalue + '\
+                    </div></div></div>\
+                    </div>'
+                }
+            }
+            if(str.length>0){
+                $('#CGuarantee').append(str);
+            }else{
+                $('#CGuarantee').append('无反担保');
+            }
+
+
+
+        });
+    }
+
+    //添加图片分组性息
+    function initgroup2() {
+        Ajax('/guarantee/getgroup','get',{ID:FileID}, function (ret) {
+            if(ret.group_list){
+                $('#Lgroup').html(SetGroup(ret.group_list));
+                for(var i=0;i<ret.group_list.length;i++){
+                    $('#progerssImg').append('<div class="row viewBox "><div class="col-sm-12 viewRow imgArr">'+
+                        '<div class="row"><label class="col-sm-1 control-label" >'+ret.group_list[i].Name+'</label>'+
+                        '<div class="col-sm-11" style="padding-bottom: 10px" id="s'+ret.group_list[i].ID+'"></div>')
+                    returnImg(ret.group_list[i].ID);
+                }
+            }else{
+                $('#progerssImg').html('');
+            }
+        });
+       function returnImg(id){
+            Ajax('/company/pic/list','get',{ID: id}, function (ret) {
+                for(var j=0;j<ret.pic_list.length;j++){
+                    $('#s'+id).append('<img onclick=showImg("'+localHost+ret.pic_list[j].Purl+'")  style="margin: 20px  20px 0 0"  src="'+localHost+ret.pic_list[j].Purl+'">')
+                }
+            });
+        }
+    }
+
+
+
+
+
+    function CategoryType(value) {
+        switch (parseInt(value)){
+            case 0:return '投标'; break;
+            case 1:return '履约'; break;
+            case 2:return '预付款';break;
+            case 3:return '农民工工资支付'; break;
+            case 4:return '业主支付'; break;
+            case 5:return '质量'; break;
+            case 6:return '资本金'; break;
+            case 7:return '房屋质量'; break;
+            case 8:return '其他'; break;
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

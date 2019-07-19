@@ -34,6 +34,9 @@
             left: -3px;
         }
     </style>
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -194,13 +197,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">项目农民工工资占比：</label>
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>项目农民工工资占比：</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" id="WagePercent" onblur="CheckNumber(this)" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">工期：</label>
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>工期：</label>
                                 <div class="col-sm-3">
                                     <input type="text" placeholder="" id="StartTime" class="form-control" readonly>
                                 </div>
@@ -232,12 +235,12 @@
                                     <select class="form-control Company"  id="Build" > </select>
                                 </div>
                                 <div class="col-sm-3" style="padding-left: 0">
-                                    <a href="../company/edit.html" class="btn btn-info">增加</a>
+                                    <a href="javascript:void(0)" onclick="changeAddTabs('../html/company/edit.html','企业注册')" class="btn btn-info">增加</a>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span>业主负责人：</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-5" id="Build_par">
                                     <select class="form-control Company_disp" id="Build_disp" multiple="multiple" size="1"> </select>
                                 </div>
                             </div>
@@ -247,12 +250,12 @@
                                     <select class="form-control Company" id="Cons"></select>
                                 </div>
                                 <div class="col-sm-3" style="padding-left: 0">
-                                    <a href="../company/edit.html" class="btn btn-info">增加</a>
+                                    <a href="javascript:void(0)" onclick="changeAddTabs('../html/company/edit.html','企业注册')" class="btn btn-info">增加</a>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="text-danger">*</span>施工负责人：</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-5" id="Cons_par">
                                     <select class="form-control Company_disp" id="Cons_disp"   multiple="multiple" size="1"></select>
                                 </div>
                             </div>
@@ -288,9 +291,9 @@
         }
 
         SelcetArea();
-        // setTimeout(function () {
-        //     initCompany();
-        // },1000);
+         setTimeout(function () {
+             init()
+        },1000);
 
         initgroup2();
         $('#StartTime').datetimepicker({
@@ -320,7 +323,7 @@
             minView: 2,//最低视图 小时视图
             maxView: 4, //最高视图 十年视图
         });
-        setTimeout(init(), 500);
+
     });
 
     //添加图片分组性息
@@ -361,7 +364,7 @@
             if (TempBuild!=0 || TempCons!=0){
                 $('#Build').val(TempBuild)
                 $('#Cons').val(TempCons)
-                $('#Build').trigger('chosen:updated')
+                $('#Build').trigger('chosen:updated');
                 $('#Cons').trigger('chosen:updated')
             }
         });
@@ -369,8 +372,10 @@
 
 
         $('.Company').change(function () {
-            val=$(this).val();
-            idName=$(this).attr('id');
+            var val=$(this).val();
+            var idName=$(this).attr('id');
+
+            $('#'+idName+'_par').html('<select class="form-control Company_disp" id="'+idName+'_disp"   multiple="multiple" size="1"></select>');
             $childIdName=$('#'+idName+'_disp');
             if($childIdName.length>0){
                 Ajax('/project/companyinfo','get',{ID:val},function (ret) {
@@ -384,7 +389,6 @@
                             node.html(optionstring);
                         }
                     }
-                    $childIdName.empty();
                     SelectBox3($childIdName,list,'name','name','phone','post');
                     $childIdName.ySelect();
                 });
@@ -505,7 +509,7 @@
                 var dropdown=oParents.find('.dropdown-menu');
                 var GtypeId=oParents.find('#GtypeId');
                 var GtypeName=oParents.find('#GtypeName');
-                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul')
+                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
                 if(!GtypeName.val()){
                     Alert('请选择分组信息！!');
                     return;
@@ -517,7 +521,7 @@
                     dropdown.find('a[attrId="'+GtypeId.val()+'"]').parent().empty();
                     GtypeId.val('');
                     GtypeName.val('');
-                    ulnode.empty()
+                    ulnode.empty();
                     Alert('删除分组成功！！');
                     window.top.close(LayerConfirm)
                 })
@@ -553,13 +557,7 @@
             initgroup();
         },function(){},true)
     }
-    function openImg(_this) {
-        var oParents=$(_this).parents('.input-group');
-        var GtypeImgId=oParents.find('#GtypeImgId');
-        Ajax('/company/pic/getone','get',{ID:GtypeImgId.val()},function (ret) {
-            Open('','',localHost+ret.url)
-        })
-    }
+
     function delImg(_this){
         Confirm("确定删除图片？",function(){
             var oParents=$(_this).parents('.input-group');

@@ -26,6 +26,7 @@
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
     <script src="../../js/plugins/layer/layer.min.js"></script>
     <script src="../../js/common.js"></script>
+
 </head>
 
 <body class="gray-bg">
@@ -158,12 +159,12 @@
             },
             {
                 field: 'Amount',
-                title: '保费',
+                title: '担保金额',
                 align: 'center',
             },
             {
                 field: 'SignTime',
-                title: '保函开始日期',
+                title: '开始执行日期',
                 align: 'center',
             },
             {
@@ -229,7 +230,7 @@
         }
     };
     function Editor(value,row,index) {
-        var str='<a href="javascript:void(0)">打印</a>&nbsp;&nbsp;'+
+        var str='<a href="view.html?id='+row.ID+'&Name='+row.Name+'">查看</a>&nbsp;&nbsp;'+
         '<a href="edit.html?id='+row.ID+'&Name='+row.Name+'">编辑</a>&nbsp;&nbsp;';
         /*   '<a href="row.id" download="'+row.+'">下载</a>&nbsp;&nbsp;';*/
         return str;

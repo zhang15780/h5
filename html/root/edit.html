@@ -90,8 +90,9 @@
             Ajax('/user/query','get',{ID:UserID},function (ret) {
                 var list=ret.user_list[0];
                 $('#UserName').val(list.UserName);
+                $('#Password').val(list.Password);
+
                 $('#province').val(list.PID);
-                $('#Password').val(list.Password)
                 $('#city').append('<option value="'+list.CID+'">'+list.CName+'</option>');
                 $('#district').append('<option value="'+list.DID+'">'+list.DName+'</option>');
                 $('#remark').val(list.Description);
@@ -122,7 +123,8 @@
                     var mylay = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(mylay);
                     Alert('创建用户成功！！');
-                },function () {},true)
+                },function () {},true);
+                return;
             }
 
             //判断长度是否大于20

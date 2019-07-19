@@ -33,8 +33,10 @@
                 <div class="ibox-title">
                     <h5>查看企业</h5>
                     <div class="ibox-tools">
-                        <a href="projects.html"  class="btn btn-info btn-xs">导入模板</a>
-                        <a href="projects.html"  class="btn btn-info btn-xs">创建企业</a>
+                        <label id="importfile"  for="otherfile" class="btn btn-info btn-xs">
+                            <input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入企业
+                        </label>
+                        <a href="new.html"  class="btn btn-info btn-xs">创建企业</a>
                     </div>
                 </div>
                 <div class="search" id="search">
@@ -108,6 +110,21 @@
         init(data)
     }
 
+    function upload_files(_this) {
+        var file = _this.files;
+        if (file.length>0){
+            var formData = new FormData();
+            formData.append('file', file[0]);
+            formData.append('/template/import','Company');
+            Ajax('/attend/import', 'post', formData, function (res) {
+                Alert('导入成功！');
+                $('#importfile').empty();
+                $('#importfile').append('<input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入企业')
+                init();
+            },function () {
+            }, true)
+        }
+    }
     //通过表格
     function init(data) {
         Ajax('/company/list','GET',data,function (ret) {

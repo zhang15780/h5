@@ -21,6 +21,46 @@
         .nav [menubtn]{
             display: none;
         }
+        .navbar-left a{
+            padding: 8px 15px;
+            border: 1px solid #676a6c;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px;
+            margin-top: 10px;
+            text-align: center;
+            position: relative;
+            color: #676a6c;
+        }
+        .navbar-left i{
+            position: absolute;
+            right:1px;
+            top: 1px;
+            color: red;
+            font-size: 1.6rem;
+        }
+        .navbar-left li i:hover{
+            cursor: pointer;
+        }
+        .navbar-left>a:hover,.navbar-left>a.active{
+          background: #676a6c;
+          color: #fff;
+        }
+
+
+        .frameBoxs{
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .frameBoxs iframe{
+            border: 0;
+        }
+        #wrapper{
+            overflow-y: hidden;
+        }
+
+
     </style>
     <!-- 自定义js -->
     <script src="../js/hAdmin.js?v=4.1.0"></script>
@@ -28,7 +68,7 @@
     <script type="text/javascript" src="../js/common.js"></script>
 </head>
 
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow-x: visible">
     <div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -51,7 +91,7 @@
                         </div>
                     </li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="home.html" class="J_menuItem">
                             <i class="fa fa fa-bar-chart-o"></i>
                             <span class="nav-label">首页</span>
                             <span class="fa arrow"></span>
@@ -71,8 +111,7 @@
                                 <a class="J_menuItem" href="company/list.html">企业信息查询</a>
                            </li>
                             <li>
-                                <a class="J_menuItem" href="company/list.html?HasBadRecord=2">
-                                    不良企业
+                                <a class="J_menuItem" href="company/list.html?HasBadRecord=2">不良企业
                                     <span class="label label-warning pull-right" id="companyBad"></span>
                                 </a>
                             </li>
@@ -149,12 +188,12 @@
                             <span class="nav-label">模板管理</span>
                         </a>
                     </li>
-                    <li menubtn="print_show">
+               <!--     <li menubtn="print_show">
                         <a class="J_menuItem" href="print/list.html">
                             <i class="fa fa fa-bar-chart-o"></i>
                             <span class="nav-label">打印管理</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li menubtn="help_show">
                         <a class="J_menuItem" href="help/view.html">
                             <i class="fa fa fa-bar-chart-o"></i>
@@ -169,6 +208,10 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-left" style="width:90%" id="tabBox">
+                         <a class="active" href="home.html" id="tab-首页" title="首页">首页</a>
+                    </div>
+
                     <ul class="nav navbar-top-links navbar-right">
                         <li class="dropdown" id="allBadee">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" >
@@ -178,8 +221,11 @@
 
                             </ul>
                         </li>
+                        <li class="dropdown" id="userName">
+
+                        </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle count-info J_menuItem"  id="loginOut" data-toggle="dropdown" href="javascript:void(0)" title="登出">
+                            <a class="dropdown-toggle count-info"  id="loginOut" data-toggle="dropdown" href="javascript:void(0)" title="登出">
                                 <i class="fa fa-sign-out"></i>
                             </a>
                         </li>
@@ -187,12 +233,86 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe id="J_iframe" width="100%" height="100%" src="home.html" frameborder="0" data-id="index_v1.html" seamless></iframe>
+                <div class="frameBoxs">
+                    <iframe id="frames-首页"  src="home.html" width="100%" height="100%" style="overflow: hidden"></iframe>
+                </div>
             </div>
         </div>
         <!--右侧部分结束-->
     </div>
     <script>
+
+        //点击左侧导航进行跳转
+        $(".J_menuItem").click(function(event){
+            event.preventDefault();
+            var $this=$(this);
+            var url=$this.attr('href');
+            var name=$.trim($this.text().replace(/\d/g,''));
+            addTabs(url,name);
+        });
+
+        //点击右侧
+        tabsChange();
+        function tabsChange() {
+            $('#tabBox  a').click(function (e) {
+                e.preventDefault();
+                var $this=$(this);
+                $this.addClass('active').siblings().removeClass('active');
+                var frameId='frames-'+$this.attr('id').split('-')[1];
+                $('#'+frameId).parent('.frameBoxs').show().siblings().hide();
+            });
+        }
+
+        function removeTab(){
+            $('#tabBox a .fa').on('click',function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var par=$(this).parent('a');
+                var frameId='frames-'+par.attr('id').split('-')[1];
+                $('#'+frameId).parent().prev().show();
+                $('#'+frameId).parent().remove();
+                par.remove();
+            });
+        }
+
+        //添加移出iframe
+        function addTabs(url,name) {
+            var tabId='tabs-'+name;
+            var frameId='frames-'+name;
+            var arr=[];
+            $('#content-main iframe').each(function (i,ele) {
+                var $this = $(this);
+                var id=$this.attr('id');
+                arr.push(id);
+            });
+
+            if(arr.indexOf(frameId)<0){
+                $('#content-main').append('<div class="frameBoxs"></div>');
+                $('#tabBox').append('<a id="tabs-'+name+'" href="'+url+'" title="'+name+'">'+name+'<i class="fa fa-times-circle tabs-close"></i></a>');
+                $('.frameBoxs:last-child').show().siblings().hide();
+                $('#'+tabId).addClass('active').siblings().removeClass('active');
+                createFrame(url,frameId);
+            }else{
+                $('#'+frameId).parent('.frameBoxs').show().siblings().hide();
+                $('#'+tabId).addClass('active').siblings().removeClass('active');
+            }
+            tabsChange();
+            removeTab();
+        }
+
+
+
+
+        //在主体内容下创建一个iframe
+        function createFrame(url,frameId,cb) {
+            var iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.id = frameId;
+            iframe.height = '100%';
+            iframe.width = '100%';
+            $('.frameBoxs:last-child').append(iframe);
+            if (cb) cb();
+        }
         setRoot();
 
         //退出登录
@@ -229,12 +349,13 @@
                 $('#memberBad').html(number_list[2]);
                 var total=number_list[0]+number_list[1]+number_list[2];
                 $('#allBad').html(total);
+                $('#allBadPar').empty();
                 var parBox=$('#allBadPar');
                 for(var p=0;p<project.length;p++){
                     var pstr='<li class="m-t-xs">'+
                         '<div class="dropdown-messages-box">'+
                         '<div class="media-body">'+
-                        '<a class="J_menuItem" href="project/view.html?='+project[p].id+'&Name='+project[p].name+'">'
+                        '<a class="J_menuItem" href="javascript:viod(0)" onclick=addTabs("../html/project/view.html?id='+project[p].id+'&Name='+project[p].name+'","项目详情")>'
                             +project[p].name+'</a>'+
                         '<br></div></div></li>';
                     parBox.append(pstr)
@@ -244,7 +365,7 @@
                     var str='<li class="m-t-xs">'+
                             '<div class="dropdown-messages-box">'+
                             '<div class="media-body">'+
-                            '<a class="J_menuItem" href="company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'">'
+                            '<a class="J_menuItem" href="javascript:viod(0)" onclick=addTabs("../html/company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'","公司详情")>'
                                 +company[i].name+'</a>'+
                             '<br></div></div></li>';
                         parBox.append(str)
@@ -255,14 +376,18 @@
                     var lstr='<li class="m-t-xs">'+
                         '<div class="dropdown-messages-box">'+
                         '<div class="media-body">'+
-                        '<a class="J_menuItem" href="member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'">'+labor[l].name+'</a>'+
+                        '<a class="J_menuItem" onclick=addTabs("../html/member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'","劳工详情") href="javascript:viod(0)">'+labor[l].name+'</a>'+
                         '<br></div></div></li>';
                     parBox.append(lstr)
                 }
-                parBox .append('<li class="divider"></li>');
+                parBox.append('<li class="divider"></li>');
             })
         }
+
         setInterval("setinfo()",600000);
+
+        var userName=getCookie("LoginName");
+        $('#userName').html(userName)
     </script>
 
 </body>

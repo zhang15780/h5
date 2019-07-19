@@ -37,8 +37,11 @@
                 <div class="ibox-title">
                     <h5>查看考勤</h5>
                     <div class="ibox-tools">
-                        <a class="btn btn-info btn-xs">导入</a>
-                        <a class="btn btn-info btn-xs">打印</a>
+                        <label id="importfile"  for="otherfile" class="btn btn-info btn-xs">
+                            <input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入考勤
+                        </label>
+                        <a href="all.html" class="btn btn-info btn-xs">汇总考勤</a>
+                       <!-- <a class="btn btn-info btn-xs">打印</a>-->
                     </div>
                 </div>
 
@@ -115,6 +118,21 @@
             Alert('后台出现错误');
         }
     };
+
+    function upload_files(_this) {
+        var file = _this.files;
+        if (file.length>0){
+            var formData = new FormData();
+            formData.append('file', file[0]);
+            Ajax('/attend/import', 'post', formData, function (res) {
+                Alert('导入成功！');
+                $('#importfile').empty();
+                $('#importfile').append('<input type="file" id="otherfile" class="hide" onchange="upload_files(this)"> 导入考勤')
+                init();
+            },function () {
+            }, true)
+        }
+    }
 
 
     function init() {
