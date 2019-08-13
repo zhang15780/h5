@@ -3,8 +3,10 @@
  */
 
 //全局变量
-var localHost = 'http://47.106.140.239:5000'; //服务器数据地址
-var localHost2 = 'http://47.106.140.239:8080'; //服务器主机地址
+// var localHost = 'http://47.106.140.239:5000'; //服务器数据地址
+var localHost = 'http://120.78.163.106:5000'; //服务器数据地址
+// var localHost2 = 'http://47.106.140.239:8080'; //服务器主机地址
+// var localHost2 = 'http://120.78.163.106:8080'; //服务器主机地址
 var Permission = getCookie('Permission'); //获取用户权限 []
 var LayerOpen;   //开启新页面，用于关闭窗口
 var LayerConfirm;   //开启新页面，用于关闭窗口
@@ -504,24 +506,32 @@ function changeAddTabs(url,name) {
 }
 
 //查看图片
+//查看图片
 function showImg(src,arr,index) {
     var items;
     if(arr&&arr.length>0){
         if(typeof arr=='string'){
             arr=JSON.parse(arr)
         }
-         items =arr
+        items =arr
     }else{
-         items = [
+        items = [
             {
                 src: src,
             },
         ];
     }
+    var scrollTop=$(document).scrollTop();
     var options = {
-        index: index||0 // 此选项表示您将从第一张图片开始
+        index: index||0, // 此选项表示您将从第一张图片开始
+        scrollTop:$(document).scrollTop()
     };
+
     var viewer = new PhotoViewer(items, options);
+
+    $(".photoviewer-button-close").click(function () {
+        $(document).scrollTop(scrollTop)
+    })
 }
 
 //查看view页面的分组图片

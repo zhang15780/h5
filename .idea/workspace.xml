@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e602c9f-e43c-4812-adae-e680abc969fa" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/bank/queryBank.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/bank/queryBank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/project/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/project/view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/file/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/file/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/file/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/file/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/file/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/file/view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/member/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/member/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/member/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/salary/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/salary/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,55 +26,48 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="384" column="13" lean-forward="true" selection-start-line="384" selection-start-column="13" selection-end-line="384" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/project/view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="719" lean-forward="true" selection-start-line="719" selection-end-line="719" />
-              <folding>
-                <element signature="e#5#11#0" expanded="true" />
-                <element signature="e#11#17#0" expanded="true" />
-                <element signature="e#53#59#0" expanded="true" />
-                <element signature="e#59#65#0" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="queryBank.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/html/bank/queryBank.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="99" column="32" lean-forward="true" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+            <state relative-caret-position="7939">
+              <caret line="467" selection-start-line="467" selection-end-line="479" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/company/list.html">
+        <entry file="file://$PROJECT_DIR$/html/member/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="58" selection-end-column="31" />
+            <state relative-caret-position="1632">
+              <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/html/salary/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="261" column="9" lean-forward="true" selection-start-line="261" selection-start-column="9" selection-end-line="261" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/member/new.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5066">
+              <caret line="298" column="112" lean-forward="true" selection-start-line="298" selection-start-column="78" selection-end-line="298" selection-end-column="112" />
               <folding>
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-                <element signature="e#0#6#0" expanded="true" />
-                <element signature="e#6#12#0" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -89,11 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data.length</find>
-      <find>JobType</find>
-      <find>/project/allproject</find>
-      <find>Name</find>
-      <find>Page</find>
       <find>switch</find>
       <find>&lt;html lang=&quot;en&quot;&gt;switch</find>
       <find>&lt;html lang=&quot;en&quot;&gt;</find>
@@ -119,6 +109,11 @@
       <find>addgroup</find>
       <find>Percent</find>
       <find>GtypeId</find>
+      <find>元</find>
+      <find>PhotoViewer</find>
+      <find>EntryDate</find>
+      <find>svp</find>
+      <find>ClassID</find>
     </findStrings>
     <replaceStrings>
       <replace>UserID</replace>
@@ -126,6 +121,7 @@
       <replace>checkbox</replace>
       <replace>leng</replace>
       <replace>&lt;html lang=&quot;zh&quot;&gt;</replace>
+      <replace>万元</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\16288\Desktop\工地\html</dir>
@@ -156,15 +152,12 @@
         <option value="$PROJECT_DIR$/css/commn.css" />
         <option value="$PROJECT_DIR$/html/attendance/list.html" />
         <option value="$PROJECT_DIR$/html/login.html" />
-        <option value="$PROJECT_DIR$/html/member/list.html" />
         <option value="$PROJECT_DIR$/html/home.html" />
         <option value="$PROJECT_DIR$/html/member/view.html" />
-        <option value="$PROJECT_DIR$/html/file/list.html" />
         <option value="$PROJECT_DIR$/html/bank/list.html" />
         <option value="$PROJECT_DIR$/html/backletter/edit.html" />
         <option value="$PROJECT_DIR$/html/root/edit.html" />
         <option value="$PROJECT_DIR$/html/index.html" />
-        <option value="$PROJECT_DIR$/html/salary/edit.html" />
         <option value="$PROJECT_DIR$/html/bank/edit.html" />
         <option value="$PROJECT_DIR$/js/page/myPagination.js" />
         <option value="$PROJECT_DIR$/html/company/list.html" />
@@ -173,14 +166,17 @@
         <option value="$PROJECT_DIR$/html/project/edit.html" />
         <option value="$PROJECT_DIR$/html/project/new.html" />
         <option value="$PROJECT_DIR$/html/member/edit.html" />
-        <option value="$PROJECT_DIR$/html/member/new.html" />
         <option value="$PROJECT_DIR$/html/project/progressNew.html" />
-        <option value="$PROJECT_DIR$/html/file/view.html" />
-        <option value="$PROJECT_DIR$/html/file/edit.html" />
         <option value="$PROJECT_DIR$/html/company/edit.html" />
-        <option value="$PROJECT_DIR$/js/common.js" />
         <option value="$PROJECT_DIR$/html/project/view.html" />
         <option value="$PROJECT_DIR$/html/bank/queryBank.html" />
+        <option value="$PROJECT_DIR$/html/file/view.html" />
+        <option value="$PROJECT_DIR$/html/file/edit.html" />
+        <option value="$PROJECT_DIR$/html/file/list.html" />
+        <option value="$PROJECT_DIR$/html/member/list.html" />
+        <option value="$PROJECT_DIR$/js/common.js" />
+        <option value="$PROJECT_DIR$/html/member/new.html" />
+        <option value="$PROJECT_DIR$/html/salary/edit.html" />
       </list>
     </option>
   </component>
@@ -211,11 +207,6 @@
             <path>
               <item name="工地" type="b2602c69:ProjectViewProjectNode" />
               <item name="工地" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="工地" type="b2602c69:ProjectViewProjectNode" />
-              <item name="工地" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -331,7 +322,16 @@
       <workItem from="1562474013828" duration="6866000" />
       <workItem from="1563279133046" duration="376000" />
       <workItem from="1563361170340" duration="4249000" />
-      <workItem from="1563535219444" duration="4161000" />
+      <workItem from="1563535219444" duration="4921000" />
+      <workItem from="1563880053025" duration="6703000" />
+      <workItem from="1564922704605" duration="140000" />
+      <workItem from="1564923122805" duration="158000" />
+      <workItem from="1564925469732" duration="623000" />
+      <workItem from="1565273006251" duration="639000" />
+      <workItem from="1565611884050" duration="2018000" />
+      <workItem from="1565614580414" duration="1750000" />
+      <workItem from="1565694506130" duration="1529000" />
+      <workItem from="1565696059306" duration="239000" />
     </task>
     <task id="LOCAL-00001" summary="2019-7-19修改前版本">
       <created>1563540247699</created>
@@ -340,11 +340,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563540247699</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2019-7-19修改后版本">
+      <created>1563541948588</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1563541948588</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="432380000" />
+    <option name="totallyTimeSpent" value="446939000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -354,7 +361,6 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" order="8" visible="true" weight="0.32816538" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -367,24 +373,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="8" visible="true" weight="0.16925065" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13119073" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -396,7 +403,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2019-7-19修改前版本" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019-7-19修改前版本" />
+    <MESSAGE value="2019-7-19修改后版本" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019-7-19修改后版本" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -495,31 +503,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/project/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="76" selection-start-line="85" selection-start-column="76" selection-end-line="85" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/file/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="138" column="33" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/bank/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3077">
           <caret line="181" column="17" lean-forward="true" selection-start-line="181" selection-start-column="17" selection-end-line="181" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/member/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4301">
-          <caret line="253" column="54" selection-start-line="253" selection-start-column="48" selection-end-line="253" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -565,20 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2567">
-          <caret line="151" column="6" lean-forward="true" selection-start-line="151" selection-start-column="6" selection-end-line="151" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/salary/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/page/myPagination.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2108">
@@ -590,20 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="246" column="26" selection-start-line="246" selection-start-column="4" selection-end-line="250" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/member/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15895">
-          <caret line="935" column="27" selection-start-line="935" selection-start-column="27" selection-end-line="935" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/member/new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14059">
-          <caret line="827" column="5" selection-start-line="827" selection-start-column="5" selection-end-line="827" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -638,13 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/file/view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4335">
-          <caret line="255" column="9" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/project/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8687">
@@ -652,39 +604,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/file/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11152">
-          <caret line="656" column="31" selection-start-line="656" selection-start-column="31" selection-end-line="656" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/company/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="476" lean-forward="true" selection-start-line="476" selection-end-line="476" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="e#136#142#1" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#!!top" expanded="true" />
-            <element signature="e#278#284#1" expanded="true" />
-            <element signature="n#style#0;n#input#2;n#!!top" expanded="true" />
-            <element signature="e#447#453#1" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
-            <element signature="e#128#134#1" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#!!top" expanded="true" />
-            <element signature="e#261#267#1" expanded="true" />
-            <element signature="n#style#0;n#input#2;n#!!top" expanded="true" />
-            <element signature="e#421#427#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -695,51 +618,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="384" column="13" lean-forward="true" selection-start-line="384" selection-start-column="13" selection-end-line="384" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/project/view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="719" lean-forward="true" selection-start-line="719" selection-end-line="719" />
-          <folding>
-            <element signature="e#5#11#0" expanded="true" />
-            <element signature="e#11#17#0" expanded="true" />
-            <element signature="e#53#59#0" expanded="true" />
-            <element signature="e#59#65#0" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/company/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="952">
           <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="58" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="e#0#6#0" expanded="true" />
-            <element signature="e#6#12#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/bank/queryBank.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="99" column="32" lean-forward="true" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+        <state relative-caret-position="1649">
+          <caret line="97" column="53" selection-start-line="97" selection-start-column="53" selection-end-line="97" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/project/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="89" column="9" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/file/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2686">
+          <caret line="158" column="69" selection-start-line="158" selection-start-column="69" selection-end-line="158" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/file/view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2822">
+          <caret line="166" column="83" selection-start-line="166" selection-start-column="83" selection-end-line="166" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/project/view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/file/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="120" column="16" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2312">
+          <caret line="136" column="53" lean-forward="true" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/member/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/member/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5066">
+          <caret line="298" column="112" lean-forward="true" selection-start-line="298" selection-start-column="78" selection-end-line="298" selection-end-column="112" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7939">
+          <caret line="467" selection-start-line="467" selection-end-line="479" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/member/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4051">
+          <caret line="935" column="27" selection-start-line="935" selection-start-column="27" selection-end-line="935" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/salary/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="261" column="9" lean-forward="true" selection-start-line="261" selection-start-column="9" selection-end-line="261" selection-end-column="9" />
         </state>
       </provider>
     </entry>

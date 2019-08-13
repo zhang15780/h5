@@ -90,9 +90,9 @@
         return $.extend(fuzzyVal(),{
             PageSize: params.limit,
             Page: params.offset / params.limit + 1,
-            PID: $('#PID').val() || 0,
-            DID: $('#DID').val() || 0,
-            CID: $('#CID').val() || 0,
+            PID: $('#province').val() || 0,
+            CID: $('#city').val() || 0,
+            DID: $('#district').val() || 0,
             StartTime: $('#StartTime').val(),
             EndTime: $('#EndTime').val(),
            // Category: $('#Category').val()
@@ -118,7 +118,7 @@
             minView: 2,//最低视图 小时视图
             maxView: 4, //最高视图 十年视图
         });
-
+        SelcetArea();
         init()
 
     });
@@ -159,7 +159,7 @@
             },
             {
                 field: 'Amount',
-                title: '担保金额',
+                title: '担保金额（万元）',
                 align: 'center',
             },
             {
@@ -210,8 +210,8 @@
     function responseHandler(ret) {
         if (typeof ret === 'string') ret = JSON.parse(ret);
         setTimeout(function () {
-            $('.pagination-detail').append('<span class="pagination-info" style="margin-left: 40px">担保总额:'+ret.amount_total+'</span>' +
-                '<span class="pagination-info">总保费:'+ret.realac_total+'</span>');
+            $('.pagination-detail').append('<span class="pagination-info" style="margin-left: 40px">担保总额:'+ret.amount_total+'万元</span>' +
+                '<span class="pagination-info">总保费:'+ret.realac_total+' 万元</span>');
         },1000);
 
         if (ret.code == 0) {

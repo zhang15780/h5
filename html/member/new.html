@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-sm-6 col-md-4 viewRow">
                                     <div class="row">
-                                        <label class="col-sm-4 control-label">所属企业：</label>
+                                        <label class="col-sm-4 control-label"><span class="text-danger">*</span>所属企业：</label>
                                         <div class="col-sm-8">
                                             <select name="" id="CompanyId" class="form-control"></select>
                                         </div>
@@ -166,7 +166,8 @@
                                 </div>
                                 <div class="col-sm-6 col-md-4 viewRow">
                                     <div class="row">
-                                        <label class="col-sm-4 control-label">开始工作日期：</label>
+                                        <label class="col-sm-4 control-label"><span
+                                                class="text-danger">*</span>开始工作日期：</label>
                                         <div class="col-sm-8">
                                             <input type="text" id="EntryDate" class="form-control">
                                         </div>
@@ -642,6 +643,8 @@
     $(function () {
         userID = parseInt(window.location.href.getQueryString("id"))||0;
         Name = window.location.href.getQueryString("Name");
+        $('#SuperiorsID').css('display','none');
+        $('#ClassID').css('display','block');
         initOrg();
         SelcetArea();
         changGroup();
@@ -737,6 +740,8 @@
             function showCompanyGroup(val){
                 for(var i=0;i<infoData.length;i++){
                     if(infoData[i]['ID']==val){
+                        $('#ClassID').empty();
+                        $('#SuperiorsID').empty();
                         SelectBox('CompanyId',infoData[i].companyinfo,'ID','Name');
                         SelectBox('ClassID',infoData[i].labor_group_info,'ClassID','ClassName');
                         SelectBox('SuperiorsID',infoData[i].labor_group_info,'SuperiorsID','SuperiorsName');
@@ -749,6 +754,8 @@
                 $('#ProjectID').attr('disabled','disabled');
                 showCompanyGroup(ProjectID)
             }else{
+                $('#ClassID').empty();
+                $('#SuperiorsID').empty();
                 SelectBox('CompanyId',infoData[0].companyinfo,'ID','Name');
                 SelectBox('ClassID',infoData[0].labor_group_info,'ClassID','ClassName');
                 SelectBox('SuperiorsID',infoData[0].labor_group_info,'SuperiorsID','SuperiorsName');
