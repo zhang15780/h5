@@ -107,13 +107,6 @@
         formData.append('File',File);
         formData.append('Description',$('#Description').val());
 
-        //判断长度是否大于20
-        var check_result = CheckLength(formData)
-        if (check_result[0]) {
-            Alert(check_result[1])
-            return;
-        }
-
         Ajax('/template/create','post',formData,function (ret) {
             parent.$('#table').bootstrapTable('refresh');
             var mylay = parent.layer.getFrameIndex(window.name);

@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label"><span class="text-danger">*</span>密码：</label>
                         <div class="col-xs-8">
-                            <input type="text" placeholder="" id="Password" class="form-control">
+                            <input type="password" placeholder="" id="Password" class="form-control">
                         </div>
                     </div>
                   <!--  <div class="form-group">
@@ -126,14 +126,6 @@
                 },function () {},true);
                 return;
             }
-
-            //判断长度是否大于20
-            var check_result = CheckLength(formData)
-            if (check_result[0]) {
-                Alert(check_result[1])
-                return;
-            }
-
             Ajax('/user/regist','post',formData,function (ret) {
                 parent.$('#table').bootstrapTable('refresh');
                 var mylay = parent.layer.getFrameIndex(window.name);
