@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑企业</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+    <style>
+        .form-group div {
+            line-height: 30px;
+        }
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/pdf/jquery.media.js"></script>
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <center>
+                    <div class="panel panel-primary">
+                        <!-- <div class="panel-heading" align="center">
+                           <h2>预览pdf文件</h2>
+                        </div> -->
+                        <div class="panel-body">
+                            <a class="media" href="javascript:void(0)"></a>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            // $('a.media').attr('src', localHost + '/static/template/use.pdf')
+            $('a.media').media({width: '100%', height: '700', autoplay: true, src: localHost + '/static/template/use.pdf'});
+        })
+    </script>
+</div>
+</body>
+</html>

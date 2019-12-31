@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑银行</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/btpTable/bootstrap-table.css" rel="stylesheet">
+    <script src="../../js/btpTable/bootstrap-table.js"></script>
+    <script src="../../js/btpTable/bootstrap-table-zh-CN.js "></script>
+    <!--  <link href="../../js/plugins/time/bootstrap-datetimepicker.min.css" rel="stylesheet">
+      <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
+      <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>-->
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>银行管理</h5>
+                    <div class="ibox-tools">
+                        <!--<a href="queryBank.html" class="btn btn-info btn-xs">银行查询</a>-->
+                        <a class="btn btn-info btn-xs" onclick="edit()">新增</a>
+                        <!--   <a class="btn btn-info btn-xs">打印</a>-->
+                    </div>
+                </div>
+                <div class="search" id="search">
+                    <div class="input-group" style="display:inline-block">
+                        <select id="fuzzy" class="form-control" style="width: 150px">
+                            <option value="ProjectName">项目名称</option>
+                            <option value="BankName">银行名称</option>
+                            <!--<option value="ProjectName">项目名称 </option>-->
+                        </select>
+                        <input type="text" class="form-control" id="fuzzyVal" placeholder="请输入.." style="width: 400px">
+
+                        <select class="form-control" id="province" style="width: 150px"></select>
+                        <select class="form-control" id="city" style="width: 150px"></select>
+                        <select class="form-control" id="district" style="width: 150px"></select>
+                        <select class="form-control" id="Status" style="width: 200px">
+                            <option value="3"> 所有到账情况</option>
+                            <option value="0"> 全额到</option>
+                            <option value="1"> 部分到</option>
+                            <option value="2"> 未到账</option>
+                        </select>
+                        <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger" onclick="init()">搜索</button>
+                       </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="table" style="width: 100%;overflow: hidden"></table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var total_balance = 0;
+    $(function () {
+        SelcetArea();
+        init()
+    });
+
+    //table
+    function showTable(node, url, method, pyKey, columns, cb) {
+        var obj = {
+            url: localHost + url,
+            method: method,
+            ajaxOptions: {
+                xhrFields: { //跨域
+                    withCredentials: true
+                },
+                crossDomain: true
+            },
+            idField: pyKey,
+            striped: true,
+            dataField: "data",
+            pagination: true,
+            queryParams: queryParams,
+            pageNumber: 1,
+            pageSize: 1,
+            sidePagination: "server",
+            responseHandler: responseHandler,
+            columns: columns,
+        };
+        if (cb) {
+            obj.onLoadSuccess = cb
+        }
+        $(node).bootstrapTable('destroy').bootstrapTable(obj)
+    }
+
+    function queryParams(params) {
+        var name = $('#fuzzyVal').val();
+        var ProjectName = '';
+        var BankName = '';
+        var qtype = 0;
+        if ($('#fuzzy').val() == 'ProjectName') {
+            qtype = 0;
+            ProjectName = name;
+            BankName = '';
+        } else {
+            qtype = 1;
+            ProjectName = '';
+            BankName = name;
+        }
+        var query_data = {
+            PageSize: 1,
+            PID: $('#province').val() == null ? '0' : $('#province').val(),
+            CID: $('#city').val() == null ? '0' : $('#city').val(),
+            DID: $('#district').val() == null ? '0' : $('#district').val(),
+            Page: params.offset / params.limit + 1,
+            Name: ProjectName,
+            qtype: qtype,
+            Status: $('#Status').val(),
+            BankName: BankName
+        }
+        return query_data
+    }
+
+    function responseHandler(ret) {
+        if (typeof ret === 'string') ret = JSON.parse(ret);
+        if (ret.code == 0) {
+            if (ret.total) {
+                total_balance = ret.total_balance;
+                return {
+                    total: ret.total,
+                    data: ret.bank_data
+                };
+            } else {
+                return {
+                    data: ret.bank_data
+                };
+            }
+        } else {
+            Alert('后台出现错误');
+        }
+    };
+
+
+    function edit(id, ProjectID) {
+        var id = id || 0;
+        var ProjectID = ProjectID || 0;
+        Open('工资发放', ['570px', '350px'], 'edit.html?id=' + id + '&ProjectID=' + ProjectID);
+    }
+
+
+    function init() {
+        var columns = [
+            {
+                field: 'info',
+                title: '项目信息',
+                align: 'center',
+                width: '25%',
+                formatter: function (value, row, index) {
+                    var str = '<div style="padding: 0 20px;text-align: left">'
+                    str += '<p><b>项目名称：</b>' + row.Name + '</p>'
+                    str += '<p><b>银行名称：</b>' + row.BankName + '</p>'
+                    str += '<p><b>银行卡号：</b>' + row.Account + '</p>'
+                    str += '<p><b>工期总月数：</b>' + row.TotalMonth + '</p>'
+                    str += '<p><b>总造价: </b>' + row.Price + '</p>'
+                    str += '<p><b>农民工工资比例: </b>' + row.WagePercent + '%</p>'
+                    str += '</div>'
+                    return str
+                }
+            },
+            // {
+            //     field: 'Name',
+            //     title: '项目名称',
+            //     align: 'center',
+            // },
+            // {
+            //     field: 'BankName',
+            //     title: '银行名称',
+            //     align: 'center'
+            // },
+            // {
+            //     field: 'Account',
+            //     title: '银行卡号',
+            //     align: 'center'
+            // },
+            // {
+            //     field: 'TotalMonth',
+            //     title: '工期总月数',
+            //     align: 'center',
+            // },
+            // {
+            //     field: 'Price',
+            //     title: '总造价',
+            //     align: 'center',
+            // },
+            // {
+            //     field: 'WagePercent',
+            //     title: '农民工工资比例(%)',
+            //     align: 'center',
+            // },
+            {
+                field: 'Date',
+                title: '月份',
+                align: 'center',
+            },
+            {
+                field: 'Status',
+                title: '状态',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    if (value == 0) {
+                        return '<span>全额到</span>';
+                    } else if (value == 1) {
+                        return '<span class="text-warning">部分到<span>'
+                    } else {
+                        return '<span class="text-danger">未到账<span>'
+                    }
+                }
+            },
+            {
+                field: 'Workers',
+                title: '开卡数',
+                align: 'center'
+            },
+            {
+                field: 'RPay',
+                title: '实际到账金额',
+                align: 'center',
+            },
+            {
+                field: 'ActualPay',
+                title: '实际支出金额',
+                align: 'center',
+            },
+            {
+                field: 'Balance',
+                title: '余额',
+                align: 'center',
+            },
+
+            {
+                field: 'Receipt',
+                title: '银行回单',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    if (value === '' || value === null) {
+                        return ''
+                    } else {
+                        return '<img style="width: 50px; height: 50px;" onclick=showImg("' + localHost + value + '") src="' + localHost + value + '">'
+                    }
+                }
+            },
+            {
+                field: 'Total_Balance',
+                title: '总余额',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    return total_balance
+                }
+            },
+            // {
+            //     field: 'RPay',
+            //     title: '实际发放情况',
+            //     align: 'center',
+            // },
+            //
+            // {
+            //     field: 'TotalPay',
+            //     title: '实际发放总计',
+            //     align: 'center',
+            //     formatter: function (value, row, index) {
+            //         if (value) {
+            //             return value
+            //         } else {
+            //             return 0
+            //         }
+            //     }
+            // },
+            {
+                title: '保存',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    var str = '';
+                    if (row.ID != 0) {
+                        str = '<a href ="javascript:void(0)" class="btn btn-info btn-xs" onclick="edit(' + row.ID + ',' + row.ProjectID + ')">编辑</a>'
+                        str += '&nbsp;&nbsp;&nbsp;'
+                        str += '<label id="importfile' + row.ID + '"  for="otherfile'+row.ID+'" class="btn btn-info btn-xs">\n' +
+                            '         <input type="file" id="otherfile' + row.ID + '" class="hide" onchange="upload_files(this,' + row.ID + ')"> 上传回单\n' +
+                            '</label>'
+                    }
+
+                    return str
+                },
+            }
+        ];
+        showTable('#table', '/bank/query', 'get', 'ID', columns, function (data) {
+            var leng = data.data.length;
+            $('#table').bootstrapTable('mergeCells', {index: 0, field: 'info', rowspan: leng});
+            $('#table').bootstrapTable('mergeCells', {index: 0, field: 'Total_Balance', rowspan: leng});
+        });
+    }
+
+    function upload_files(_this, rowid) {
+        var file = _this.files;
+        if (file.length > 0) {
+            var formData = new FormData();
+            formData.append('file', file[0]);
+            formData.append('ID', rowid);
+            Ajax('/bank/receipt', 'post', formData, function (res) {
+                Alert('导入成功！');
+                init();
+            }, function () {
+            }, true)
+        }
+    }
+
+    function set(value) {
+        console.log(value)
+    }
+
+
+</script>
+</body>
+</html>

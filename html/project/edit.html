@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑项目</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/plugins/time/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../../js/chosen/chosen.css" rel="stylesheet">
+    <script src="../../js/chosen/chosen.jquery.min.js"></script>
+    <link href="../../js/yselect/ySelect.css" rel="stylesheet">
+    <script src="../../js/yselect/ySelect.js"></script>
+    <style>
+        .fs-wrap {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            /* margin: 3px; */
+            font-size: 13px;
+            line-height: 20px;
+        }
+
+        .fs-label-wrap, .fs-dropdown {
+            left: -3px;
+        }
+    </style>
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>创建项目</h5>
+                    <div class="ibox-tools">
+                        <a href="javascript:void(0)" onclick="addTabs('../html/company/new.html','企业注册')"
+                           class="btn btn-info btn-xs">新增企业</a>
+                        <a href="javascript:void(0)" onclick="addTabs('../html/root/bank.html','银行配置')"
+                           class="btn btn-info btn-xs">新增银行</a>
+                    </div>
+                </div>
+                <form class="form-horizontal">
+                    <div class="row" style="margin-top: 15px">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>项目名称：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="Name" placeholder="" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>项目类型：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="Type">
+                                        <option value="0">政府投资</option>
+                                        <option value="1">民营开发</option>
+                                        <option value="2">国企分包</option>
+                                        <option value="3">其他</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>担保类型：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="GuaranType">
+                                        <option value="0">投标</option>
+                                        <option value="1">履约</option>
+                                        <option value="2">预付款</option>
+                                        <option value="3">农民工工资支付</option>
+                                        <option value="4">业主支付</option>
+                                        <option value="5">质量</option>
+                                        <option value="6">资本金</option>
+                                        <option value="7">房屋质量</option>
+                                        <option value="8">其他</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>中标价格：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" id="Price" onblur="CheckNumber(this)"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>项目地区：</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="province"></select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="city"></select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="district"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目地址：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" id="Address" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目不良信息：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="Status">
+                                        <option value="0">正常</option>
+                                        <option value="1">常态监管</option>
+                                        <option value="2">重点</option>
+                                        <option value="3">严重</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">担保金额：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="GAmount"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span
+                                        class="text-danger">*</span>项目农民工工资占比：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" onblur="CheckNumber(this)" id="WagePercent"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目图片：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                分组信息 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu groupList" id="Lgroup">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeId">
+                                        <input type="text" class="form-control" id="GtypeName">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger"
+                                                    onclick="addgroup(this,0)">新建</button>
+                                            <button type="button" class="btn" onclick="editgroup(this)">编辑</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="detgroup(this)">删除</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                图片名称 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="Lgroup_child">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeImgId">
+                                        <input type="text" class="form-control" id="GtypeImgName">
+                                        <span class="input-group-btn">
+                                             <div class="btn-group">
+                                                <label class="btn btn-danger">
+                                                    <input type="file" accept="*" name="Lgroup_child[]"
+                                                           multiple="multiple" onchange="uploadImg(this)" class="hide"> 上传
+                                                </label>
+                                            </div>
+                                            <button type="button" class="btn btn-info"
+                                                    onclick="openImg(this)">查看</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="delImg(this)">删除</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否建立工资专户：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                分组信息 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu groupList" id="Wage">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeId">
+                                        <input type="text" class="form-control" id="GtypeName">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger"
+                                                    onclick="addgroup(this,5)">新建</button>
+                                            <button type="button" class="btn" onclick="editgroup(this)">编辑</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="detgroup(this)">删除</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                图片名称 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="Wage_child">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeImgId">
+                                        <input type="text" class="form-control" id="GtypeImgName">
+                                        <span class="input-group-btn">
+                                             <div class="btn-group">
+                                                <label class="btn btn-danger">
+                                                    <input type="file" accept="*" name="Wage_child[]"
+                                                           multiple="multiple" onchange="uploadImg(this)" class="hide"> 上传
+                                                </label>
+                                            </div>
+                                            <button type="button" class="btn btn-info"
+                                                    onclick="openImg(this)">查看</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="delImg(this)">删除</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目联系人：</label>
+                                <div class="col-sm-8" id="Phone">
+                                    <button type="button" class="btn btn-danger" id="addPhone"
+                                            onclick="addPhones('Phone')">增加联系人
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>工期：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" placeholder="" id="StartTime" class="form-control" readonly>
+                                </div>
+                                <label class="col-sm-1 control-label" style="text-align: center">至</label>
+                                <div class="col-sm-3">
+                                    <input type="text" placeholder="" id="EndTime" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">延期时间：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" placeholder="" id="Duration" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>代发银行：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="bankId"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>银行卡号：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" id="Account" onblur="CheckNumber(this)"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>建设方：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control Company" id="Build"
+                                            onchange="changeCompany(this)"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>业主负责人：</label>
+                                <div class="col-sm-8 Company_disp">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>施工方：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control Company" id="Cons"
+                                            onchange="changeCompany(this)"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>施工负责人：</label>
+                                <div class="col-sm-8 Company_disp">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否欠薪预案：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                分组信息 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu groupList" id="Arrears">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeId">
+                                        <input type="text" class="form-control" id="GtypeName">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger"
+                                                    onclick="addgroup(this,10)">新建</button>
+                                            <button type="button" class="btn" onclick="editgroup(this)">编辑</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="detgroup(this)">删除</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                图片名称 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="Arrears_child">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeImgId">
+                                        <input type="text" class="form-control" id="GtypeImgName">
+                                        <span class="input-group-btn">
+                                             <div class="btn-group">
+                                                <label class="btn btn-danger">
+                                                    <input type="file" accept="*" name="Arrears_child[]"
+                                                           multiple="multiple" onchange="uploadImg(this)" class="hide"> 上传
+                                                </label>
+                                            </div>
+                                            <button type="button" class="btn btn-info"
+                                                    onclick="openImg(this)">查看</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="delImg(this)">删除</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">维权公式牌：</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group m-b">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                分组信息 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu groupList" id="Rights">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeId">
+                                        <input type="text" class="form-control" id="GtypeName">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger"
+                                                    onclick="addgroup(this,6)">新建</button>
+                                            <button type="button" class="btn" onclick="editgroup(this)">编辑</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="detgroup(this)">删除</button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle"
+                                                    type="button" aria-expanded="false">
+                                                图片名称 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="Rights_child">
+
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control hidden" id="GtypeImgId">
+                                        <input type="text" class="form-control" id="GtypeImgName">
+                                        <span class="input-group-btn">
+                                             <div class="btn-group">
+                                                <label class="btn btn-danger">
+                                                    <input type="file" accept="*" name=Rights_child[]"
+                                                           multiple="multiple" onchange="uploadImg(this)" class="hide"> 上传
+                                                </label>
+                                            </div>
+                                            <button type="button" class="btn btn-info"
+                                                    onclick="openImg(this)">查看</button>
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="delImg(this)">删除</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="text-danger">*</span>分包企业：</label>
+                                <div class="col-sm-5">
+                                    <button type="button" class="btn btn-danger" onclick="addSubCompany(this)">增加分包企业
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="width: 11.9%;text-align: right">备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center submit" style="margin-top: 30px">
+                        <button type="button" class="btn btn-w-m btn-info" onclick="save()">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ProjectID = 0;
+    var Name = '';
+    var companyList = [];
+    $(function () {
+        ProjectID = parseInt(window.location.href.getQueryString("id"));
+        Name = window.location.href.getQueryString("Name");
+        if (Name) {
+            $('.ibox-title h5').html(Name);
+        }
+
+        SelcetArea();
+        setTimeout(function () {
+            init()
+        }, 1000);
+
+        initgroup2();
+        $('#StartTime').datetimepicker({
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            todayBtn: true,
+            todayHighlight: 1,
+            autoclose: true,
+            minView: 2,//最低视图 小时视图
+            maxView: 4, //最高视图 十年视图
+        });
+        $('#EndTime').datetimepicker({
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            todayBtn: true,
+            todayHighlight: 1,
+            autoclose: true,
+            minView: 2,//最低视图 小时视图
+            maxView: 4, //最高视图 十年视图
+        });
+        $('#Duration').datetimepicker({
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            todayBtn: true,
+            todayHighlight: 1,
+            autoclose: true,
+            minView: 2,//最低视图 小时视图
+            maxView: 4, //最高视图 十年视图
+        });
+
+    });
+
+    //添加图片分组性息
+    function initgroup2() {
+        Ajax('/project/group/list', 'get', {ID: ProjectID}, function (ret) {
+            if (ret.group) {
+                $('#Lgroup').html(SetGroup(ret.group.project));
+                $('#Wage').html(SetGroup(ret.group.Wage_list));
+                $('#Arrears').html(SetGroup(ret.group.Arrears_list));
+                $('#Rights').html(SetGroup(ret.group.Rights_list));
+            }
+            initgroup();
+        });
+    }
+
+    //点击分组修改图片信息
+    function initgroup() {
+        $('.input-group').on('click', 'li a', function () {
+            var id = $(this).attr('attrId');
+            var parid = $(this).parents('ul').attr('id');
+            if (parid == 'Lgroup' || parid == 'Wage' || parid == 'Arrears' || parid == 'Rights') {
+                Ajax('/company/pic/list', 'get', {ID: id}, function (ret) {
+                    $('#' + parid + '_child').html(SetGroup(ret.pic_list));
+                });
+            }
+            $(this).parents('.input-group-btn').siblings('input').eq(0).val(id);
+            $(this).parents('.input-group-btn').siblings('input').eq(1).val($(this).text())
+        });
+    }
+
+    //银行
+    function initBank(TempBank) {
+        Ajax('/bankinfo/allbank', 'get', '', function (ret) {
+            var list = ret.data;
+            SelectBox2($('#bankId'), list, 'id', 'name');
+            $('#bankId').chosen();
+            if (TempBank != 0) {
+                $('#bankId').val(TempBank);
+                $('#bankId').trigger('chosen:updated');
+            }
+            $('#bankId').change(function () {
+                $('#Account').val('');
+            })
+        });
+    }
+
+    //点击添加分包公司
+
+    function addSubCompany(_this, index) {
+        var $pars = $(_this).parents('.col-sm-6');
+        var index = index || $('.Company').length - 1; //
+        var SubCompany = subCompany(index);
+        $pars.append(SubCompany);
+
+        SelectBox2($('#SubCompany' + index), companyList, 'ID', 'Name');
+        $('#SubCompany' + index).chosen();
+
+        function subCompany(index) {
+            var str = '<div class="form-group">\
+                <label class="col-sm-3 control-label">分包企业' + index + '：</label>\
+                <div class="col-sm-6"><select class="form-control Company" id="SubCompany' + index + '" onchange="changeCompany(this)"></select></div>\
+                <div class="col-sm-2"><button type="button" class="btn btn-danger"  onclick="removeSubCompany(this)" >\
+                                      <i class="fa fa-trash"></i></button></div></div>\
+                <div class="form-group">\
+                <label class="col-sm-3 control-label">分包负责人' + index + '：</label>\
+                <div class="col-sm-6 Company_disp">\
+                </div></div>';
+            return str;
+        }
+    }
+
+    function removeSubCompany(_this) {
+        Confirm("确定删除该分包企业?", function () {
+            $(_this).parents('.form-group').next().remove();
+            $(_this).parents('.form-group').remove();
+            window.top.layer.close(LayerConfirm);
+        }, function () {
+
+        })
+    }
+
+    //添加公司和选职位
+    function initCompany(TempCompany) {
+        Ajax('/company/allcompany', 'get', '', function (ret) {
+            companyList = ret.list;
+
+            for (var i = 0; i < TempCompany.length; i++) {
+
+                var selectId = '';
+                if (i == 0) {
+                    selectId = 'OwnerManager'
+                } else if (i == 1) {
+                    selectId = 'ConsManager'
+                } else {
+                    addSubCompany('#Cons', i - 1);
+                    selectId = 'SubCompany' + i - 1;
+                }
+                var $this = $('.Company').eq(i);
+                SelectBox2($('.Company').eq(i), companyList, 'ID', 'Name');
+                $('.Company').eq(i).chosen();
+                var $CompnanyName = $this.parents('.form-group').next().find('.Company_disp');
+                $this.val(TempCompany[i].ID);
+
+                $this.trigger('chosen:updated');
+
+                $CompnanyName.html(
+                    '<select class="form-control" id="' + selectId + '"><option value="' + TempCompany[i].Person + '">' +
+                    TempCompany[i].Person + '</option></select>'
+                );
+            }
+        });
+
+    }
+
+    function changeCompany(_this) {
+        var $this = $(_this);
+        var idName = $(_this).attr('id');
+        var val = $this.val();
+        var $child = $this.parents('.form-group').next().find('.Company_disp');
+        $child.html('<select class="form-control" id="' + idName + '_disp" multiple="multiple" size="1"></select>');
+        $childIdName = $('#' + idName + '_disp');
+        if ($childIdName.length > 0) {
+            Ajax('/project/companyinfo', 'get', {ID: val}, function (ret) {
+                var list = ret.companyinfo;
+
+                function SelectBox3(node, arr, valId, Name, phone, post) {
+                    if (arr) {
+                        var optionstring = '';
+                        $.each(arr, function (key, value) {
+                            optionstring += "<option value=\"" + value[valId] + "\" >" + value[Name] + '&nbsp;' + value[phone] + '&nbsp;' + value[post] + "</option>";
+                        });
+                        node.html(optionstring);
+                    }
+                }
+
+                SelectBox3($childIdName, list, 'name', 'name', 'phone', 'post');
+                $childIdName.ySelect();
+            });
+        }
+    }
+
+    function init() {
+        Ajax('/project/query', 'get', {ID: ProjectID}, function (ret) {
+            var list = ret.project;
+            $('#Name').val(list.Name);
+            $('#Type').val(list.Type);
+            $('#GuaranType').val(list.GuaranType);
+            $('#Price').val(list.Price);
+            $('#Duration').val(list.Duration);
+            $('#GAmount').val(list.GAmount);
+            $('#WagePercent').val(list.WagePercent);
+            $('#StartTime').val(list.StartTime);
+            $('#EndTime').val(list.EndTime);
+            $('#Address').val(list.Address);
+
+            $('#bankId').val(list.Bank);
+            $('#Account').val(list.Account);
+            var TempBank = list.Bank;
+
+            var TempCompany = JSON.parse(JSON.stringify(list.SubCompany));
+
+            TempCompany.unshift({
+                CompanyName: list.ConsName,
+                ID: list.Cons,
+                Status: list.ConsStatus,
+                Person: list.ConsManager
+            });
+            TempCompany.unshift({
+                CompanyName: list.BuildName,
+                ID: list.Build,
+                Status: list.BuildStatus,
+                Person: list.OwnerManager
+            });
+
+
+            $('#Description').val(list.Description);
+            $('#Status').val(list.Status);
+            $('#province').val(list.PID);
+            $('#city').append('<option value="' + list.CID + '">' + list.CID_Name + '</option>');
+            $('#district').append('<option value="' + list.DID + '">' + list.DID_Name + '</option>');
+
+            addPhones2('Phone', list.PrinPical);        //项目委托人
+            $('#group_list').val();
+            initCompany(TempCompany);
+            initBank(TempBank);
+        });
+    }
+
+    //添加职位
+    function addPhones2(id, data) {
+        var str = '';
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                str += '<div style="margin-top: 5px"><input type="text" placeholder="姓名" value="' + data[i].name + '" style="width: 40%;display: inline-block;" name="name" class="form-control">&nbsp;' +
+                    '<input type="text" placeholder="所在项目" value="' + data[i].projectName + '" style="width: 50%;display: inline-block" name="projectName" class="form-control">' +
+                    '<div style="height: 5px"></div>' +
+                    '<input type="text" placeholder="职位" value="' + data[i].post + '" style="width: 40%;display: inline-block;" name="post" class="form-control">&nbsp;' +
+                    '<input type="text" placeholder="电话" value="' + data[i].phone + '" style="width: 50%;display: inline-block;" onblur="CheckPhone(this)" name="phone" class="form-control">&nbsp;' +
+                    '<button type="button" class="btn btn-danger"  onclick="removePhone(this)"' +
+                    'style="margin-top: -3px;"><i class="fa fa-trash"></i></button></div>';
+            }
+            $('#' + id).append(str);
+        }
+    };
+
+    function addPhones(id) {
+        var $Phone = $('#' + id);
+        if ($Phone.find('input').length > 0) {
+            var name = $Phone.find('input[name="name"]').last();
+            var post = $Phone.find('input[name="post"]').last();
+            var phone = $Phone.find('input[name="phone"]').last();
+            var projectName = $Phone.find('input[name="projectName"]').last();
+            if (name.val() && post.val() && phone.val() && projectName.val()) {
+                $Phone.append(getPhone())
+            } else {
+                Alert('请先填写完一条联系方式！！')
+            }
+        } else {
+            $Phone.append(getPhone())
+        }
+
+        function getPhone() {
+            var str = '<div style="margin-top: 5px">\
+                <input type="text" placeholder="姓名"  style="width: 40%;display: inline-block" name="name" class="form-control">\
+                <input type="text" placeholder="所在项目" style="width: 50%;display: inline-block"\
+            name="projectName" class="form-control">\
+                <div style="height: 5px"></div>\
+                <input type="text" placeholder="职位" style="width: 40%;display: inline-block" name="post" class="form-control">\
+                <input type="text" placeholder="电话" maxlength="11" style="width: 50%;display: inline-block"\
+            onblur="CheckPhone(this)" name="phone" class="form-control">\
+                <button type="button" class="btn btn-danger"  onclick="removePhone(this)"\
+            style="margin-top: -3px;"><i class="fa fa-trash"></i></button>\
+                </div>';
+            return str;
+        }
+    };
+
+    function removePhone(_this) {
+        Confirm("确定删除该联系人", function () {
+            $(_this).parent().remove();
+            window.top.layer.close(LayerConfirm);
+        }, function () {
+
+        })
+    }
+
+    //分组信息
+    function addgroup(_this, Gtype) {
+        var oParents = $(_this).parents('.input-group');
+        var dropdown = oParents.find('.dropdown-menu');
+        var GtypeId = oParents.find('#GtypeId');
+        var GtypeName = oParents.find('#GtypeName');
+        if (!GtypeName.val()) {
+            Alert('请选择分组信息！!');
+            return;
+        }
+        var data = {
+            Gtype: Gtype,
+            Name: GtypeName.val(),
+            CID: ProjectID
+        };
+        Ajax('/project/group/create', 'post', data, function (ret) {
+            Alert('新建分组成功！！');
+            dropdown.append('<li><a href="javascript:void(0)" attrId=' + ret.id + '>' + ret.name + '</a></li>');
+            GtypeId.val(ret.id);
+            GtypeName.val(ret.name);
+            initgroup()
+        })
+    }
+
+    function editgroup(_this) {
+        var oParents = $(_this).parents('.input-group');
+        var dropdown = oParents.find('.dropdown-menu');
+        var GtypeId = oParents.find('#GtypeId');
+        var GtypeName = oParents.find('#GtypeName');
+        if (!GtypeName.val()) {
+            Alert('请选择分组信息！!');
+            return;
+        }
+        var data = {
+            ID: GtypeId.val(),
+            Name: GtypeName.val(),
+        };
+        Ajax('/company/group/edit', 'post', data, function (ret) {
+            Alert('编辑建分组成功！！');
+            dropdown.find('a[attrId="' + GtypeId.val() + '"]').html(GtypeName.val());
+        })
+    }
+
+    function detgroup(_this) {
+        Confirm("确定删除分组？",
+            function () {
+                var oParents = $(_this).parents('.input-group');
+                var dropdown = oParents.find('.dropdown-menu');
+                var GtypeId = oParents.find('#GtypeId');
+                var GtypeName = oParents.find('#GtypeName');
+                var ulnode = $(_this).parents('[class="input-group m-b"]').next().find('ul');
+                if (!GtypeName.val()) {
+                    Alert('请选择分组信息！!');
+                    return;
+                }
+                var data = {
+                    ID: GtypeId.val()
+                };
+                Ajax('/company/deletepicgroup', 'delete', data, function (ret) {
+                    dropdown.find('a[attrId="' + GtypeId.val() + '"]').parent().empty();
+                    GtypeId.val('');
+                    GtypeName.val('');
+                    ulnode.empty();
+                    Alert('删除分组成功！！');
+                    window.top.layer.close(LayerConfirm)
+                })
+            }, function () {
+            })
+    }
+
+    //分组图片
+    function uploadImg(_this) {
+        var oParents = $(_this).parents('.input-group');
+        var dropdown = oParents.find('.dropdown-menu');
+        var GtypeId = oParents.prev().find('#GtypeId');
+        var GtypeImgId = oParents.find('#GtypeImgId');
+        var GtypeImgName = oParents.find('#GtypeImgName');
+
+        if (!GtypeId.val()) {
+            Alert('请选择分组信息！!');
+            return;
+        }
+
+        var formData = getFormData(_this);
+        formData.append('ID', GtypeId.val());
+        formData.append('ProgressID', 0);
+        formData.append('IsCreate', 1);
+
+
+        Ajax('/project/img/upload', 'post', formData, function (ret) {
+            Alert('上传图片成功！！');
+            for (var i = 0; i < ret.data.length; i++) {
+                dropdown.append('<li><a attrId=' + ret.data[i].id + ' Purl=' + ret.data[i].Purl + '>' + ret.data[i].name + '</a></li>');
+            }
+            GtypeImgId.val(ret.id);
+            GtypeImgName.val(ret.name);
+            initgroup();
+        }, function () {
+        }, true)
+    }
+
+    function delImg(_this) {
+        Confirm("确定删除图片？", function () {
+            var oParents = $(_this).parents('.input-group');
+            var dropdown = oParents.find('.dropdown-menu');
+            var GtypeImgId = oParents.find('#GtypeImgId');
+            var GtypeImgName = oParents.find('#GtypeImgName');
+            if (!GtypeImgId.val()) {
+                Alert('请选择图片信息！!');
+                return;
+            }
+            Ajax('/company/deletepic', 'delete', {ID: GtypeImgId.val()}, function (ret) {
+                dropdown.find('a[attrId="' + GtypeImgId.val() + '"]').parent().empty();
+                GtypeImgId.val('');
+                GtypeImgName.val('');
+                Alert('图片删除成功！！');
+                window.top.layer.close(LayerConfirm)
+            })
+        }, function () {
+        })
+    }
+
+
+    function getPhone() {
+        var arr = [];
+        $('#Phone input[name="name"]').each(function (n, ele) {
+            arr.push({
+                name: $(ele).val(),
+                post: $('#Phone input[name="post"]').eq(n).val(),
+                phone: $('#Phone input[name="phone"]').eq(n).val(),
+                projectName: $('#Phone input[name="projectName"]').eq(n).val(),
+            })
+        });
+        return arr;
+    }
+
+    function group_list(id1, id2) {
+        var arr = [];
+        $('#' + id1 + ' li').each(function (n, ele) {
+            arr.push($(ele).find('a').attr('attrId'));
+        });
+        if (id2) {
+            $('#' + id2 + ' li').each(function (n, ele) {
+                arr.push($(ele).find('a').attr('attrId'));
+            });
+        }
+
+        return arr
+    }
+
+    function getSubCompany() {
+        var company = $('.Company');
+        var arr = [];
+        for (var i = 2; i < company.length; i++) {
+            var ID = company.eq(i).val();
+            var Person = company.eq(i).parents('.form-group').next().find('select');
+            var obj = {ID: ID, Person: getMultiple(Person)};
+            arr.push(obj);
+        }
+        return arr;
+    }
+
+    //获取select多选值
+    function getMultiple(select) {
+        var arr = [];
+        select.find("option:selected").each(function (i) {
+            var optionText = this.text;
+            if (optionText && optionText != '') {
+                arr.push(optionText);
+            }
+        });
+        return arr.join(',')
+    }
+
+    function save() {
+        if ($('#province').val() == '' || $('#city').val() == '' || $('#district').val() == '' ||
+            $('#province').val() == '0' || $('#city').val() == '0' || $('#district').val() == '0' ||
+            $('#province').val() == undefined || $('#city').val() == undefined || $('#district').val() == undefined) {
+            Alert('必须选择项目地区')
+            return
+        }
+        var formData = new FormData();
+        formData.append('ID', ProjectID);
+        formData.append('Name', $('#Name').val());
+        formData.append('Type', $('#Type').val());
+        formData.append('GuaranType', $('#GuaranType').val());
+        formData.append('Price', $('#Price').val());
+        formData.append('Duration', $('#Duration').val());
+        formData.append('GAmount', $('#GAmount').val());
+        formData.append('WagePercent', $('#WagePercent').val());
+        formData.append('StartTime', $('#StartTime').val());
+        formData.append('EndTime', $('#EndTime').val());
+        formData.append('Address', $('#Address').val());
+
+        formData.append('Description', $('#Description').val());
+        formData.append('Status', $('#Status').val());
+        formData.append('PID', $('#province').val());
+        formData.append('CID', $('#city').val());
+        formData.append('DID', $('#district').val());
+        formData.append('Total', 0);
+        formData.append('TotalPay', 0);
+        formData.append('Issue', 0);
+        formData.append('PrinPical', JSON.stringify(getPhone()));
+
+
+        formData.append('Bank', $('#bankId').val());
+        formData.append('Account', $('#Account ').val());
+        formData.append('Build', $('#Build').val());
+        formData.append('Cons', $('#Cons').val());
+        var Cons_disp = $('#Cons').parents('.form-group').next().find('select');
+        var Build_disp = $('#Build').parents('.form-group').next().find('select');
+
+        formData.append('ConsManager', getMultiple(Cons_disp));
+        formData.append('OwnerManager', getMultiple(Build_disp));
+        formData.append('subCompany', JSON.stringify(getSubCompany()));
+
+        formData.append('group_list', JSON.stringify(group_list()));
+
+        // 检查必填字段是否填写完整
+        var chek_data = {
+            "Name": '项目名称',
+            'Type': '项目类型',
+            'GuaranType': '担保类型',
+            'Price': '中标价格',
+            'WagePercent': '项目农民工工资占比',
+            'StartTime': '工期',
+            'EndTime': '工期',
+            'Bank': '代发银行',
+            'Account': '银行卡号',
+            'Build': '建设方',
+            'Cons': '施工方',
+            'OwnerManager': '业主负责人',
+            'ConsManager': '施工负责人',
+            'subCompany': '分包企业',
+        };
+        var chek_form_data = {
+            "Name": $('#Name').val(),
+            'Type': $('#Type').val(),
+            'GuaranType': $('#GuaranType').val(),
+            'Price': $('#Price').val(),
+            'WagePercent': $('#WagePercent').val(),
+            'StartTime': $('#StartTime').val(),
+            'EndTime': $('#EndTime').val(),
+            'Bank': $('#bankId').val(),
+            'Account': $('#Account ').val(),
+            'Build': $('#Build').val(),
+            'Cons': $('#Cons').val(),
+            'OwnerManager': getMultiple(Build_disp),
+            'ConsManager': getMultiple(Cons_disp),
+            'subCompany': JSON.stringify(getSubCompany()),
+        }
+        temp_company = JSON.parse(chek_form_data.subCompany)
+        if (temp_company.length == 1) {
+            if (chek_form_data.subCompany == '[{"ID":"0","Person":""}]' || temp_company[0].Person == '') {
+                chek_form_data.subCompany = ''
+            }
+        }
+
+        var select_list = ['Bank', 'Build', 'Cons']
+        var chk_null = checkNull(chek_form_data, chek_data, select_list)
+        if (chk_null != '') {
+            Alert('"' + chek_data[chk_null] + '"为必填字段，请填写后提交！')
+            return
+        }
+
+
+        //判断长度是否大于20
+        var check_result = CheckLength(formData);
+        if (check_result[0]) {
+            Alert(check_result[1]);
+            return;
+        }
+
+        Ajax('/project/update', 'post', formData, function (ret) {
+            Alert('上传成功！！');
+            var href = '../html/project/view.html?id=' + ProjectID + '&Name=' + Name;
+            addTabs(href, Name)
+        }, function () {
+        }, true)
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑企业</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/commn.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link href="../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../js/photoviewer-master/photoviewer.js"></script>
+    <link href="../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../js/plugins/layer/layer.min.js"></script>
+    <script src="../js/common.js"></script>
+    <style>
+        #group{
+            width: 100%;
+            height: 40px;
+            overflow-y: hidden;
+            overflow-x: auto;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+        #group a{
+            padding: 3px 10px;
+            border: 1px solid #676a6c;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            position: relative;
+            color: #676a6c;
+        }
+
+        #group a.active,#group a:hover{
+            background: #676a6c;
+            color: #fff;
+        }
+
+        #reduceImg{
+            text-align: center;
+            overflow-y: auto;
+        }
+        #reduceImg img{
+            width: 80%;
+            max-height: 150px;
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #dee5e7;
+            margin-top: 15px;
+        }
+        #reduceImg img.active{
+            border: 1px solid red;
+        }
+        #originallyImg{
+            text-align: center;
+            border-left: 1px solid #dee5e7;
+            padding-bottom: 20px;
+        }
+        #originallyImg h3{
+            margin: 15px;
+        }
+        #originallyImg img{
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight" style="padding-top: 0">
+        <div class="row" style="margin-top: 15px;padding-bottom: 20px">
+            <div class="col-sm-12" style="margin: 0;">
+                <div class="ibox">
+                    <div class="ibox-title" style="padding: 3px">
+                        <div id="group">
+
+                        </div>
+                    </div>
+                   <div class="row" style="margin-left: 0;">
+                        <div class="col-sm-2" id="reduceImg" >
+                           
+                        </div>
+                        <div class="col-sm-10" id="originallyImg">
+
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    var CompanyId = parseInt(window.location.href.getQueryString("CompanyId"))||0;
+    var ProjectID = parseInt(window.location.href.getQueryString("ProjectID"))||0;
+    var GuaranteeId = parseInt(window.location.href.getQueryString("GuaranteeId"))||0;
+    var Gtype = parseInt(window.location.href.getQueryString("Gtype"));
+
+
+    if(CompanyId){
+        Ajax('/company/getpicgroup','get',{CID:CompanyId}, function (ret) {
+            var data=[];
+            if(Gtype==0){
+                data=ret.Lgroup_list;
+            }else{
+                data=ret.group_list;
+            }
+            showGroup(data)
+        });
+
+        //创建分组信息
+        function showGroup(data) {
+            if(data.length>0){
+                var aEle='';
+                for(var i=0;i<data.length;i++){
+                    aEle+='<a href="javascript:void(0)" id="group'+data[i].ID+'"  onclick=changeGroup("'+data[i].ID+'") >'+data[i].Name+'</a>'
+                }
+                $('#group').html(aEle);
+                changeGroup(data[0].ID)
+            }else{
+                Alert('暂未创建分组，请及时创建');
+            }
+        }
+
+        //创建分组图片
+        function changeGroup(groupId) {
+            $('#group'+groupId).addClass('active').siblings().removeClass('active');
+            var imgEle='';
+            $('#reduceImg').html('');
+            $('#originallyImg').html('');
+            Ajax('/company/pic/list','get',{ID: groupId}, function (ret) {
+                var data=ret.pic_list;
+                if(!data.length){ Alert('该分组暂无图片！！！'); return ;}
+                for(var i=0;i<data.length;i++){
+                    var Src=data[i].Purl;
+                    var Name=data[i].Name;
+                    var minSrc=localHost+getMinImage(Src);
+                    var bigSrc=localHost+Src;
+                    imgEle+='<img id="pic'+Name+'" src="'+minSrc+'" onclick=changeImg("'+bigSrc+'","'+Name+'")>';
+                }
+                $('#reduceImg').html(imgEle);
+                changeImg(localHost+data[0].Purl,data[0].Name)
+            });
+        }
+
+        //查看原图片
+        function changeImg(bigSrc,Name) {
+            $('#pic'+Name).addClass('active').siblings().removeClass('active');
+            var str='<h3>'+Name+'</h3><img onclick=showImg("'+bigSrc+'") style="margin-top: 15px"  src="'+bigSrc+'">';
+            $('#originallyImg').html(str)
+        }
+    }
+    else if(ProjectID){
+        Ajax('/project/group/list','get',{ID:ProjectID}, function (ret) {
+            var data=[];
+            if(Gtype==0){
+                data=ret.group.project;
+            }else if(Gtype==5){
+                data=ret.group.Wage_list;
+            }else if(Gtype==6){
+                data=ret.group.Rights_list;
+            } else if(Gtype==10){
+                data=ret.group.Arrears_list;
+            }
+            if(data&&data.length>0){
+                showGroup(data)
+            }else{
+                Alert('暂未创建分组，请及时创建');
+            }
+        });
+
+
+        //创建分组信息
+        function showGroup(data) {
+            var aEle='';
+            for(var i=0;i<data.length;i++){
+                aEle+='<a href="javascript:void(0)" id="group'+data[i].ID+'"  onclick=changeGroup("'+data[i].ID+'") >'+data[i].Name+'</a>'
+            }
+            $('#group').html(aEle);
+            changeGroup(data[0].ID)
+        }
+
+        //创建分组图片
+        function changeGroup(groupId) {
+            $('#group'+groupId).addClass('active').siblings().removeClass('active');
+            var imgEle='';
+            $('#reduceImg').html('');
+            $('#originallyImg').html('');
+            Ajax('/company/pic/list','get',{ID: groupId}, function (ret) {
+                var data=ret.pic_list;
+                if(!data.length){ Alert('该分组暂无图片！！！'); return ;}
+                for(var i=0;i<data.length;i++){
+                    var Src=data[i].Purl;
+                    var Name=data[i].Name;
+                    var minSrc=localHost+getMinImage(Src);
+                    var bigSrc=localHost+Src;
+                    imgEle+='<img id="pic'+Name+'" src="'+minSrc+'" onclick=changeImg("'+bigSrc+'","'+Name+'")>';
+                }
+                $('#reduceImg').html(imgEle);
+                changeImg(localHost+data[0].Purl,data[0].Name)
+            });
+        }
+
+        //查看原图片
+        function changeImg(bigSrc,Name) {
+            $('#pic'+Name).addClass('active').siblings().removeClass('active');
+            var str='<h3>'+Name+'</h3><img onclick=showImg("'+bigSrc+'") style="margin-top: 15px"  src="'+bigSrc+'">';
+            $('#originallyImg').html(str)
+        }
+
+
+    }
+    else if(GuaranteeId){
+        Ajax('/guarantee/getgroup','get',{ID:GuaranteeId}, function (ret) {
+            var data=ret.group_list;
+            if(data&&data.length>0){
+                showGroup(data)
+            }else{
+                Alert('暂未创建分组，请及时创建');
+            }
+        });
+
+
+        //创建分组信息
+        function showGroup(data) {
+            var aEle='';
+            for(var i=0;i<data.length;i++){
+                aEle+='<a href="javascript:void(0)" id="group'+data[i].ID+'"  onclick=changeGroup("'+data[i].ID+'") >'+data[i].Name+'</a>'
+            }
+            $('#group').html(aEle);
+            changeGroup(data[0].ID)
+        }
+
+        //创建分组图片
+        function changeGroup(groupId) {
+            $('#group'+groupId).addClass('active').siblings().removeClass('active');
+            var imgEle='';
+            $('#reduceImg').html('');
+            $('#originallyImg').html('');
+            Ajax('/company/pic/list','get',{ID: groupId}, function (ret) {
+                var data=ret.pic_list;
+                if(!data.length){ Alert('该分组暂无图片！！！'); return ;}
+                for(var i=0;i<data.length;i++){
+                    var Src=data[i].Purl;
+                    var Name=data[i].Name;
+                    var minSrc=localHost+getMinImage(Src);
+                    var bigSrc=localHost+Src;
+                    imgEle+='<img id="pic'+Name+'" src="'+minSrc+'" onclick=changeImg("'+bigSrc+'","'+Name+'")>';
+                }
+                $('#reduceImg').html(imgEle);
+                changeImg(localHost+data[0].Purl,data[0].Name)
+            });
+        }
+
+        //查看原图片
+        function changeImg(bigSrc,Name) {
+            $('#pic'+Name).addClass('active').siblings().removeClass('active');
+            var str='<h3>'+Name+'</h3><img onclick=showImg("'+bigSrc+'") style="margin-top: 15px"  src="'+bigSrc+'">';
+            $('#originallyImg').html(str)
+        }
+    }
+</script>
+</body>
+</html>

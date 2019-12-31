@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>主页</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+
+    <link href="../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../js/jquery.min.js?v=2.1.4"></script>
+    <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="../js/plugins/layer/layer.min.js"></script>
+    <style>
+        #tabBox {
+            width: 80%;
+            height: 50px;
+            overflow-y: hidden;
+            overflow-x: auto;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+        .nav [menubtn]{
+            display: none;
+        }
+
+        .navbar-left a{
+            padding: 8px 15px;
+            border: 1px solid #676a6c;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            position: relative;
+            color: #676a6c;
+        }
+        .navbar-left i{
+            position: absolute;
+            right:1px;
+            top: 1px;
+            color: red;
+            font-size: 1.6rem;
+        }
+        .navbar-left li i:hover{
+            cursor: pointer;
+        }
+        .navbar-left>a:hover,.navbar-left>a.active{
+          background: #676a6c;
+          color: #fff;
+        }
+
+
+        #content-main{
+            overflow: hidden;
+            height: 100%;
+        }
+
+        #content-main iframe{
+            border: 0;
+        }
+        #wrapper{
+            overflow-y: hidden;
+        }
+
+
+    </style>
+    <!-- 自定义js -->
+    <script src="../js/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow-x: visible">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element" >
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                       <i class="fa fa-bars"></i>
+                                        <strong class="font-bold">建筑工地</strong>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logo-element">建筑工地
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a ahref="home.html" class="J_menuItem" data-type="main">
+                            <i class="fa  fa-bank"></i>
+                            <span class="nav-label">首页</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                    </li>
+                    <li menubtn="company_show">
+                        <a href="#">
+                            <i class="fa fa-send"></i>
+                            <span class="nav-label">企业信息管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li menubtn="company_edit">
+                                <a class=" J_menuItem" ahref="company/new.html">企业注册</a>
+                            </li>
+                            <li>
+                                <a class=" J_menuItem" ahref="company/list.html">企业信息查询</a>
+                           </li>
+                            <li>
+                                <a class=" J_menuItem" ahref="company/list.html?HasBadRecord=2">不良企业
+                                    <span class="label label-warning pull-right" id="companyBad"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li menubtn="project_show">
+                        <a href="#">
+                            <i class="fa fa-building"></i>
+                            <span class="nav-label">项目管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li menubtn="project_edit">
+                                <a class="J_menuItem" ahref="project/new.html">新建项目</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" ahref="project/list.html">项目查询</a>
+                           </li>
+                            <li>
+                                <a class="J_menuItem" ahref="project/list.html?Status=5">项目不良信息
+                                    <span class="label label-warning pull-right" id="projectBad"></span></a>
+                            </li>
+                            <li menubtn="bank_show">
+                                <a class="J_menuItem" ahref="bank/list.html">银行管理</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li menubtn="labor_show">
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span class="nav-label">劳工管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li menubtn="labor_edit">
+                                <a class="J_menuItem" ahref="member/new.html">劳工注册</a>
+                            </li>
+                            <li menubtn="labor_show">
+                                <a class="J_menuItem" ahref="member/list.html">劳工查询</a>
+                            </li>
+                            <li menubtn="labor_show">
+                                <a class="J_menuItem" ahref="member/list.html?Isbad=1">员工不良记录
+                                    <span class="label label-warning pull-right" id="memberBad"></span></a>
+                            </li>
+                            <li menubtn="attend_show">
+                                <a class="J_menuItem" ahref="attendance/list.html">查看考勤</a>
+                            </li>
+                            <li menubtn="account_show">
+                                <a class="J_menuItem" ahref="salary/list.html">薪资计算</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li menubtn="guarantee_show">
+                        <a href="#">
+                            <i class="fa fa-file"></i>
+                            <span class="nav-label">保函管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level" >
+                            <li menubtn="guarantee_edit">
+                                <a class="J_menuItem" ahref="file/edit.html">新建保函</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" ahref="file/list.html">保函查询</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-hand-lizard-o"></i>
+                            <span class="nav-label">权限管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" menubtn="permission_show" ahref="root/user.html">用户管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" ahref="root/bank.html">银行配置</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li menubtn="guarantee_show">
+                        <a class="J_menuItem" ahref="backletter/list.html">
+                            <i class="fa fa-print"></i>
+                            <span class="nav-label">模板管理</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#">
+                            <i class="fa fa-question-circle"></i>
+                            <span class="nav-label">帮助中心</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" ahref="help/view.html">说明书</a>
+                            </li>
+                            <li>
+                                <a menubtn="question_show" class="J_menuItem" ahref="help/list.html">问答中心</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-left" id="tabBox">
+                         <a class="active" href="home.html" id="home" title="首页">首页</a>
+                    </div>
+
+                    <ul class="nav navbar-top-links navbar-right" style="width: 20%;text-align: right">
+                        <li class="dropdown" id="allBadee">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" >
+                                <i class="fa fa-envelope"></i> <span class="label label-warning" id="allBad"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages" id="allBadPar">
+
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="userName">
+
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info"  id="loginOut" data-toggle="dropdown" href="javascript:void(0)" title="登出">
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row" id="content-main">
+                 <iframe id="iframeId-home"  src="home.html" width="100%" height="100%" style="overflow: hidden"></iframe>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+    </div>
+    <script>
+        setRoot();
+        var userName=getCookie('LoginName');
+        $('#userName').html(userName);
+
+        //点击左侧导航进行跳转
+        $("a.J_menuItem").click(function(event){
+            console.log(1)
+            // event.preventDefault();
+            var $this=$(this);
+            var url=$this.attr('ahref');
+            var name=$.trim($this.text().replace(/\d/g,''));
+            console.log(url+':'+name)
+            addTabs(url,name);
+        });
+        //退出登录
+        $('#loginOut').on('click',function() {
+            Confirm('您确定要退出登录？', function () {
+                Ajax('/user/logout', 'get', '', function () {
+                    window.top.layer.close(LayerConfirm);
+                    window.location.href = './login.html'
+                })
+            });
+        });
+
+
+
+        /*$('#allBadee').on('click',function (event) {
+            event.stopPropagation();
+            var dis=$('#allBadPar').css('display');
+            if(dis=='block'){
+                $('#allBadPar').hide();
+            }else{
+                $('#allBadPar').show();
+            }
+        });*/
+
+        //消息数量，消息提示
+        setinfo();
+        function setinfo() {
+            Ajax('/index/number','get','',function (ret) {
+                var number_list=ret.number_list;
+                var company=ret.company_list;
+                var project=ret.project_list;
+                var labor=ret.labor_list;
+                $('#companyBad').html(number_list[0]);
+                $('#projectBad').html(number_list[1]);
+                $('#memberBad').html(number_list[2]);
+                var total=number_list[0]+number_list[1]+number_list[2];
+                $('#allBad').html(total);
+                $('#allBadPar').empty();
+                var parBox=$('#allBadPar');
+                for(var p=0;p<project.length;p++){
+                    var pstr='<li class="m-t-xs">'+
+                        '<div class="dropdown-messages-box">'+
+                        '<div class="media-body">'+
+                        '<a class="J_menuItem" href="javascript:viod(0)" onclick=addTabs("../html/project/view.html?id='+project[p].id+'&Name='+project[p].name+'","项目详情")>'
+                            +project[p].name+'</a>'+
+                        '<br></div></div></li>';
+                    parBox.append(pstr)
+                }
+                parBox .append('<li class="divider"></li>');
+                for(var i=0;i<company.length;i++){
+                    var str='<li class="m-t-xs">'+
+                            '<div class="dropdown-messages-box">'+
+                            '<div class="media-body">'+
+                            '<a class="J_menuItem" href="javascript:viod(0)" onclick=addTabs("../html/company/view.html?CompanyId='+company[i].id+'&Name='+company[i].name+'","公司详情")>'
+                                +company[i].name+'</a>'+
+                            '<br></div></div></li>';
+                        parBox.append(str)
+                }
+                parBox .append('<li class="divider"></li>');
+
+                for(var l=0;l<labor.length;l++){
+                    var lstr='<li class="m-t-xs">'+
+                        '<div class="dropdown-messages-box">'+
+                        '<div class="media-body">'+
+                        '<a class="J_menuItem" onclick=addTabs("../html/member/view.html?id='+labor[l].id+'&Name='+labor[l].name+'","劳工详情") href="javascript:viod(0)">'+labor[l].name+'</a>'+
+                        '<br></div></div></li>';
+                    parBox.append(lstr)
+                }
+                parBox.append('<li class="divider"></li>');
+            })
+        }
+        setInterval("setinfo()",600000);
+
+    </script>
+</body>
+</html>

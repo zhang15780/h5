@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑项目</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+    <style>
+        .ibox-content .viewBox:last-child {
+            border-bottom: none;
+        }
+
+        .viewBox {
+            border-bottom: 1px dashed #cccccc;
+            margin: 10px 0 0 0;
+        }
+
+        .viewBox .viewRow {
+            line-height: 30px;
+        }
+
+        .viewBox .viewRow.col-sm-12 {
+            line-height: normal;
+        }
+
+        .viewBox .viewRow label {
+            text-align: right;
+        }
+
+        .viewBox .viewRow .col-sm-8 {
+            padding: 0;
+            line-height: 30px;
+        }
+
+        .form-group div {
+            line-height: 30px;
+        }
+        .ibox .open > .dropdown-menu{
+            left: auto;
+            right: auto;
+        }
+        #Lgroup_child li,#group_child li{
+            position: relative;
+        }
+        #Avatar{
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+        #Avatar #isDeparture{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            /* display: none; */
+            z-index: 1;
+            color: red;
+            background: rgba(204, 204, 204, 0.51);
+        }
+    </style>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/plugins/time/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.js"></script>
+    <script src="../../js/plugins/time/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+    <script src="../../js/print/jquery.PrintArea.js"></script>
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>劳工注册</h5>
+                    <div class="ibox-tools">
+                        <a href="javascript:void(0)" class="btn btn-info btn-xs" id="edit">编辑</a>
+                        <a class="btn btn-info btn-xs" href=""  target="_blank" download="" id="derive">导出详情</a>
+                    </div>
+                </div>
+                <form>
+                    <div class="ibox-content">
+                        <div >
+                            <div class="row viewBox" style="border-bottom: none;margin-bottom: 0;margin-top: 0">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label" style="line-height: 50px;background: #23B7E5;">组织结构:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">所属项目:</label>
+                                        <div class="col-sm-8" id="ProjectID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">是否项目管理员:</label>
+                                        <div class="col-sm-8" id="IsPM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">所属企业:</label>
+                                        <div class="col-sm-8" id="CompanyId">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">分包企业:</label>
+                                        <div class="col-sm-8" id="SubCompany">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">当前工种:</label>
+                                        <div class="col-sm-8" id="JobType">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label"><span
+                                                class="text-danger">*</span>所属地区:</label>
+                                        <div class="col-sm-8" id="Area">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">安全帽号:</label>
+                                        <div class="col-sm-8" id="Hardhatnum">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">开始工作日期:</label>
+                                        <div class="col-sm-8" id="EntryDate">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">离场日期:</label>
+                                        <div class="col-sm-6" id="DepartureDate">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">是否班组长:</label>
+                                        <div class="col-sm-8" id="IsLeader">
+                                            <div class="m-b">
+                                                <div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox" style="border-bottom: none;margin-bottom: 0;margin-top: 0">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label" style="line-height: 50px;background: #23B7E5;">劳工信息:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow" style="padding: 10px">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">拍照头像:</label>
+                                        <div class="col-sm-8" id="Avatar" style="padding-bottom: 10px">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">姓名:</label>
+                                        <div class="col-sm-8" id="Name">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">性别:</label>
+                                        <div class="col-sm-8" id="Sex">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">民族:</label>
+                                        <div class="col-sm-8" id="Nationality">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">身份证号:</label>
+                                        <div class="col-sm-8" id="IDCard"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">出生日期:</label>
+                                        <div class="col-sm-8"  id="Birthday">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">发证机关:</label>
+                                        <div class="col-sm-8" id="IssueAuth">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">家庭住址:</label>
+                                        <div class="col-sm-8" id="Address">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                             <!--   <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">有效期:</label>
+                                        <div class="col-sm-8" id="SVP">
+                                           
+                                        </div>
+
+                                    </div>
+                                </div>-->
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">政治面貌:</label>
+                                        <div class="col-sm-8" id="Political">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">手机号码:</label>
+                                        <div class="col-sm-8" id="Phone">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">紧急联系人号码:</label>
+                                        <div class="col-sm-8" id="EmerCon">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">文化程度:</label>
+                                        <div class="col-sm-8" id="Education"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">工资标准:</label>
+                                        <div class="col-sm-8"  id="FeeStand"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox" style="border-bottom: none;margin-bottom: 0;margin-top: 0">
+                                <div class="col-sm-6 col-md-4 viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label" style="line-height: 50px;background: #23B7E5;">图片信息:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6  viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">身份证正面:</label>
+                                        <div class="col-sm-8" id="IDP">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6  viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">身份证背面:</label>
+                                        <div class="col-sm-8" id="IDB">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox">
+                                <div class="col-sm-6  viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">近身照片:</label>
+                                        <div class="col-sm-8" id="CloseupPhoto" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6  viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">是否培训:</label>
+                                        <div class="col-sm-8"  >
+                                            <span id="Train"></span>
+                                            <span id="Train_disp"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row viewBox hidden-print" style="padding-bottom: 15px">
+                                <div class="col-sm-6  viewRow">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">分组照片:</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group m-b">
+                                                <div class="input-group-btn">
+                                                    <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle" type="button" aria-expanded="false">
+                                                        分组信息 <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="group">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-btn">
+                                                    <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle" type="button" aria-expanded="false">
+                                                        图片名称 <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="group_child">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6  viewRow" id="labor_badrecord_edit">
+                                    <div class="row">
+                                        <label class="col-sm-4 control-label">不良信息:</label>
+                                        <div class="col-sm-8">
+                                            <div id="Isbadrecord" class="m-b">
+
+                                            </div>
+                                            <div id="BadRecord" class="m-b">
+
+                                            </div>
+                                            <div class="input-group m-b">
+                                                <div class="input-group-btn">
+                                                    <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"
+                                                            type="button" aria-expanded="false">
+                                                        分组信息 <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="Lgroup">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-btn">
+                                                    <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"
+                                                            type="button" aria-expanded="false">
+                                                        图片名称 <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="Lgroup_child">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row viewBox" style="padding-bottom: 15px">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label" style="text-align: right">备注:</label>
+                                        <div class="col-sm-10" id="Remark"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var UserID=0;
+    var Name='';
+    $(function () {
+        UserID = parseInt(window.location.href.getQueryString("id"))||0;
+        Name = window.location.href.getQueryString("Name");
+        if(Name&&UserID){
+            $('.ibox-title h5').html(Name);
+            $('#edit').on('click',function () {
+                var href='../html/member/edit.html?id='+UserID+'&Name='+Name;
+                addTabs(href,'编辑'+Name)
+            });
+            var dlown=localHost+'/template/export?type=word&ft=labor&id='+UserID;
+            $('#derive').attr({href:dlown,download:Name});
+        }
+        init();
+        badrecord_edit();
+    });
+
+    //是否允许查看不良纪录
+    function badrecord_edit() {
+        var root=JSON.parse(Permission);
+        for(var i=0;i<root.length;i++){
+            if(root[i]==='labor_badrecord_edit'){
+                $('#labor_badrecord_edit').show();
+                break;
+            }
+        }
+    }
+    function showJobType(data) {
+        switch (data) {
+            case 0:return '钢筋工'; break;
+            case 1:return '架子工'; break;
+            case 2:return '模板工';break;
+            case 3:return '通风工'; break;
+            case 4:return '机械设备安装工'; break;
+            case 5:return ''; break;
+        }
+    }
+    function showISPM(data) {
+        parseInt(data);
+        switch (data) {
+            case 0:return '否'; break;
+            case 1:return '是'; break;
+        }
+    }
+    function showTrain(data) {
+        parseInt(data);
+        switch (data) {
+            case 0:return '未培训'; break;
+            case 1:return '已培训'; break;
+        }
+    }
+    function showSex(data) {
+        switch (data) {
+            case 0:return '女'; break;
+            case 1:return '男'; break;
+        }
+    }
+    function showIsbadrecord(data) {
+        var data=parseInt(data);
+        switch (data) {
+            case 0:return '正常'; break;
+            case 1:return '<span class="text-danger">不良</span>'; break;
+            case 2:return '<span class="text-danger">黑名单</span>'; break;
+        }
+    }
+    function showFeeStand(data) {
+        var data=parseInt(data);
+        switch (data) {
+            case 0:return '临时工'; break;
+            case 1:return '合同工'; break;
+        }
+    }
+    function showEducation(data) {
+        var data=parseInt(data);
+        switch (data) {
+            case 0:return '无'; break;
+            case 1:return '小学'; break;
+            case 2:return '初中'; break;
+            case 3:return '高中'; break;
+            case 4:return '大学'; break;
+            case 5:return '硕士'; break;
+            case 6:return '博士'; break;
+            case 7:return '大学'; break;
+         }
+    }
+    function isNull(tmp) {
+        if (!tmp) {
+            return '';
+        }else{
+            return tmp
+        }
+
+    }
+    function showIsLeader(IsLeader,ClassName,SuperiorsName) {
+      if(IsLeader=='1'){
+          return '是班组长'+'&nbsp;'+isNull(ClassName)+'&nbsp;'+isNull(SuperiorsName);
+      }else{
+          return '不是班组长'+'&nbsp;'+isNull(ClassName)+'&nbsp;'+isNull(SuperiorsName)
+      }
+    }
+    function init(){
+        Ajax('/labor/info','get',{ID:UserID}, function (ret) {
+            var list=ret.labor;
+
+            var ProjectHref='../html/project/view.html?id='+list.ProjectID+'&Name='+list.ProjectName;
+            var CompanyHref='../html/company/view.html?CompanyId='+list.CompanyID+'&Name='+list.CompanyName;
+            if(list.SubCompany){
+                var SubCompanyHref='../html/company/view.html?CompanyId='+list.SubCompany+'&Name='+list.SubCompanyName;
+                $('#SubCompany').html('<a onclick=addTabs("'+SubCompanyHref+'","'+list.SubCompanyName+'")>'+list.SubCompanyName+'</a>');
+            }else{
+                Alert('请及时补填分包企业');
+                $('#SubCompany').html('<a class="text-danger" style="vertical-align:inherit" href="javascript:void(0)">请及时添加分包企业</a>');
+            }
+
+            //list.isDeparture=
+
+            $('#ProjectID').html('<a onclick=addTabs("'+ProjectHref+'","'+list.ProjectName+'")>'+list.ProjectName+'</a>');
+            $('#IsPM').html(showISPM(list.IsPM));
+            $('#Train').html(showTrain(list.Train));
+            $('#CompanyId').html('<a onclick=addTabs("'+CompanyHref+'","'+list.CompanyName+'")>'+list.CompanyName+'</a>');
+
+
+            $('#IsLeader').html(showIsLeader(list.IsLeader,list.ClassName,list.SuperiorsName));
+            $('#JobType').html(showJobType(list.JobType));
+            $('#Area').html(list.PName+'&nbsp;'+(list.CName||'&nbsp;')+'&nbsp;'+list.DName||'&nbsp;');
+            $('#Hardhatnum').html(list.Hardhatnum);
+            $('#EntryDate').html(list.EntryDate);
+            $('#DepartureDate').html(list.DepartureDate);
+
+
+            $('#Name').html(list.Name);
+            $('#Sex').html(showSex(list.Sex));
+            $('#Birthday').html(list.Birthday);
+            $('#Nationality').html(list.Nationality);
+            $('#IDCard').html(list.IDCard);
+            $('#Address').html(list.Address);
+            $('#IssueAuth').html(list.IssueAuth);
+            $('#Political').html(list.Political);
+            $('#Phone').html(list.Phone);
+            $('#EmerCon').html(list.EmerCon);
+            $('#Education').html(showEducation(list.Education));
+            $('#BadRecord').html(list.BadRecord);
+            $('#Isbadrecord').html(showIsbadrecord(list.Isbadrecord));
+            $('#FeeStand').html(showFeeStand(list.isFeeStand)+'&nbsp;'+list.FeeStand);
+            $('#Remark').html(list.Remark);
+            showImgInfo($('#Avatar'),list.Avatar);
+            if(list.isDeparture){
+                $('#Avatar').append('<div id="isDeparture">已离场</div>')
+            }
+            showImgInfo($('#IDP'),list.IDP);
+            showImgInfo($('#IDB'),list.IDB);
+            showImgInfo($('#CloseupPhoto'),list.CloseupPhoto);
+            showImgInfo($('#Train_disp'),list.TrainPic);
+
+
+
+            $('#Lgroup').html(SetGroup(list.pic_group.bad_list));
+            $('#group').html(SetGroup(list.pic_group.info));
+            $('.dropdown-menu').on('click','li a', function () {
+                var id= $(this).attr('attrId');
+                var parid=$(this).parents('ul').attr('id');
+                if(parid==='Lgroup'||parid==='group'){
+                    Ajax('/company/pic/list','get',{ID: id}, function (ret) {
+                        $('#'+parid+'_child').html(SetShowGroup(ret.pic_list));
+                    });
+                }else{
+                    var $this=$(this);
+                    showGroup($this)
+                }
+            });
+        });
+    };
+</script>
+</body>
+</html>

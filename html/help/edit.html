@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑问答</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <style>
+        .control-label{
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label"><span class="text-danger">*</span>问答名称：</label>
+                    <div class="col-xs-8">
+                        <input type="text" placeholder="" id="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label"><span class="text-danger">*</span>问答类型：</label>
+                    <div class="col-xs-8">
+                        <select  class="form-control" id="Type" >
+                            <option value="2">外部问答</option>
+                            <option value="1">内部问答</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">描述内容：</label>
+                    <div class="col-xs-8">
+                        <div id="editor">
+
+                        </div>
+
+                        <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+                        <script type="text/javascript" src="../../js/wangEditor.min.js"></script>
+                        <script type="text/javascript">
+                            var E = window.wangEditor;
+                            var editor = new E('#editor');
+                            editor.customConfig.uploadImgShowBase64 = true;
+                            editor.create()
+                        </script>
+                    </div>
+                </div>
+                <div class="text-center submit">
+                    <button type="reset" class="btn btn-w-m btn-default">清空</button>
+                    <button type="button" class="btn btn-w-m btn-info" onclick="save()">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var question=0;
+    $(function() {
+        QuestionID = parseInt(window.location.href.getQueryString("id")) || 0;
+        if(QuestionID){
+            init()
+        }
+    });
+    function init() {
+        Ajax('/question/query','get',{ID:QuestionID},function (ret) {
+            var list=ret.result[0];
+            $('#Name').val(list.Name);
+            $('#Type').val(list.Type);
+            editor.txt.html(list.Answer);
+        })
+    }
+
+    function save() {
+        var nameLength=$('#Name').val().length;
+        if(nameLength <= 0 || nameLength >255){
+            Alert('必须填写问题名称');
+            return
+        }
+        console.log(editor.txt.html());
+        var formData = new FormData();
+        formData.append('ID',QuestionID);
+        formData.append('Name',$('#Name').val());
+        formData.append('Type',parseInt($('#Type').val()));
+        formData.append('Answer',editor.txt.html());
+
+
+        Ajax('/question/insert','post',formData,function (ret) {
+            parent.$('#table').bootstrapTable('refresh');
+            var mylay = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(mylay);
+            Alert('上传成功！！');
+        },function () {},true)
+    }
+</script>
+
+</body>
+</html>

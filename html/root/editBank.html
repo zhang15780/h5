@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑企业</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <style>
+        .control-label{
+            text-align: right;
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label"><span class="text-danger">*</span>银行名：</label>
+                    <div class="col-xs-8">
+                        <input type="text" placeholder="" id="name" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">描述：</label>
+                    <div class="col-xs-8">
+                        <textarea placeholder=""  wrap="vitual" id="description" class="form-control"></textarea>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center submit">
+                <button type="button" class="btn btn-w-m btn-info" onclick="save()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var id=0;
+    $(function() {
+         id = parseInt(window.location.href.getQueryString("id"));
+         if(id){
+             init()
+         }
+    });
+
+    function init() {
+        Ajax('/bankinfo/query','get',{id:id},function (ret) {
+            var list=ret.data[0];
+            $('#name').val(list.name);
+            $('#description').val(list.description);
+        })
+    }
+
+    function save() {
+        if($('#name').val().length<=0){
+            Alert('必须填写银行名字！');
+            return
+        }
+
+        var formData = new FormData();
+        formData.append('id',id);
+        formData.append('name',$('#name').val());
+        formData.append('description',$('#description').val());
+
+        //判断长度是否大于20
+        var check_result = CheckLength(formData);
+        if (check_result[0]) {
+            Alert(check_result[1]);
+            return;
+        }
+
+        Ajax('/bankinfo/add','post',formData,function (ret) {
+            parent.$('#table').bootstrapTable('refresh');
+            var mylay = parent.layer.getFrameIndex(window.name);
+            Alert('操作成功！！');
+            parent.layer.close(mylay);
+
+        },function (){},true)
+    }
+</script>
+</body>
+</html>

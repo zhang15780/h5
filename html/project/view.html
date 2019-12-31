@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>新建-编辑企业</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/commn.css" rel="stylesheet">
+    <style>
+        .imgArr img{
+            width: 200px;
+            height: 300px;
+        }
+        @media (min-width: 768px){
+            .form-horizontal .control-label{
+               padding-top: 0;
+            }
+        }
+        .monthNav li{
+            margin-bottom: 10px;
+        }
+        .monthNav li div{
+            height: 30px;
+            line-height: 30px;
+            background: #eff7ff;
+            text-indent: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .monthNav li div.act{
+            background: #d5eaff;
+        }
+        .monthNav li dt{
+            cursor: pointer;
+            margin-top: 10px;
+            height: 30px;
+            line-height: 30px;
+            background: #f2f2f2;
+            text-indent: 30px;
+            font-weight: normal;
+        }
+        .monthNav li dl{
+            display: none;
+            margin-bottom: 0;
+        }
+        .monthNav li div.act+dl{
+            display: block;
+        }
+        .monthNav li dt.act{
+            background: #3399ff;
+            color: #fff;
+        }
+        .monthNav .fa{
+            margin-right:5px;
+            text-indent: 0;
+            width: 14px;
+            height: 14px;
+        }
+        .monthNav li dt .fa{
+            color: #66cc00;
+        }
+        #progerssImg{
+            cursor: pointer;
+        }
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="../../js/photoviewer-master/photoviewer.css" rel="stylesheet">
+    <script src="../../js/photoviewer-master/photoviewer.js"></script>
+
+    <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
+    <script src="../../js/plugins/layer/layer.min.js"></script>
+    <script src="../../js/common.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5></h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="project">
+                        <div class="row" style="padding-top: 10px">
+                            <div class="col-sm-4"  style="border-right: 1px solid #a8aaab;">
+                                <form class="form-horizontal" >
+                                    <div class="form-group" style="border-bottom: 1px solid #a8aaab;margin-left: 0;padding-bottom: 10px">
+                                        <div class="col-sm-6" style="text-align: center;font-weight: bold;color: #000;margin-top:3px">项目详情</div>
+                                        <div class="col-sm-6" style="text-align: right">
+                                            <a href="javscript:void(0)"
+                                               class="btn btn-info btn-xs" id="addmemer">添加劳工</a>
+                                            <a href="javscript:void(0)" class="btn btn-info btn-xs" id="edit">编辑</a>
+                                            <a href="javscript:void(0)" class="btn btn-info btn-xs" onclick="addTabs('../html/attendance/list.html','查看考勤')"
+                                            id="attendance">考勤</a>
+                                            <a class="btn btn-info btn-xs" href=""  target="_blank" download="" id="derive">导出详情</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目名称：</label>
+                                        <div class="col-sm-8" id="Name"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目类型：</label>
+                                        <div class="col-sm-8" id="Type"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">担保类型：</label>
+                                        <div class="col-sm-8" id="GuaranType"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">担保金额：</label>
+                                        <div class="col-sm-8" id="GAmount"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">中标价格：</label>
+                                        <div class="col-sm-8" id="Price"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目联系人：</label>
+                                        <div class="col-sm-8" id="PrinPical"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目不良信息：</label>
+                                        <div class="col-sm-8" id="Status"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">农民工工资占比情况：</label>
+                                        <div class="col-sm-8" id="WagePercent"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">工期：</label>
+                                        <div class="col-sm-8" id="Time"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">延期时间：</label>
+                                        <div class="col-sm-8" id="Duration"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">已开工月数：</label>
+                                        <div class="col-sm-8" id="NowTime"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">代发银行：</label>
+                                        <div class="col-sm-8" id="bankId"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">银行卡号：</label>
+                                        <div class="col-sm-8" id="Account"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">建设方：</label>
+                                        <div class="col-sm-8" id="Build"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">业主负责人：</label>
+                                        <div class="col-sm-8" id="Build_disp"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">施工方：</label>
+                                        <div class="col-sm-8" id="Cons"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">施工负责人：</label>
+                                        <div class="col-sm-8" id="Cons_disp"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">分包企业：</label>
+                                        <div class="col-sm-8" id="subCompany"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">项目图片：</label>
+                                        <div class="col-sm-8">
+                                            <button type="button" class="btn btn-info btn-w-100 showGroupImg" id="0Gtype">查看详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">是否建立工资专户：</label>
+                                        <div class="col-sm-8" >
+                                            <button type="button" class="btn btn-info btn-w-100 showGroupImg" id="5Gtype">查看详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">是否欠薪预案：</label>
+                                        <div class="col-sm-8" >
+                                            <button type="button" class="btn btn-info btn-w-100 showGroupImg" id="10Gtype">查看详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">维权公式牌：</label>
+                                        <div class="col-sm-8" >
+                                            <button type="button" class="btn btn-info btn-w-100 showGroupImg" id="6Gtype">查看详情</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">备注：</label>
+                                        <div class="col-sm-8" id="Description"></div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <ul class="monthNav">
+                                </ul>
+                            </div>
+                           <div class="col-sm-6">
+                                <form class="form-horizontal">
+                                    <div class="form-group" style="border-bottom: 1px solid #a8aaab;margin-left: 0;margin-right: 0;padding-bottom: 10px">
+                                        <div class="col-sm-8" id="progressMonth"
+                                             style="text-align: center;font-weight: bold;color: #000;margin-top:3px"></div>
+                                        <div class="col-sm-4" style="text-align: right">
+                                            <a href="javscript:void(0)" class="btn btn-info btn-xs" id="progressNew">编辑</a>
+                                            <a class="btn btn-info btn-xs" href=""  target="_blank" download="" id="derive2">导出详情</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">是否异常：</label>
+                                        <div class="col-sm-2">
+                                            <span class="text-danger" CId="Status"></span>
+                                        </div>
+                                        <label class="col-sm-4 control-label">日期：</label>
+                                        <div class="col-sm-2" CId="UploadTime"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">进度（%）：</label>
+                                        <div class="col-sm-8" CId="Percent">
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="border-bottom: 1px solid #a8aaab;padding: 0;margin: 0;margin-bottom: 20px;
+                                    padding-bottom: 20px">
+                                        <label class="col-sm-4 control-label">工程巡查情况：</label>
+                                        <div class="col-sm-8" CId="Content"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">监管类型：</label>
+                                        <div class="col-sm-2" CId="Rtype"></div>
+                                        <label class="col-sm-4 control-label">员工是否有签订合同：</label>
+                                        <div class="col-sm-2" CId="Contract"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">此项目是否进行实名制管理：</label>
+                                        <div class="col-sm-2" CId="RealName"></div>
+                                        <label class="col-sm-4 control-label">是否有考勤记录：</label>
+                                        <div class="col-sm-2" CId="Attend"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">农民工工资公示牌：</label>
+                                        <div class="col-sm-2" CId="Lwages"></div>
+                                        <label class="col-sm-4 control-label">劳务专员任命书：</label>
+                                        <div class="col-sm-2" CId="LAB"></div>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label class="col-sm-4 control-label">项目经理任命书：</label>
+                                        <div class="col-sm-2" CId="PAB"></div>
+                                        <label class="col-sm-4 control-label">农民工工资支付凭证：</label>
+                                        <div class="col-sm-2" CId="LPayCert"></div>
+                                    </div>
+                                  <div style="border-top: 1px solid #a8aaab;margin: 20px 0;">
+                                        <b style="line-height: 40px">月度工资发放情况表</b>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td style="width: 50%">用工人数：<span CId="Workers"></span></td>
+                                                <td style="width: 50%">支付款项：<span CId="Payment"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>应发人数：<span CId="ShouldIssues"></span></td>
+                                                <td>欠款：<span CId="Overdraft"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>实际发放数：<span CId="RealIssues"></span></td>
+                                                <td>差值：<span CId="difference"></span></td>
+                                            </tr>
+                                            <tr >
+                                                <td>打卡数：<span CId="Punches"></span></td>
+                                                <td>总工资：<span CId="TotalSalary"></span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <b style="line-height: 40px">询问人员</b>
+                                       <table class="table table-bordered" style="margin-bottom: 0">
+                                           <thead >
+                                           <tr >
+                                               <th style="text-align: center">
+                                                   照片
+                                               </th>
+                                               <th style="text-align: center">
+                                                   姓名
+                                               </th>
+                                               <th style="text-align: center">
+                                                   电话
+                                               </th>
+                                               <th style="text-align: center">
+                                                   所在班组
+                                               </th>
+                                               <th style="text-align: center">
+                                                   到场时间
+                                               </th>
+                                               <th style="text-align: center">
+                                                   工资领取情况
+                                               </th>
+                                           </tr>
+                                           </thead>
+                                           <tbody CId="Person" style="text-align: center">
+                                           </tbody>
+                                       </table>
+                                   </div>
+
+                                    <div class="form-group" style="margin: 20px 0">
+                                        <label class="col-sm-1 control-label" style="text-align: left;padding-left: 0">备注：</label>
+                                        <div CId="Remark"></div>
+                                    </div>
+                                    <div id="progerssImg"></div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ProjectID=0;
+    var Name='';
+    $(function () {
+        ProjectID=parseInt(window.location.href.getQueryString("id"));
+        Name=window.location.href.getQueryString("Name");
+        if(Name&&ProjectID){
+            $('.ibox-title h5').html(Name);
+            $('#addmemer').attr('href','../member/new.html');
+            $('#addmemer').on('click',function (e) {
+                var event = e||window.event;
+                event.preventDefault();
+                addTabs('../html/member/new.html','劳工注册');
+            });
+            $('#edit').on('click',function (e) {
+                var event = e||window.event;
+                event.preventDefault();
+                var href='../html/project/edit.html?id='+ProjectID+'&Name='+Name;
+                addTabs(href,'编辑'+Name)
+            });
+
+            var dlown=localHost+'/template/export?type=word&ft=project&id='+ProjectID;
+            $('#derive').attr({href:dlown,download:Name});
+
+
+        }
+        init();
+        $('.showGroupImg').click(function () {
+            var name=$(this).parents('.form-group').find('.control-label').html().replace(/[:|：]/,'');
+            var Gtype=parseInt($(this).attr('id'));
+            var href="../html/imgTab.html?ProjectID="+ProjectID+'&Gtype='+Gtype;
+            addTabs(href,name)
+        })
+    });
+    function init() {
+        Ajax('/project/query', 'get', {ID: ProjectID}, function (ret) {
+            var list = ret.project;
+            readProject(list);
+            addSearch(ret.year_month_info);
+            readProgress(ret.progress);
+        });
+    }
+
+    //设置项目显示值
+    function showType(data) {
+        switch (data) {
+            case 0:return '政府投资'; break;
+            case 1:return '民营开发';break;
+            case 2:return '国企分包'; break;
+            case 3:return '其他'; break;
+        }
+    }
+    function showGuaranType(data) {
+        switch (data) {
+            case 0:return '投标'; break;
+            case 1:return '履约';break;
+            case 2:return '预付款'; break;
+            case 3:return '农民工工资支付'; break;
+            case 4:return '业主支付'; break;
+            case 5:return '质量'; break;
+            case 6:return '资本金'; break;
+            case 7:return '房屋质量'; break;
+            case 8:return '其他'; break;
+        }
+    }
+    function showStatus(data) {
+        switch (data) {
+            case 0:return '正常'; break;
+            case 1:return '常态监管'; break;
+            case 2:return '<span class="text-danger">重点</span>';break;
+            case 3:return '<span class="text-danger">严重</span>'; break;
+        }
+    }
+    function showContact(data) {
+        var Phone='';
+        for (var i=0;i<data.length;i++){
+            Phone+='<div>'+data[i].name+'&nbsp;'+(data[i].projectName||"暂无所在项目")+'&nbsp;'+data[i].phone+'&nbsp;'+data[i].post+'</div>'
+        }
+        return Phone;
+    }
+    function readProject(list) {
+        $('#Name').html(list.Name);
+        $('#Type').html(showType(list.Type));
+        $('#GuaranType').html(showGuaranType(list.GuaranType));
+        $('#Persons').html(list.Persons);
+        $('#Price').html(list.Price+'￥');
+        $('#GAmount').html(list.GAmount+'￥');
+        $('#PrinPical').html(showContact(list.PrinPical));
+        $('#WagePercent').html(list.WagePercent);
+        $('#Status').html(showStatus(list.Status));
+        $('#Time').html(list.StartTime+'至'+list.EndTime);
+        $('#NowTime').html(list.NowTime);
+        $('#Duration').html(list.Duration);
+        $('#Total').html(list.Total);
+        $('#TotalPay').html(list.TotalPay);
+        $('#Issue').html(list.Issue);
+        $('#Description').html(list.Description);
+        $('#bankId').html(list.BankName);
+        $('#Account').html(list.Account);
+
+        var TempCompany=JSON.parse(JSON.stringify(list.SubCompany));
+        TempCompany.unshift({CompanyName:list.ConsName,ID:list.Cons,Status:list.ConsStatus,Person:list.ConsManager});
+        TempCompany.unshift({CompanyName:list.BuildName,ID:list.Build,Status:list.BuildStatus,Person:list.OwnerManager});
+
+        retcompany(TempCompany);
+        function retcompany(subARR) {
+            for(var i=0;i<subARR.length;i++){
+                var company=subARR[i];
+                var danger=parseInt(company.Status)==0?'<i class="text-danger fa fa-exclamation-triangle" title="企业存在风险"></i>':'';
+                var href='../html/company/view.html?CompanyId='+company.ID+'&Name='+company.CompanyName;
+                var src='<a href="javascript:void(0)" onclick=addTabs("'+href+'","'+company.CompanyName+'") ' +
+                    'style="margin-right: 10px;">'+company.CompanyName+'</a>';
+
+                if(i==0){
+                    $('#Build').html(src+danger);
+                    $('#Build_disp').html(company.Person.replace(/,/,'<br/>'));
+                }else if(i==1){
+                    $('#Cons').html(src+danger);
+                    $('#Cons_disp').html(company.Person.replace(/,/,'<br/>'));
+                }else{
+                    $('#subCompany').append(src+danger+'<br/>'+company.Person.replace(/,/,'<br/>')+'<br/>');
+                }
+            }
+        }
+
+    }
+
+
+
+    function addSearch(data) {
+        if(!data){
+            Alert('还没有项目进度，请及时上传');
+            return;
+        }
+        for (var i in data){
+            var box=$('.monthNav');
+            var year=data[i];
+            box.append('<li id="y'+i+'" onclick="openYear(this)"><div><i class="fa fa-chevron-left"></i>'+i+'年</div><dl></dl></li>');
+            for(var j=0;j<year.length;j++){
+                var monthObj=year[j];
+                var month=monthObj.month;
+                var monthid=monthObj.id;
+                var monthstr='';
+                if(monthObj['is_current']==1){ //当前填写
+                    openYear('#y'+i);
+                    monthstr='<dt class="act" id="m'+monthid+'"><i class="fa fa-circle"></i>'+i+'-'+month+'</dt>';
+
+                }else if(monthObj['is_input']==0){  //当前月未填写
+                    monthstr='<dt id="m'+monthid+'" year="'+i+'" month="'+month+'"><i class="fa" ></i>'+i+'-'+month+'</dt>';
+                }else{
+                    monthstr='<dt id="m'+monthid+'"><i class="fa fa-circle"></i>'+i+'-'+month+'</dt>'
+                }
+                $('#y'+i).find('dl').append(monthstr);
+            }
+        }
+        $('.monthNav dt').on('click',function (event) {
+            event.stopPropagation();
+            var id=parseInt($(this).attr('id').substring(1));
+            $('.monthNav dt').removeClass('act');
+            $(this).addClass('act');
+            var $this=$(this);
+            if(!$this.attr('year')){
+                progress(id)
+            }else{
+                progress(id,$this.attr('year'),$this.attr('month'))
+            }
+        })
+    }
+    function openYear(_this) {
+        var $clid=$(_this).find('div');
+        if($clid.hasClass('act')){
+            $clid.removeClass('act');
+            $clid.find('i').addClass('fa-chevron-left').removeClass('fa-chevron-down')
+        }else{
+            $clid.addClass('act');
+            $clid.find('i').removeClass('fa-chevron-left').addClass('fa-chevron-down');
+            var siblingsDiv=$(_this).siblings().find('div');
+            siblingsDiv.removeClass('act');
+            siblingsDiv.find('i').addClass('fa-chevron-left').removeClass('fa-chevron-down');
+        }
+    }
+
+    function progress(monthId,year,month){
+        if(year&&month){
+            var href='../html/project/progressNew.html?id='+ProjectID+'&Name='+Name+'&year='+year+'&month='+month;
+            addTabs(href,'进度'+Name+year+'-'+month);
+        }else{
+            Ajax('/project/progress/query', 'get', {ProgressID: monthId}, function (ret) {
+                var list2 = ret.progress_info;
+                readProgress(list2);
+            });
+        }
+    }
+
+    //设置进度显示值
+    function hasImg(bool) {
+        parseInt(bool);
+        if(bool) return'有';
+        else return '无';
+    }
+    //点击添加人员数据
+    function addPerson(data) {
+        var str='';
+        if(data){
+            for(var i=0;i<data.length;i++){
+                var minimg=getMinImage(data[i].avatar);
+                str+='<tr>\
+                    <td><img src="'+localHost+minimg+'"  style="width: 30px;height: 30px;border-radius: 50%" onclick=showImg("'+localHost+data[i].avatar+'")></td>\
+                    <td>'+data[i].name+'</td>\
+                    <td>'+data[i].phone+'</td>\
+                    <td>'+data[i].class+'</td>\
+                    <td>'+data[i].time+'</td>\
+                    <td>'+data[i].wage+'</td>\
+                    </tr>';
+            }
+        }
+        return str
+    }
+    function showRtype(data) {
+        switch (data) {
+            case 0:return '正常';break;
+            case 1:return '常态监管';break;
+            case 2:return '重点监管';break;
+            case 3:return '严重监管';break;
+        }
+    }
+    
+
+    
+    function readProgress(list) {
+        if (JSON.stringify(list)=='{}'){
+            list['year'] = ''
+            list['month'] = ''
+            list['Percent'] = 0
+        }
+        var names=list.year+'年'+list.month+'月项目进度';
+        var dlown2=localHost+'/template/export?type=word&ft=progress&id='+list.ID;
+        $('#derive2').attr({href:dlown2,download:names});
+        console.log(names)
+        $('#progressMonth').html(names);
+        $('#progressNew').off();
+        $('#progressNew').on('click',function (e) {
+            var event = e||window.event;
+            event.preventDefault();
+            var href='../html/project/progressNew.html?id='+ProjectID+'&Name='+Name+'&year='+list.year+'&month='+list.month+'&monthId='+list.ID;
+            var namees='进度'+list.year+'年'+list.month+'月项目进度属于'+Name;
+            addTabs(href,namees);
+        });
+        $('[CID="Person"]').html(addPerson(list.Person)); //询问人员
+
+        $('[CID="Status"]').html(list.Status?'是':'否');  //项目异常
+        $('.progress-bar').html(list.Percent+'%').width(list.Percent+'%');  //进度
+        $('[CID="Content"]').html(list.Content);  //巡查
+        $('[CID="Remark"]').html(list.Remark);  //备注
+        $('[CID="UploadTime"]').html(list.UploadTime);
+        $('[CID="Rtype"]').html(showRtype(list.RType)).addClass(list.RType=='3'?'text-danger':'');
+
+
+        $('[CID="Contract"]').html(hasImg(list.Contract));
+        $('[CID="RealName"]').html(hasImg(list.RealName));
+        $('[CID="Attend"]').html(hasImg(list.Attend));
+        $('[CID="Lwages"]').html(hasImg(list.Lwages));
+        $('[CID="LAB"]').html(hasImg(list.LAB));
+        $('[CID="PAB"]').html(hasImg(list.PAB));
+        $('[CID="LPayCert"]').html(hasImg(list.LPayCert));
+
+        $('[CID="Workers"]').html(list.Workers);
+        $('[CID="ShouldIssues"]').html(list.ShouldIssues);
+        $('[CID="RealIssues"]').html(list.RealIssues);
+        $('[CID="Payment"]').html(list.Payment);
+        $('[CID="Overdraft"]').html(list.Overdraft);
+        $('[CID="TotalSalary"]').html(list.TotalSalary);
+        $('[CID="Punches"]').html(list.Punches);
+        $('[CID="difference"]').html(parseFloat(list.TotalSalary)-parseFloat(list.Overdraft));
+        
+
+
+        var arr=[];
+        $('#progerssImg').html('');
+        if(list.Contract_list.length>0)  arr.push({id:'Contract_list','name':'员工是否有签订合同',data:list.Contract_list});
+        if(list.RealName_list.length>0)  arr.push({id:'RealName_list','name':'此项目是否进行实名制管理',data:list.RealName_list});
+        if(list.Attend_list.length>0)  arr.push({id:'Attend_list','name':'是否有考勤记录',data:list.Attend_list});
+        if(list.Lwages_list.length>0)  arr.push({id:'Lwages_list','name':'农民工工资公示牌',data:list.Lwages_list});
+        if(list.LAB_list.length>0)  arr.push({id:'LAB_list','name':'劳务专员任命书',data:list.LAB_list});
+        if(list.PAB_list.length>0)  arr.push({id:'PAB_list','name':'项目经理任命书',data:list.PAB_list});
+        if(list.LPayCert_list.length>0)  arr.push({id:'LPayCert_list','name':'农民公工资支付凭证',data:list.LPayCert_list});
+        if(list.Progress_list.length>0)  arr.push({id:'Progress_list','name':'进度详情',data:list.Progress_list});
+        function ffff(i) {
+            var data=arr[i].data;
+            var str='';
+            for(var j=0;j<data.length;j++){
+                var imgSrcArr=data[j].Purl.split('.');
+                var imgName=imgSrcArr[0];
+                var imgType=imgSrcArr[1];
+                var original_image=localHost+data[j].Purl;
+                var min_image=localHost+imgName+'_min'+'.'+imgType;
+                str+='<img onclick=showImg("'+original_image+'")  style="margin: 20px  20px 0 0;width: 150px"  src="'+min_image+'">'
+            }
+            $('#progerssImgShow').html(str)
+        }
+
+        if(arr.length>0){
+            for(var i=0;i<arr.length;i++){
+                $('#progerssImg').prepend('<b id="g'+i+'" style="margin-right: 20px;">'+arr[i].name+'&nbsp;('+arr[i].data.length+')</b>')
+            }
+            $('#progerssImg').append('<div id="progerssImgShow"></div>');
+            ffff(0);
+            $('#progerssImg b').on('click',function () {
+                var  index=parseInt($(this).attr('id').substring(1));
+                ffff(index)
+            })
+
+        }else{
+            $('.imgArr').empty();
+        }
+
+    }
+
+</script>
+</body>
+</html>
