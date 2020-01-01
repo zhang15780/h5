@@ -300,8 +300,10 @@
                     var str = '';
                     if (row.ID != 0) {
                         str = '<a href ="javascript:void(0)" class="btn btn-info btn-xs" onclick="edit(' + row.ID + ',' + row.ProjectID + ')">编辑</a>'
-                        str += '&nbsp;&nbsp;&nbsp;'
-                        str += '<label id="importfile' + row.ID + '"  for="otherfile'+row.ID+'" class="btn btn-info btn-xs">\n' +
+                        str += '&nbsp;&nbsp;'
+                        str += '<a href ="javascript:void(0)" class="btn btn-info btn-xs btn-danger" onclick="deletebank(' + row.ID + ')">删除</a>'
+                        str += '&nbsp;&nbsp;'
+                        str += '<label id="importfile' + row.ID + '"  for="otherfile' + row.ID + '" class="btn btn-info btn-xs">\n' +
                             '         <input type="file" id="otherfile' + row.ID + '" class="hide" onchange="upload_files(this,' + row.ID + ')"> 上传回单\n' +
                             '</label>'
                     }
@@ -315,6 +317,22 @@
             $('#table').bootstrapTable('mergeCells', {index: 0, field: 'info', rowspan: leng});
             $('#table').bootstrapTable('mergeCells', {index: 0, field: 'Total_Balance', rowspan: leng});
         });
+    }
+
+    function deletebank(bankid) {
+        console.log(bankid)
+        var id = bankid;
+        Confirm('是否确认删除当前银行信息？', function () {
+            // success
+            Ajax('/bank/delete', 'delete', {id: id}, function (res) {
+                Alert('删除成功');
+                init();
+            }, function () {
+                Alert('删除失败，请稍后再试。')
+            })
+        }, function () {
+            // failed
+        })
     }
 
     function upload_files(_this, rowid) {
