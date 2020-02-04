@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f76937ae-dc4a-4d00-a802-6a3b5fe9ab39" name="Default" comment="2020-1-1&#10;添加保函删除功能&#10;更改考勤搜索关键字">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/bank/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/bank/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="f76937ae-dc4a-4d00-a802-6a3b5fe9ab39" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -27,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/bank/list.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
@@ -36,6 +32,18 @@
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listProgressNo.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/html/project/listProgressNo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+              <folding>
+                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,15 +85,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3978">
               <caret line="234" column="13" selection-start-line="234" selection-start-column="13" selection-end-line="234" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/company/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8874">
-              <caret line="522" selection-start-line="522" selection-end-line="522" />
             </state>
           </provider>
         </entry>
@@ -401,7 +400,7 @@
       <workItem from="1579599504677" duration="605000" />
       <workItem from="1579601382492" duration="621000" />
       <workItem from="1580809870734" duration="354000" />
-      <workItem from="1580810440010" duration="1662000" />
+      <workItem from="1580810440010" duration="2139000" />
     </task>
     <task id="LOCAL-00001" summary="备份代码前">
       <created>1577792128733</created>
@@ -431,11 +430,18 @@
       <option name="project" value="LOCAL" />
       <updated>1579501331604</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修复缺少页面BUG">
+      <created>1580812364826</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580812364826</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127997000" />
+    <option name="totallyTimeSpent" value="128474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -471,7 +477,8 @@
     <MESSAGE value="2020-1-1&#10;添加保函删除功能&#10;更改考勤搜索关键字" />
     <MESSAGE value="2020-1-20&#10;自贡&#10;修改银行回单为xls" />
     <MESSAGE value="去掉注释" />
-    <option name="LAST_COMMIT_MESSAGE" value="去掉注释" />
+    <MESSAGE value="修复缺少页面BUG" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复缺少页面BUG" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -479,13 +486,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/html/company/new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/project/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -825,6 +825,16 @@
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/project/listProgressNo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
