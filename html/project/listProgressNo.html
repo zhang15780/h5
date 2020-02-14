@@ -47,6 +47,15 @@
 </div>
 <script>
     init();
+    // 分页搜索
+    function search() {
+        var Osearch = {
+            Page: Page,
+            PageSize: PageSize,
+        };
+        init(Osearch)
+    }
+
     //通过表格
     function init(data) {
         Ajax('/project/unprogress', 'get', data, function (ret) {

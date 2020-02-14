@@ -347,7 +347,11 @@
             formData.append('file', file[0]);
             formData.append('ID', rowid);
             Ajax('/bank/receipt', 'post', formData, function (res) {
-                Alert('导入成功！');
+                var temp_info = '核对成功！'
+                if (res.error != '') {
+                    temp_info = res.error + '的薪资核对失败，其余用户核对成功！'
+                }
+                Alert(temp_info);
                 init();
             }, function () {
             }, true)
