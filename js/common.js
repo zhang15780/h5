@@ -65,7 +65,7 @@
 //全局变量
 // var localHost = 'http://47.106.140.239:5000'; //服务器数据地址
 //var localHost = 'http://120.78.163.106:5000'; //服务器数据地址
-var localHost = 'http://127.0.0.1:5000'; //服务器数据地址
+var localHost = 'http://120.78.163.106:5000'; //服务器数据地址
 // var localHost2 = 'http://47.106.140.239:8080'; //服务器主机地址
 var localHost2 = 'http://47.92.138.195:8081'; //服务器主机地址
 var Permission = getCookie('Permission'); //获取用户权限 []
