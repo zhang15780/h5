@@ -442,7 +442,7 @@
         function retcompany(subARR) {
             for(var i=0;i<subARR.length;i++){
                 var company=subARR[i];
-                var danger=parseInt(company.Status)==0?'<i class="text-danger fa fa-exclamation-triangle" title="企业存在风险"></i>':'';
+                var danger=parseInt(company.Status)!=0?'<i class="text-danger fa fa-exclamation-triangle" title="企业存在风险"></i>':'';
                 var href='../html/company/view.html?CompanyId='+company.ID+'&Name='+company.CompanyName;
                 var src='<a href="javascript:void(0)" onclick=addTabs("'+href+'","'+company.CompanyName+'") ' +
                     'style="margin-right: 10px;">'+company.CompanyName+'</a>';
@@ -540,9 +540,13 @@
         if(data){
             for(var i=0;i<data.length;i++){
                 var minimg=getMinImage(data[i].avatar);
-                str+='<tr>\
-                    <td><img src="'+localHost+minimg+'"  style="width: 30px;height: 30px;border-radius: 50%" onclick=showImg("'+localHost+data[i].avatar+'")></td>\
-                    <td>'+data[i].name+'</td>\
+                str+='<tr>';
+                if (minimg!= ""){
+                    str +=    '<td><img src="'+localHost+minimg+'"  style="width: 30px;height: 30px;border-radius: 50%" onclick=showImg("'+localHost+data[i].avatar+'")></td>';
+                } else {
+                    str += "<td>暂无图片</td>"
+                }
+                    str+='<td>'+data[i].name+'</td>\
                     <td>'+data[i].phone+'</td>\
                     <td>'+data[i].class+'</td>\
                     <td>'+data[i].time+'</td>\
@@ -560,9 +564,9 @@
             case 3:return '严重监管';break;
         }
     }
-    
 
-    
+
+
     function readProgress(list) {
         if (JSON.stringify(list)=='{}'){
             list['year'] = ''
@@ -608,7 +612,7 @@
         $('[CID="TotalSalary"]').html(list.TotalSalary);
         $('[CID="Punches"]').html(list.Punches);
         $('[CID="difference"]').html(parseFloat(list.TotalSalary)-parseFloat(list.Overdraft));
-        
+
 
 
         var arr=[];

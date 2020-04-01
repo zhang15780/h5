@@ -178,6 +178,7 @@
     var CompanyId=0;
     var Name='';
     $(function () {
+        $('#company_some_show').hide();
         CompanyId=window.location.href.getQueryString("CompanyId");
         Name=window.location.href.getQueryString("Name");
         if(Name){
