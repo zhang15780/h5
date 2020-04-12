@@ -69,14 +69,14 @@
     var year=0;
     var month=0;
     $(function() {
-        // id = parseInt(window.location.href.getQueryString("id")) || 0;
-        id = 0;
+         id = parseInt(window.location.href.getQueryString("id")) || 0;
+        //id = 0;
         Name = window.location.href.getQueryString("Name") || '';
         year = window.location.href.getQueryString("year") || '';
         month = window.location.href.getQueryString("month") || '';
         if(id){
-            // $('#fuzzyVal').val(Name);
-            // $('#Month').val(year+'-'+month);
+            $('#fuzzyVal').val(Name);
+            $('#Month').val(year+'-'+month);
             init()
         }
     });

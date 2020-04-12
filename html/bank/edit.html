@@ -74,6 +74,12 @@
                             <input type="text" placeholder="" onblur="CheckNumber(this)" id="ActualPay" class="form-control">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label"><span class="text-danger">*</span>实际开卡数：</label>
+                        <div class="col-xs-8">
+                            <input type="text" placeholder="" onblur="CheckNumber(this)" id="works" class="form-control">
+                        </div>
+                    </div>
                 </form>
                 <div class="text-center submit">
                     <button type="reset" class="btn btn-w-m btn-default" >清空</button>
@@ -108,6 +114,7 @@
                 $('#Status').val(list.Status);
                 $('#RPay').val(list.RPay);
                 $('#ActualPay').val(list.ActualPay);
+                $('#works').val(list.works);
             })
         }
         function initOrg() {
@@ -130,6 +137,7 @@
                 Status:$('#Status').val(),
                 RPay:$('#RPay').val(),
                 ActualPay: $('#ActualPay').val(),
+                works: $('#works').val(),
             };
 
             // 检查必填字段是否填写完整
@@ -139,6 +147,7 @@
                 'Status': '支付状态',
                 'RPay': '实际到账金额',
                 'ActualPay': '实际支出金额',
+                'works': '实际开卡数',
             }
             var chk_null = checkNull(formData, chek_data, ['ProjectID',])
             if (chk_null != '') {

@@ -17,7 +17,9 @@
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <style>
-
+        #guarantee_pren .col-sm-2{
+            padding-left: 20px;
+        }
     </style>
 
     <link href="../../js/plugins/layer/skin/layer.css" rel="stylesheet">
@@ -91,7 +93,6 @@
                                 <div class="col-sm-8">
                                     允许显示 <input type="checkbox" id="guarantee_show">
                                     允许新建编辑 <input type="checkbox" id="guarantee_edit">
-                                   <!-- 允许下载 <input type="checkbox" id="guarantee_download">-->
                                 </div>
                             </div>
                             <div class="form-group">
@@ -132,9 +133,27 @@
                     </div>
                 </div>
             </div>
+            <div class="ibox" id="ibox" style="display: none">
+                <div class="ibox-title">
+                    <h5>请选择出单员...</h5>
+                </div>
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-sm-12">
+                        <form class="form-horizontal">
+                            <div class="form-group" id="guarantee_pren">
+
+                            </div>
+                            <div class="text-center submit">
+                                <button type="button" class="btn btn-w-m btn-info" onclick="set_user_gua()">选择</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
     var UserID=0;
     var Name='';
@@ -142,8 +161,9 @@
         UserID = parseInt(window.location.href.getQueryString("id")) || 0;
         Name = window.location.href.getQueryString("Name") || '';
         if(Name.length>0){
-            $('.ibox-title').html(Name+'-权限配置');
-            init()
+            $('.ibox-title').first().html(Name+'-权限配置');
+            init();
+            get_user_gua();
         }
     });
     function init() {
@@ -174,7 +194,6 @@
            $('#'+arr[i]).prop("checked")?val=1:val=0;
             obj[arr[i]]=val
         }
-        console.log(obj);
         return obj;
     }
 
@@ -195,7 +214,7 @@
                 'template_show','permission_show',
                 'labor_badrecord_edit',
                 'labor_badrecord_show','company_some_show',
-                'question_all_show','question_show','question_edit'
+                'question_all_show','question_show','question_edit','guarantee_pren'
             ]))
         };
        Ajax('/user/permission','post',data,function (ret) {
@@ -203,6 +222,40 @@
            window.location.href='user.html';
        })
     }
+
+    //查看业务员
+    function get_user_gua() {
+        Ajax('/user/get_user_gua','get',{ID:UserID},function (ret) {
+            if(ret.admintype===0){
+                $('#ibox').show();
+                var  str='';
+                for(var i in ret.data){
+                    if(ret.data[i].check===0){
+                        str+='<div class="col-sm-2"><input type="checkbox" name="gua" id="'+ret.data[i].id+'"> '+ret.data[i].loginname+'</div>'
+                    }else{
+                        str+='<div class="col-sm-2"><input type="checkbox" checked="checked" name="gua" id="'+ret.data[i].id+'"> '+ret.data[i].loginname+' </div>'
+                    }
+                }
+                $('#guarantee_pren').append(str);
+            }
+        })
+    }
+    function set_user_gua() {
+        var gua=$('input[name="gua"]');
+        var str='';
+        gua.each(function (i,ele) {
+            if($(ele).prop('checked')){
+                str+=$(ele).prop('id')+',';
+            }
+        });
+        Ajax('/user/set_user_gua','post',{ID:UserID,check:str},function (ret) {
+            Alert('选择成功')
+        })
+    }
+
+
+
+
 
 </script>
 </body>

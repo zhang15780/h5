@@ -87,6 +87,12 @@
                                 <option value="0">正常</option>
                                 <option value="1">不良</option>
                             </select>
+                            <select  class="form-control" id="queryType" style="width: 150px">
+                                <option value="0">全部</option>
+                                <option value="1">管理员</option>
+                                <option value="2">班组长</option>
+                                <option value="3">普通人员</option>
+                            </select>
                             <input type="text" class="form-control" placeholder="输入姓名" id="Name" style="width: 150px">
                             <input type="text" class="form-control" placeholder="输入身份证"  id="IDCard" style="width: 150px">
                             <span class="input-group-btn">
@@ -225,6 +231,7 @@
 			Education:7,
 	        Page: Page,
 	        PageSize: PageSize,
+            queryType:0,
 	    };
 	    init(Osearch);
 	});
@@ -279,6 +286,7 @@
             Education: getIdVal('Education'),
             Page: Page,
             PageSize: PageSize,
+            queryType: $('#queryType').val(),
 	    };
 	    if (Isbad!=1) {
 	        Osearch.Isbad = parseInt($('#Isbad').val())

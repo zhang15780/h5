@@ -83,6 +83,12 @@
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                             </select>
+                            <select  class="form-control" id="queryType" style="width: 150px">
+                                <option value="0">全部</option>
+                                <option value="1">管理员</option>
+                                <option value="2">班组长</option>
+                                <option value="3">普通人员</option>
+                            </select>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-danger" onclick="init()">搜索</button>
                             </span>
@@ -122,6 +128,7 @@
             Page: params.offset / params.limit + 1,
             Month: $('#Month').val(),
             Days: $('#Days').val(),
+            queryType: $('#queryType').val(),
         })
     }
     function responseHandler(ret) {
@@ -245,9 +252,20 @@
                 title: '操作',
                 align: 'center',
                 formatter: function (value, row, index) {
-                   return   '<a href ="view.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'&month='+row.month+'">' +
+                    var href='';
+                   if(row.month){
+                       href='<a href ="view.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'&month='+row.month+'">' +
                        '考勤详情</a>&nbsp;&nbsp;' +
-                            '<a href ="../salary/list.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'&month='+row.month+'">薪资计算</a>'
+                       '<a href ="../salary/list.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'&month='+row.month+'">薪资计算</a>'
+                   }else if(row.year){
+                       href='<a href ="view.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'">考勤详情</a>&nbsp;&nbsp;' +
+                       '<a href ="../salary/list.html?id='+row.ID+'&Name='+row.Name+'&year='+row.year+'">薪资计算</a>'
+                   }else{
+                       href='<a href ="view.html?id='+row.ID+'&Name='+row.Name+'">考勤详情</a>&nbsp;&nbsp;' +
+                           '<a href ="../salary/list.html?id='+row.ID+'&Name='+row.Name+'">薪资计算</a>'
+                   }
+
+                   return href
                 }
             },
         ];

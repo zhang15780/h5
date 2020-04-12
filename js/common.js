@@ -65,7 +65,7 @@
 //全局变量
 // var localHost = 'http://47.106.140.239:5000'; //服务器数据地址
 //var localHost = 'http://120.78.163.106:5000'; //服务器数据地址
-var localHost = 'http://127.0.0.1:5000'; //服务器数据地址
+var localHost = 'http://192.168.1.5:5000'; //服务器数据地址
 // var localHost2 = 'http://47.106.140.239:8080'; //服务器主机地址
 var localHost2 = 'http://47.92.138.195:8081'; //服务器主机地址
 var Permission = getCookie('Permission'); //获取用户权限 []
@@ -380,9 +380,12 @@ function getFormDataOne(node) {
 //获取上传图片
 function uploadMore(node, formData) {
     var fileObj = document.getElementById(node).files;
-    // console.log(fileObj);
     for (var i = 0; i < fileObj.length; i++) {
-        formData.append(node + '[]', fileObj[i]);
+        if((fileObj[i].size/1048576)>=10){
+            Alert('上传单个文件不得大于10M!!')
+        }else{
+            formData.append(node + '[]', fileObj[i]);
+        }
     }
     return formData
 }
